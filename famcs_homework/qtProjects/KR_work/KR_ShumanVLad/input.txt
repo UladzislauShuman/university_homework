@@ -1,0 +1,4 @@
+Masha 10000
+Vlad 9890
+Andrey 20000
+Dasha 4034

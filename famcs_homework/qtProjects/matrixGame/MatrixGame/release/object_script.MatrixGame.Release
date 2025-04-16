@@ -1,0 +1,16 @@
+release/cell.o
+release/cellposition.o
+release/field.o
+release/main.o
+release/mainwindow.o
+release/myqcolor.o
+release/player.o
+release/playerdialog.o
+release/settingsdialog.o
+release/windialog.o
+release/moc_cell.o
+release/moc_field.o
+release/moc_mainwindow.o
+release/moc_playerdialog.o
+release/moc_settingsdialog.o
+release/moc_windialog.o

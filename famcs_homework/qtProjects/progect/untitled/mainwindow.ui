@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+	<class>MainWindow</class>
+	<widget class="QMainWindow" name="MainWindow">
+		<property name="geometry">
+			<rect>
+				<x>0</x>
+				<y>0</y>
+				<width>910</width>
+				<height>787</height>
+			</rect>
+		</property>
+		<property name="styleSheet">
+			<string notr="true"/>
+		</property>
+		<widget class="QWidget" name="centralwidget">
+			<widget class="QPushButton" name="drawStackButton">
+				<property name="geometry">
+					<rect>
+						<x>610</x>
+						<y>20</y>
+						<width>261</width>
+						<height>71</height>
+					</rect>
+				</property>
+				<property name="text">
+					<string>Paint Stack</string>
+				</property>
+			</widget>
+			<widget class="QPushButton" name="pushButton">
+				<property name="geometry">
+					<rect>
+						<x>610</x>
+						<y>120</y>
+						<width>261</width>
+						<height>71</height>
+					</rect>
+				</property>
+				<property name="text">
+					<string>Push</string>
+				</property>
+			</widget>
+			<widget class="QPushButton" name="popButton">
+				<property name="geometry">
+					<rect>
+						<x>610</x>
+						<y>340</y>
+						<width>261</width>
+						<height>71</height>
+					</rect>
+				</property>
+				<property name="text">
+					<string>Pop</string>
+				</property>
+			</widget>
+			<widget class="QLineEdit" name="inputLine">
+				<property name="geometry">
+					<rect>
+						<x>610</x>
+						<y>230</y>
+						<width>261</width>
+						<height>71</height>
+					</rect>
+				</property>
+				<property name="font">
+					<font>
+						<pointsize>20</pointsize>
+					</font>
+				</property>
+			</widget>
+		</widget>
+		<widget class="QMenuBar" name="menuBar">
+			<property name="geometry">
+				<rect>
+					<x>0</x>
+					<y>0</y>
+					<width>910</width>
+					<height>26</height>
+				</rect>
+			</property>
+		</widget>
+	</widget>
+	<resources/>
+	<connections/>
+</ui>

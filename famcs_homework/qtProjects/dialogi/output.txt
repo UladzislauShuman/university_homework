@@ -1,0 +1,5 @@
+ram intel pentium 4gb 123.000000 0
+SSD Sumsung gx980 1GB 200.500000 1
+Анекдот ООО_Русик Штирлиц Funny 10.000000 1
+ноутбук Горизонт H-book 15.6" 2219.000000 1
+amd ram ryzen 4 kernel 120.000000 1

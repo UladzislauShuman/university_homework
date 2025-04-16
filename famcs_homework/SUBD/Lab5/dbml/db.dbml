@@ -1,0 +1,166 @@
+Table Movie {
+    id int [pk, increment]
+    description varchar(255)
+    rating int
+    age_limit int
+    number_of_views int
+    duration int
+    release_year int
+    country_id int 
+    website_id int 
+    publisher_producer_id int
+    director_id int
+    genre_id int
+}
+ref: Publisher_Producer.id <> Movie.publisher_producer_id
+ref : Director.id <> Movie.director_id 
+ref : Website.id - Movie.website_id
+ref : Genre.id <> Movie.genre_id
+
+table Genre {
+    id int [pk, increment]
+    name varchar(255)
+}
+
+table Publisher_Producer {
+    id int [pk, increment]
+    publisher_id int
+    address_id int
+    name varchar(255)
+}
+ref : Publisher_Producer.publisher_id > Publisher.id
+ref : Address.id - Publisher_Producer.address_id
+
+table Publisher {
+    id int [pk, increment]
+    name varchar(255)
+    website_id int
+}
+
+ref : Publisher.website_id - Website.id
+
+table Director {
+    id int [pk, increment]
+    country_id int UNIQUE
+    name varchar(255)
+}
+
+table Country {
+    id int [pk, increment]
+    name varchar(255)
+}
+
+ref : Director.country_id > Country.id 
+ref : Movie.country_id > Country.id
+
+table Collection {
+    id int [pk, increment]
+    name varchar(255)
+    description text
+}
+
+table MovieCollection {
+    collection_id int
+    movie_id int
+}
+
+ref : Collection.id < MovieCollection.collection_id
+ref : Movie.id < MovieCollection.movie_id
+
+table Website {
+    id int [pk, increment]
+    name varchar(255)
+    url text
+}
+
+table Address {
+    id int [pk, increment]
+    country_id int 
+    street varchar(255)
+    house int
+    placement int
+}
+
+ref : Country.id < Address.country_id
+
+table Rentaler {
+    id int [pk, increment]
+    name varchar(255)
+    website_id int
+}
+
+ref : Website.id - Rentaler.website_id
+
+table Rentaler_Concrete {
+    id int [pk, increment]
+    rentaler_id int
+    address_id int
+    phone_number varchar(255)
+}
+
+ref : Rentaler_Concrete.rentaler_id > Rentaler.id
+ref : Rentaler_Concrete.address_id > Address.id
+
+table User {
+    id int [pk, increment]
+    age int
+    name varchar(255)
+}
+
+table UserFavoriteMovies {
+    movie_id int
+    user_id int
+}
+
+ref : User.id > UserFavoriteMovies.user_id
+ref : Movie.id > UserFavoriteMovies.movie_id
+
+table UserFavoriteGenre {
+    genre_id int
+    user_id int
+}
+
+ref : User.id > UserFavoriteGenre.user_id
+ref : Genre.id > UserFavoriteGenre.genre_id
+
+table Carrier { // носитель
+    id int [pk, increment]
+    size int
+    name varchar(255)
+    type_id int
+}
+
+ref : Carrier.type_id > Type.id
+
+table Type {
+    id int [pk, increment]
+    name varchar(255)
+}
+
+table Recording_Format {
+    id int [pk, increment]
+    name varchar(255)
+}
+
+table RentedCarriers {
+    id int [pk, increment]
+    start_rent time
+    end_rent time
+    carrier_id int
+    rentaler_concrete_id int
+}
+
+ref : Carrier.id - RentedCarriers.carrier_id
+ref : Rentaler_Concrete.id < RentedCarriers.rentaler_concrete_id
+
+table MovieCarrier {
+    movie_id int
+    carrier_id int
+    recording_format_id int
+}
+// один фильм может быть как копия на разных носителях
+// как и один носитель может хранить много фильмов
+ref : Carrier.id < MovieCarrier.carrier_id
+ref : Movie.id < MovieCarrier.movie_id
+ref : Recording_Format.id < MovieCarrier.recording_format_id
+
