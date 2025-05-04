@@ -1,0 +1,182 @@
+-- задание 0 -- сделать и предварительно заполнить таблицы
+CREATE TABLE CUSTOMERS (
+    IDCUST NUMERIC(9) NOT NULL,
+    CUST_NUM CHAR(10) NULL,
+    COMPANY CHAR(20) NULL,
+    CUST_REP CHAR(10) NULL,
+    CREDIT_LIMIT MONEY NULL,
+    DATA_ORDER SMALLDATETIME NULL,
+    AMOUNT MONEY NULL
+);
+
+INSERT INTO CUSTOMERS
+VALUES
+    (1, '211', 'Фишер', '121', 80000, '2005-12-12', 9000),
+    (2, '212', 'Графт', '124', 167890, '2005-02-01', 145678),
+    (3, '212', 'Графт', '124', 2000, '2005-06-04', 1000),
+    (4, '213', 'Шредер', '121', 12, '2004-02-06', 2000);
+-- хотелось бы сделать так, чтобы не нужно было вводить самому
+-- ID, для этого я бы мог воспользоваться IDCUST INT IDENTITY(1,1) PRIMARY KEY
+
+CREATE TABLE SALESPERS (
+    FIO CHAR(20) NULL,
+    EMPL_NYM CHAR(10) NOT NULL PRIMARY KEY,
+    QUOTA FLOAT(8) NULL
+);
+
+INSERT INTO SALESPERS
+VALUES
+    ('Петров', '121', 105000),
+    ('Иванов', '122', 14),
+    ('Сидоров', '123', 0),
+    ('Васечкин', '124', 150000);
+
+
+CREATE TABLE OFFICES (
+    IDOFF INT NOT NULL PRIMARY KEY CHECK (IDOFF BETWEEN 0 AND 9999),
+    TARGET FLOAT(8) NULL,
+    CITY CHAR(10) NULL,
+    CUST_NUM CHAR(10) NULL,
+    STATUS CHAR(30) NULL
+);
+-- в фотографии для IDOFF стоит длина до 4
+-- если речь идет о количестве цифр, то -- такого синтаксиса как бы и нет
+-- но можно обойти это путем, каким я воспользовался выше
+
+INSERT INTO OFFICES 
+VALUES
+    (1, 1000000, 'Лондон', '211', NULL),
+    (2, 120000, 'Берлин', '212', NULL),
+    (3, 3450000, 'Прага', '213', NULL);
+
+SELECT * FROM CUSTOMERS;
+SELECT * FROM SALESPERS;
+SELECT * FROM OFFICES;
+
+-- Задание 1
+CREATE PROCEDURE GET_CUST -- написать хранимую процедуру GET_CUST
+	-- первый параметр входной
+    @IDCUST NUMERIC(9), -- которая получает идентификатор клиента
+	-- остальные три выходные
+    @COMPANY CHAR(20) OUTPUT, -- и возвращает его имя
+    @FIO CHAR(20) OUTPUT, -- имя закрепленного за ним служащего
+    @CITY CHAR(10) OUTPUT -- название города: в котором расположен офис его клиента
+AS
+BEGIN
+    SELECT 
+        @COMPANY = CUSTOMERS.COMPANY,
+        @FIO = SALESPERS.FIO,
+        @CITY = OFFICES.CITY
+    FROM CUSTOMERS
+    LEFT JOIN SALESPERS ON CUSTOMERS.CUST_REP = SALESPERS.EMPL_NYM
+    LEFT JOIN OFFICES ON CUSTOMERS.CUST_NUM = OFFICES.CUST_NUM
+    WHERE CUSTOMERS.IDCUST = @IDCUST;
+END;
+
+-- Продемонстрировать вызов данной процедуры из другой процедуры Transact-SQL. Например, GET_CUST1 (идентификатор_клиента).
+CREATE PROCEDURE GET_CUST1
+    @IDCUST NUMERIC(9)
+AS
+BEGIN
+    DECLARE @COMPANY CHAR(20), @FIO CHAR(20), @CITY CHAR(10); -- объявляем три переменные
+
+    EXEC GET_CUST @IDCUST, @COMPANY OUTPUT, @FIO OUTPUT, @CITY OUTPUT; -- получаем все необходимые данные
+
+	-- и выводим их
+    PRINT 'Компания: ' + @COMPANY;
+    PRINT 'Служащий: ' + @FIO;
+    PRINT 'Город офиса: ' + @CITY;
+END;
+
+EXEC GET_CUST1 1;
+
+
+-- Задание 2
+-- нужно учесть то, что у нас есть одинаковые CUST_NUM
+-- Написать хранимую процедуру CHK_TOT
+CREATE OR ALTER PROCEDURE CHK_TOT
+    @IDCUST NUMERIC(9) -- которая получает идентификатор клиента
+AS
+BEGIN
+	-- объявляем переменные
+    DECLARE @TotalAmount MONEY = 0;
+    DECLARE @CUST_NUM CHAR(10);
+    DECLARE @COMPANY CHAR(20);
+    DECLARE @StatusMessage NVARCHAR(100);
+    DECLARE @OfficeCount INT;
+    DECLARE @CurrentStatus CHAR(50);
+
+    -- Получаем данные клиента
+    SELECT @CUST_NUM = CUST_NUM, 
+           @COMPANY = COMPANY
+    FROM CUSTOMERS
+    WHERE IDCUST = @IDCUST;
+
+    -- учтем, а есть ли клиент
+    IF @CUST_NUM IS NOT NULL
+    BEGIN
+        --  и вычисляет общую стоимость его заказов
+        SELECT @TotalAmount = COALESCE(SUM(AMOUNT), 0)
+        FROM CUSTOMERS
+        WHERE CUST_NUM = @CUST_NUM;
+
+        -- и в зависимости от того, превысит ли эта сумма 30 000$, 
+		-- заносит в поле STATUS таблицы OFFICES 
+		-- одно из двух примечаний – “большой объем заказов”, ”малый объем заказов”
+        IF @TotalAmount > 30000
+            SET @CurrentStatus = 'большой объем заказов';
+        ELSE
+            SET @CurrentStatus = 'малый объем заказов';
+
+        UPDATE OFFICES
+        SET STATUS = @CurrentStatus
+        WHERE CUST_NUM = @CUST_NUM;
+
+        -- Получаем количество обновленных офисов
+        SELECT @OfficeCount = @@ROWCOUNT;
+
+        -- вывод (для отладки)
+        PRINT '===================================';
+        PRINT 'Обработка клиента:';
+        PRINT 'ID клиента: ' + CAST(@IDCUST AS NVARCHAR);
+        PRINT 'Номер клиента: ' + @CUST_NUM;
+        PRINT 'Компания: ' + @COMPANY;
+        PRINT 'Общая сумма заказов: ' + CAST(@TotalAmount AS NVARCHAR) + '$';
+        PRINT 'Установлен статус: ' + @CurrentStatus;
+        PRINT 'Обновлено офисов: ' + CAST(@OfficeCount AS NVARCHAR);
+        PRINT '===================================';
+    END
+    ELSE -- если клиент не найден
+    BEGIN
+        PRINT '===================================';
+        PRINT 'Ошибка: Клиент с ID ' + CAST(@IDCUST AS NVARCHAR) + ' не найден';
+        PRINT '===================================';
+    END
+END;
+
+-- проверяем выполнение
+EXEC CHK_TOT 1;
+EXEC CHK_TOT 2;
+EXEC CHK_TOT 3;
+EXEC CHK_TOT 4;
+
+SELECT * FROM OFFICES;
+
+
+Написать хранимую процедуру для добавления данных о новом клиенте в
+таблицу OFFICES.
+
+ Добавить новую строку в таблицу OFFICES. Разрешается добовление только
+для клиентов, уже имеющих запись в таблице CUSTOMERS.
+ Обновить запись в SALESPERS, увеличив поле QUOTA для соответствующего
+служащего (для каждого, с которым работает клиент) на величину объема
+продаж добавленной в предыдущем пункте записи. Плановый объем продаж
+служащего не может быть увеличен более чем на определенную величину.
+Если сумма заказов рассматриваемого клиента составляет менее 20 000$
+(вызов процедуры CHK_TOT, которая должна возвращать эту сумму,
+например, в качестве выходного параметра), то величина объема продаж (поле
+TARGET таблицы OFFICES) будет добавлена к плану служащего. Если сумма
+заказов рассматриваемого клиента равна 20 000$ к плану будут добавлены
+фиксированные 20 000$. В противном случае – запретить добавление новой
+записи в OFFICES и обновление в SALESPERS. Предусмотреть
+промежуточный вывод суммы заказов рассматриваемого клиента.
