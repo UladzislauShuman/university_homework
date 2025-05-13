@@ -244,7 +244,7 @@ BEGIN
         @TotalAmount = @TotalAmount OUTPUT;
     
     -- Получаем информацию о клиенте (CUST_REP и COMPANY)
-    SELECT TOP 1 @CUST_REP = CUST_REP, @COMPANY = COMPANY
+    SELECT @CUST_REP = CUST_REP, @COMPANY = COMPANY
     FROM CUSTOMERS
     WHERE CUST_NUM = @CUST_NUM;
     

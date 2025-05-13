@@ -1,0 +1,209 @@
+// генерация запроса https://dbdiagram.io/d
+
+// Вопросы:
+// - стоит ли уменьшить сущность Фильм?
+
+Table Movie {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    description varchar(255)          // Неключевое
+    rating int                        // Неключевое
+    age_limit int                     // Неключевое
+    number_of_views int               // Неключевое
+    duration int                      // Неключевое
+    release_year int                  // Неключевое
+    country_id int [ref: > Country.id] // Неключевое (внешний ключ)
+    website_id int [ref: > Website.id] // Неключевое (внешний ключ)
+    publisher_id int [ref: > Publisher.id] // Неключевое (внешний ключ)
+    director_id int [ref: > Director.id] // Неключевое (внешний ключ)
+    genre_id int [ref: > Genre.id]    // Неключевое (внешний ключ)
+    
+    Note: '''
+    Таблица сущности Фильм.
+    Хранит информацию о фильмах:
+    - количество просмотров
+    - описание
+    - рейтинг
+    - страна производства
+    - и другие метаданные
+    '''
+}
+
+Table Genre {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    name varchar(255)                 // Неключевое
+    
+    Note: "Таблица сущности Жанр, хранит название Жанра"
+}
+
+Table Publisher {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    name varchar(255)                 // Неключевое
+    website_id int [ref: > Website.id] // Неключевое (внешний ключ)
+    
+    Note: '''
+    Сущность Издатель (Дисней, Пиксар и т.п.).
+    '''
+}
+
+Table Director {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    country_id int [ref: > Country.id, unique] // Неключевое (внешний ключ)
+    name varchar(255)                 // Неключевое
+    description text                  // Неключевое
+    
+    Note: '''
+    Таблица сущности Режиссер:
+    хранит в себе имя, страну происхождения
+    и описание режиссера
+    '''
+}
+
+Table Country {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    name varchar(255)                 // Неключевое
+    
+    Note: "Таблица сущности Страна: хранит название страны"
+}
+
+Table Collection {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    name varchar(255)                 // Неключевое
+    description text                  // Неключевое
+    
+    Note: "Таблица сущности Коллекция: хранит название и описание коллекции"
+}
+
+Table MovieCollection {
+    collection_id int [ref: > Collection.id] // Ключевое (часть составного PK)
+    movie_id int [ref: > Movie.id]    // Ключевое (часть составного PK)
+    
+    Note: "Таблица, описывающая содержимое коллекций"
+}
+
+Table Website {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    name varchar(255)                 // Неключевое
+    url text                          // Неключевое
+    
+    Note: "Таблица, описывающая Веб-сайт"
+}
+
+Table LocalityType {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    name varchar(50)                  // Неключевое
+    code varchar(20)                  // Неключевое
+    
+    Note: "Хранит виды населенных мест (город, деревня, поселок и т.п.)"
+}
+
+Table Locality {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    country_id int [ref: > Country.id] // Неключевое (внешний ключ)
+    locality_type_id int [ref: > LocalityType.id] // Неключевое (внешний ключ)
+    name varchar(255)                 // Неключевое
+    
+    Note: "Связывает Страну и населенный пункт (с указанием типа)"
+}
+
+Table Address {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    locality_id int [ref: > Locality.id] // Неключевое (внешний ключ)
+    street varchar(255)               // Неключевое
+    house int                         // Неключевое
+    
+    Note: "Хранит адрес объекта"
+}
+
+Table Rentaler {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    name varchar(255)                 // Неключевое
+    website_id int [ref: > Website.id] // Неключевое (внешний ключ)
+    
+    Note: '''
+    Компания, предоставляющая носители с фильмами в аренду.
+    Может иметь несколько точек по миру
+    '''
+}
+
+Table Rentaler_Concrete {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    rentaler_id int [ref: > Rentaler.id] // Неключевое (внешний ключ)
+    address_id int [ref: > Address.id] // Неключевое (внешний ключ)
+    phone_number varchar(255)         // Неключевое
+    
+    Note: "Конкретная точка аренды с адресом и контактами"
+}
+
+Table User {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    age int                           // Неключевое
+    name varchar(255)                 // Неключевое
+    
+    Note: "Пользователь системы: имя и возраст"
+}
+
+Table UserFavoriteMovies {
+    user_id int [ref: > User.id]      // Ключевое (часть составного PK)
+    movie_id int [ref: > Movie.id]    // Ключевое (часть составного PK)
+    
+    Note: "Связь пользователя и понравившихся фильмов"
+}
+
+Table UserFavoriteGenre {
+    genre_id int [ref: > Genre.id]    // Ключевое (часть составного PK)
+    user_id int [ref: > User.id]      // Ключевое (часть составного PK)
+    
+    Note: "Связь пользователя и предпочитаемых жанров"
+}
+
+Table Carrier {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    size int                          // Неключевое
+    name varchar(255)                 // Неключевое
+    type_id int [ref: > Type.id]      // Неключевое (внешний ключ)
+    
+    Note: "Физический носитель фильма (диск, кассета и т.д.)"
+}
+
+Table Type {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    name varchar(255)                 // Неключевое
+    
+    Note: "Типы носителей (DVD, Blu-ray, VHS и т.д.)"
+}
+
+Table RentedCarriers {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    start_rent time                   // Неключевое
+    end_rent time                     // Неключевое
+    carrier_id int [ref: > Carrier.id] // Неключевое (внешний ключ)
+    rentaler_concrete_id int [ref: > Rentaler_Concrete.id] // Неключевое (внешний ключ)
+    
+    Note: "История аренды носителей"
+}
+
+Table Recording_Format {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    name varchar(255)                 // Неключевое
+    
+    Note: "Форматы записи (PAL, NTSC и т.д.)"
+}
+
+Table MovieCarrier {
+    movie_id int [ref: > Movie.id]    // Ключевое (часть составного PK)
+    carrier_id int [ref: > Carrier.id] // Ключевое (часть составного PK)
+    recording_format_id int [ref: > Recording_Format.id] // Ключевое (часть составного PK)
+    
+    Note: "Связь между фильмом и его носителями"
+}
+
+Table WatchHistory {
+    id int [pk, increment]            // Ключевое (первичный ключ)
+    movie_id int [ref: > Movie.id]    // Неключевое (внешний ключ)
+    user_id int [ref: > User.id, null] // Неключевое (внешний ключ, может быть null)
+    watched_at datetime [default: `now()`] // Неключевое
+    
+    Note: '''
+    хранит информацию о просмотре фильма
+    '''
+}

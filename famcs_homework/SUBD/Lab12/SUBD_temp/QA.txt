@@ -1,0 +1,559 @@
+что не так?
+
+-- Задание 3
+-- внести данные в созданные таблицы
+
+INSERT INTO Country (name) VALUES 
+(N'Россия'),
+(N'США'),
+(N'Франция'),
+(N'Германия'),
+(N'Япония'),
+(N'Южная Корея'),
+(N'Китай'),
+(N'Великобритания'),
+(N'Италия'),
+(N'Испания'),
+(N'Индия'),
+(N'Бразилия');
+
+INSERT INTO Genre (name) VALUES 
+(N'Комедия'),
+(N'Драма'),
+(N'Боевик'),
+(N'Фантастика'),
+(N'Мелодрама'),
+(N'Ужасы'),
+(N'Триллер'),
+(N'Документальный'),
+(N'Анимация'),
+(N'Исторический'),
+(N'Фэнтези'),
+(N'Криминал');
+
+INSERT INTO Website (name, url) VALUES 
+(N'КиноПоиск', N'https://www.kinopoisk.ru'),
+(N'IMDb', N'https://www.imdb.com'),
+(N'Rotten Tomatoes', N'https://www.rottentomatoes.com'),
+(N'Film.ru', N'https://www.film.ru'),
+(N'Кино-Театр.ру', N'https://www.kino-teatr.ru'),
+(N'MoviePilot', N'https://www.moviepilot.de'),
+(N'MyDramaList', N'https://mydramalist.com'),
+(N'AsianWiki', N'https://asianwiki.com'),
+(N'SensCritique', N'https://www.senscritique.com'),
+(N'Metacritic', N'https://www.metacritic.com'),
+(N'ReviewFilm', N'https://reviewfilm.ru'),
+(N'Фильм.онлайн', N'https://film.online');
+
+INSERT INTO Publisher (name, website_id)
+SELECT name, id FROM (
+    VALUES 
+    (N'Walt Disney'),
+    (N'Pixar'),
+    (N'Warner Bros.'),
+    (N'Universal Pictures'),
+    (N'Paramount Pictures'),
+    (N'Sony Pictures'),
+    (N'Mosfilm'),
+    (N'Lenfilm'),
+    (N'Ghibli'),
+    (N'CJ Entertainment'),
+    (N'Netflix Studios'),
+    (N'HBO')
+) AS P(name)
+JOIN Website ON P.name LIKE '%' -- просто получаем любые id сайта для примера
+WHERE Website.id IN (SELECT TOP 12 id FROM Website);
+
+INSERT INTO Director (name, country_id, description)
+SELECT name, id, description FROM (
+    VALUES 
+    (N'Андрей Звягинцев', N'Россия', N'Известный российский режиссёр.'),
+    (N'Кристофер Нолан', N'Великобритания', N'Автор Темного Рыцаря и Интерстеллара.'),
+    (N'Квентин Тарантино', N'США', N'Стильный и харизматичный режиссёр.'),
+    (N'Хаяо Миядзаки', N'Япония', N'Мастер анимации и магии.'),
+    (N'Пон Джун Хо', N'Южная Корея', N'Оскароносный режиссёр Паразитов.'),
+    (N'Франсуа Озон', N'Франция', N'Французская драма и психология.'),
+    (N'Федерико Феллини', N'Италия', N'Классик итальянского кино.'),
+    (N'Ридли Скотт', N'Великобритания', N'Знаменитый фантаст и историк.'),
+    (N'Сергей Эйзенштейн', N'Россия', N'Один из родоначальников кино.'),
+    (N'Тим Бёртон', N'США', N'Готический фэнтези-режиссёр.'),
+    (N'Альмодовар', N'Испания', N'Испанская страсть на экране.'),
+    (N'Андрей Тарковский', N'Россия', N'Философия, пространство и время.')
+) AS D(name, country, description)
+JOIN Country ON Country.name = D.country;
+
+
+INSERT INTO Movie (description, rating, age_limit, number_of_views, duration, release_year, country_id, website_id, publisher_id, director_id, genre_id)
+VALUES
+(N'Фантастический фильм о будущем.', 9, 16, 1500000, 120, 2022, 
+  (SELECT id FROM Country WHERE name = N'США'),
+  (SELECT id FROM Website WHERE name = N'IMDb'),
+  (SELECT id FROM Publisher WHERE name = N'Warner Bros.'),
+  (SELECT id FROM Director WHERE name = N'Кристофер Нолан'),
+  (SELECT id FROM Genre WHERE name = N'Фантастика')),
+
+(N'Драма о семье, переживающей кризис.', 8, 12, 500000, 110, 2021,
+  (SELECT id FROM Country WHERE name = N'Россия'),
+  (SELECT id FROM Website WHERE name = N'КиноПоиск'),
+  (SELECT id FROM Publisher WHERE name = N'Mosfilm'),
+  (SELECT id FROM Director WHERE name = N'Андрей Звягинцев'),
+  (SELECT id FROM Genre WHERE name = N'Драма')),
+
+(N'Комедия о студентках, которые меняют свою жизнь.', 7, 12, 800000, 95, 2020, 
+  (SELECT id FROM Country WHERE name = N'Великобритания'),
+  (SELECT id FROM Website WHERE name = N'Rotten Tomatoes'),
+  (SELECT id FROM Publisher WHERE name = N'Paramount Pictures'),
+  (SELECT id FROM Director WHERE name = N'Гай Ричи'),
+  (SELECT id FROM Genre WHERE name = N'Комедия')),
+
+(N'Трогательная история любви на фоне войны.', 8, 16, 700000, 130, 2019, 
+  (SELECT id FROM Country WHERE name = N'Франция'),
+  (SELECT id FROM Website WHERE name = N'Film.ru'),
+  (SELECT id FROM Publisher WHERE name = N'Universal Pictures'),
+  (SELECT id FROM Director WHERE name = N'Жан-Пьер Жене'),
+  (SELECT id FROM Genre WHERE name = N'Мелодрама')),
+
+(N'Фильм ужасов о заброшенном доме.', 6, 18, 300000, 100, 2023, 
+  (SELECT id FROM Country WHERE name = N'Германия'),
+  (SELECT id FROM Website WHERE name = N'Кино-Театр.ру'),
+  (SELECT id FROM Publisher WHERE name = N'Sony Pictures'),
+  (SELECT id FROM Director WHERE name = N'Фридрих Шпахт'),
+  (SELECT id FROM Genre WHERE name = N'Ужасы')),
+
+(N'Документальный фильм о природе и экологии.', 9, 0, 200000, 60, 2021, 
+  (SELECT id FROM Country WHERE name = N'Италия'),
+  (SELECT id FROM Website WHERE name = N'MyDramaList'),
+  (SELECT id FROM Publisher WHERE name = N'Ghibli'),
+  (SELECT id FROM Director WHERE name = N'Фредерико Моччи'),
+  (SELECT id FROM Genre WHERE name = N'Документальный')),
+
+(N'Анимационный фильм о дружбе между детьми и животными.', 8, 6, 900000, 85, 2020, 
+  (SELECT id FROM Country WHERE name = N'Япония'),
+  (SELECT id FROM Website WHERE name = N'AsianWiki'),
+  (SELECT id FROM Publisher WHERE name = N'Mosfilm'),
+  (SELECT id FROM Director WHERE name = N'Хаяо Миядзаки'),
+  (SELECT id FROM Genre WHERE name = N'Анимация')),
+
+(N'Боевик с захватывающими гонками на машинах.', 7, 16, 1300000, 105, 2022, 
+  (SELECT id FROM Country WHERE name = N'Южная Корея'),
+  (SELECT id FROM Website WHERE name = N'Rotten Tomatoes'),
+  (SELECT id FROM Publisher WHERE name = N'Paramount Pictures'),
+  (SELECT id FROM Director WHERE name = N'Чан Вук'),
+  (SELECT id FROM Genre WHERE name = N'Боевик')),
+
+(N'Фэнтези о магии и приключениях.', 9, 12, 2000000, 140, 2023, 
+  (SELECT id FROM Country WHERE name = N'Китай'),
+  (SELECT id FROM Website WHERE name = N'SensCritique'),
+  (SELECT id FROM Publisher WHERE name = N'Walt Disney'),
+  (SELECT id FROM Director WHERE name = N'Тим Бёртон'),
+  (SELECT id FROM Genre WHERE name = N'Фэнтези')),
+
+(N'Мелодрама о сложных отношениях в семье.', 7, 18, 100000, 95, 2021, 
+  (SELECT id FROM Country WHERE name = N'Испания'),
+  (SELECT id FROM Website WHERE name = N'Metacritic'),
+  (SELECT id FROM Publisher WHERE name = N'Warner Bros.'),
+  (SELECT id FROM Director WHERE name = N'Педро Альмодовар'),
+  (SELECT id FROM Genre WHERE name = N'Мелодрама')),
+
+(N'Фильм о подростках и их проблемах в школе.', 7, 12, 750000, 100, 2019, 
+  (SELECT id FROM Country WHERE name = N'Индия'),
+  (SELECT id FROM Website WHERE name = N'Rotten Tomatoes'),
+  (SELECT id FROM Publisher WHERE name = N'Pixar'),
+  (SELECT id FROM Director WHERE name = N'Рита Махеш'),
+  (SELECT id FROM Genre WHERE name = N'Комедия')),
+
+(N'Психологический триллер о манипуляциях в отношениях.', 8, 18, 900000, 105, 2022, 
+  (SELECT id FROM Country WHERE name = N'Бразилия'),
+  (SELECT id FROM Website WHERE name = N'IMDb'),
+  (SELECT id FROM Publisher WHERE name = N'Sony Pictures'),
+  (SELECT id FROM Director WHERE name = N'Пауло Морено'),
+  (SELECT id FROM Genre WHERE name = N'Триллер'));
+
+INSERT INTO Collection (name, description) VALUES 
+(N'Лучшие драмы', N'Сборник трогательных и сильных драматических фильмов.'),
+(N'Комедии для всей семьи', N'Весёлые фильмы, подходящие для семейного просмотра.'),
+(N'Фильмы ужасов', N'Жуткие истории и страшные кадры.'),
+(N'Любимые мультфильмы', N'Анимационные фильмы, полные добра и юмора.'),
+(N'Классика кино', N'Самые известные фильмы всех времён.'),
+(N'Фильмы о войне', N'Истории, основанные на реальных событиях.'),
+(N'Фантастика и фэнтези', N'Миры магии и технологий.'),
+(N'Криминальные драмы', N'Фильмы о преступности и следствии.'),
+(N'Артхаус и фестивальное кино', N'Нестандартные фильмы с глубоким смыслом.'),
+(N'Лучшие фильмы года', N'Хиты последних лет.');
+
+INSERT INTO MovieCollection (collection_id, movie_id)
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Лучшие драмы'),
+    (SELECT id FROM Movie WHERE name = N'Фантастика 2045')
+UNION ALL
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Лучшие драмы'),
+    (SELECT id FROM Movie WHERE name = N'Жизнь в кризисе')
+UNION ALL
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Комедии для всей семьи'),
+    (SELECT id FROM Movie WHERE name = N'Студенческий переезд')
+UNION ALL
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Комедии для всей семьи'),
+    (SELECT id FROM Movie WHERE name = N'Любовь и война')
+UNION ALL
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Фильмы ужасов'),
+    (SELECT id FROM Movie WHERE name = N'Дом на холме')
+UNION ALL
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Фильмы ужасов'),
+    (SELECT id FROM Movie WHERE name = N'Жизнь в лесах')
+UNION ALL
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Любимые мультфильмы'),
+    (SELECT id FROM Movie WHERE name = N'Друзья на ферме')
+UNION ALL
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Любимые мультфильмы'),
+    (SELECT id FROM Movie WHERE name = N'Гонка века')
+UNION ALL
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Классика кино'),
+    (SELECT id FROM Movie WHERE name = N'Магия будущего')
+UNION ALL
+SELECT 
+    (SELECT id FROM Collection WHERE name = N'Классика кино'),
+    (SELECT id FROM Movie WHERE name = N'Сложные отношения');
+
+
+INSERT INTO User (age, name)
+VALUES 
+(45, N'Мама'),
+(47, N'Папа'),
+(17, N'Дочка'),
+(14, N'Сын');
+
+INSERT INTO UserFavoriteMovies (user_id, movie_id)
+SELECT 
+    (SELECT id FROM User WHERE name = N'Мама'),
+    (SELECT id FROM Movie WHERE name = N'Фантастика 2045')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Мама'),
+    (SELECT id FROM Movie WHERE name = N'Жизнь в кризисе')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Мама'),
+    (SELECT id FROM Movie WHERE name = N'Комедийный марш')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Мама'),
+    (SELECT id FROM Movie WHERE name = N'Любовь и война')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Мама'),
+    (SELECT id FROM Movie WHERE name = N'Магия будущего')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Папа'),
+    (SELECT id FROM Movie WHERE name = N'Студенческий переезд')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Папа'),
+    (SELECT id FROM Movie WHERE name = N'Сложные отношения')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Папа'),
+    (SELECT id FROM Movie WHERE name = N'Магия будущего')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Папа'),
+    (SELECT id FROM Movie WHERE name = N'Гонка века')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    (SELECT id FROM Movie WHERE name = N'Дом на холме')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    (SELECT id FROM Movie WHERE name = N'Жизнь в лесах')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    (SELECT id FROM Movie WHERE name = N'Три ангела')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    (SELECT id FROM Movie WHERE name = N'Друзья на ферме')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Сын'),
+    (SELECT id FROM Movie WHERE name = N'Гонка века')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Сын'),
+    (SELECT id FROM Movie WHERE name = N'Любовь и война')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Сын'),
+    (SELECT id FROM Movie WHERE name = N'Три ангела');
+
+INSERT INTO UserFavoriteGenre (user_id, genre_id)
+SELECT 
+    (SELECT id FROM User WHERE name = N'Мама'),
+    (SELECT id FROM Genre WHERE name = N'Фантастика')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Мама'),
+    (SELECT id FROM Genre WHERE name = N'Драма')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Мама'),
+    (SELECT id FROM Genre WHERE name = N'Комедия')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Мама'),
+    (SELECT id FROM Genre WHERE name = N'Мелодрама')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Папа'),
+    (SELECT id FROM Genre WHERE name = N'Драма')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Папа'),
+    (SELECT id FROM Genre WHERE name = N'Фантастика')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Папа'),
+    (SELECT id FROM Genre WHERE name = N'Триллер')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Папа'),
+    (SELECT id FROM Genre WHERE name = N'Комедия')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    (SELECT id FROM Genre WHERE name = N'Мелодрама')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    (SELECT id FROM Genre WHERE name = N'Фантастика')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    (SELECT id FROM Genre WHERE name = N'Анимация')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    (SELECT id FROM Genre WHERE name = N'Комедия')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Сын'),
+    (SELECT id FROM Genre WHERE name = N'Драма')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Сын'),
+    (SELECT id FROM Genre WHERE name = N'Триллер')
+UNION ALL
+SELECT 
+    (SELECT id FROM User WHERE name = N'Сын'),
+    (SELECT id FROM Genre WHERE name = N'Фантастика');
+
+INSERT INTO WatchHistory (movie_id, user_id, watched_at)
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Фантастика 2045'),
+    (SELECT id FROM User WHERE name = N'Мама'),
+    '2025-03-01 15:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Жизнь в кризисе'),
+    (SELECT id FROM User WHERE name = N'Папа'),
+    '2025-04-15 20:30:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Комедийный марш'),
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    '2025-02-20 10:15:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Любовь и война'),
+    (SELECT id FROM User WHERE name = N'Сын'),
+    '2025-03-12 18:45:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Магия будущего'),
+    (SELECT id FROM User WHERE name = N'Мама'),
+    '2025-05-01 22:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Студенческий переезд'),
+    (SELECT id FROM User WHERE name = N'Папа'),
+    '2025-03-25 13:30:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Сложные отношения'),
+    (SELECT id FROM User WHERE name = N'Папа'),
+    '2025-04-01 19:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Гонка века'),
+    (SELECT id FROM User WHERE name = N'Сын'),
+    '2025-04-10 14:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Дом на холме'),
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    '2025-04-02 11:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Жизнь в лесах'),
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    '2025-05-05 09:30:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Три ангела'),
+    (SELECT id FROM User WHERE name = N'Сын'),
+    '2025-02-28 16:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Друзья на ферме'),
+    (SELECT id FROM User WHERE name = N'Дочка'),
+    '2025-05-10 17:45:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Магия будущего'),
+    (SELECT id FROM User WHERE name = N'Мама'),
+    '2025-05-07 21:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Гонка века'),
+    (SELECT id FROM User WHERE name = N'Сын'),
+    '2025-05-03 15:30:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Три ангела'),
+    (SELECT id FROM User WHERE name = N'Сын'),
+    '2025-05-05 11:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Жизнь в кризисе'),
+    (SELECT id FROM User WHERE name = N'Папа'),
+    '2025-03-10 12:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Сложные отношения'),
+    (SELECT id FROM User WHERE name = N'Папа'),
+    '2025-04-05 20:00:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Фантастика 2045'),
+    (SELECT id FROM User WHERE name = N'Мама'),
+    '2025-04-20 14:30:00'
+UNION ALL
+SELECT 
+    (SELECT id FROM Movie WHERE name = N'Студенческий переезд'),
+    (SELECT id FROM User WHERE name = N'Папа'),
+    '2025-05-02 10:00:00';
+
+
+Сообщение 156, уровень 15, состояние 1, строка 224
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 233
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 237
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 241
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 245
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 249
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 253
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 257
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 261
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 265
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 269
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 273
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 277
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 281
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 285
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 289
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 293
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 298
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 302
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 306
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 310
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 314
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 318
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 322
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 326
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 330
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 334
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 338
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 342
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 346
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 350
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 354
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 360
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 365
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 370
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 375
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 380
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 385
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 390
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 395
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 400
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 405
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 410
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 415
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 420
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 425
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 430
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 435
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 440
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 445
+Неправильный синтаксис около ключевого слова "User".
+Сообщение 156, уровень 15, состояние 1, строка 450
+Неправильный синтаксис около ключевого слова "User".
+
+Время выполнения: 2025-05-13T08:56:04.0330189+03:00
