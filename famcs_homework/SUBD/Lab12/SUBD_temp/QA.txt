@@ -1,559 +1,929 @@
-что не так?
+вот моя лабараторная работа по СУБД
+ее условие и как я ее продумал
+
+Вариант 2. Видеотека. 
+Описание предметной области. В домашней видеотеке хранятся видеозаписи на различных носителях. Имеются как видеосборники различных изданий, так и издания отдельных фильмов. Видеоносители могут передаваться во временное пользование, приобретаться из различных источников. 
+Задачи. Учету подлежат носители различных типов – видеокассеты, видео CD, видео DVD и прочие. Необходимо обеспечить поиск сборников определенного издателя, фильмы определённого жанра, режиссера, страны, года выпуска. Учитывается также формат видеозаписи и длительность фильма. В случае передачи носителя во временное пользование контролировать сроки возврата.
+ 
+ФИО студента, номер группы: Шуман Владислав Олегович, 2
+ПРЕДМЕТНАЯ ОБЛАСТЬ: Видеотека
+1. ОПИСАНИЕ ПРЕДМЕТНОЙ ОБЛАСТИ 
+1.1 НАЗНАЧЕНИЕ И ОБЛАСТЬ ПРИМЕНЕНИЯ БАЗЫ ДАННЫХ
+	Назначение: исходя из названия можно предположить, что в каком-то доме, где живёт семья, завалялось очень много кассет/дисков/… , на которых есть Фильмы, детские утренники детей, свадьба мамы и папы и тд. И жители дома столкнулись с проблемой — фильмов много, всё разбросанно, иногда не помнишь, когда вдруг захотелось посмотреть, какие фильмы есть. Хочется всё упорядочить и быстро получать необходимую информацию. Так же пользователь может брать продукт и на время и у кого-то. И как порядочный пользователь он хочет возвращать его в сроки.
+	Область применения : личное использование для организации и контроля домашней коллекции видеозаписей.
+1.2 ПРЕДПОЛАГАЕМЫЕ ПОЛЬЗОВАТЕЛИ
+	Семья. Система должна стараться покрыть желания большинства членов семьи. Далее предположим, что речь идёт о семье, в которой живут отец, мать, дочка, сын, бабушка и дедушка.
+1.3 ФУНКЦИОНАЛЬНЫЕ ТРЕБОВАНИЯ
+	Изменение информации о видеозаписях (добавление новых видеозаписей, удаление и пр).
+	Поиск видеозаписей по различным критериям (название, режиссер, жанр, страна, год выпуска, издатель, формат носителя, ).
+	Учет видеоносителей во временное пользование с указанием даты выдачи и возврата.
+	Генерацию различных отчетов:
+		список всех фильмов в зависимости от значений полей(включая/не включая какое-либо) (определенного жанра /в зависимости от возраста/ и тд).
+		список всех носителей определенного типа
+		список фильмов, которые должны быть возвращены
+		детали о конкретном фильме/сборнике
+		Любимый жанр, фильм, режиссер пользователя (за месяц, в таблице «Избранные»)
+		Список фильмов для всей семьи
+		История просмотра
+		
+2. ОПИСАНИЕ БАЗЫ ДАННЫХ В ТЕРМИНАХ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
+2.1 ОПИСАНИЕ ВХОДНЫХ ДОКУМЕНТОВ И СООБЩЕНИЙ В ТЕРМИНАХ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
+	Входными данными являются сведения о каждой Материале, которые пользователь вводит в систему. Входные данные представляют собой атрибуты объектов Фильм и Носитель.
+2.2 ОПИСАНИЕ ВЫХОДНЫХ ДОКУМЕНТОВ И СООБЩЕНИЙ В ТЕРМИНАХ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
+	Выходными данными являются результаты запросов к базе данных, представленные в виде списков, отчетов или отдельных записей. Например, список фильмов определенного жанра, список всех фильмов, взятых во временное пользование, информация об отдельном фильме и тд.
+3. ПОСТРОЕНИЕ ИНФОЛОГИЧЕСКОЙ (КОНЦЕПТУАЛЬНОЙ) МОДЕЛИ ПРЕДМЕТНОЙ ОБЛАСТИ
+3.1 ВЫДЕЛЕНИЕ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
+	Фильм — видеозапись, расположенная на носителе 
+	Носитель — место, где храниться видеозапись
+Издатель– компания, что сняла фильм и может являться как бы дочерней компанией одной большой компании.
+	Издатель — компания фильма
+	Сборник — конечный список фильмов / подмножество всех фильмов
+	Режиссёр — режиссёр фильма
+	Жанр — жанр фильма
+	Пользователь — в нашем случае один из членов семьи
+Конкретный_Прокатчик – своего рода «пункт выдачи» прокатчика
+Прокатчик — тот, кто предоставил носитель на время
+Адрес — определённый адрес без описания кому он принадлежит]
+Страна – страна, где может быть и Фильм, и Издатель, и Адреса и тд.
+Сайт – сама сущность будет хранить в себе название сайта и URL на него.
+
+3.2 ВЫДЕЛЕНИЕ АТРИБУТОВ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
+	Фильм (movie):
+		#id
+		Название (titile) 
+ 		Оригинальное название (original_title) 
+		Год выпуска (release_year) 
+		Продолжительность (duration) 
+		Описание (description) 
+		Рейтинг (rating) 
+		Возраст (age_limit) 
+		Сколько раз смотрели (number_of_views) 
+*Издатель_id (publisher_id) 
+*Главный_режиссёр_id (main_director_id) 
+*Жанр_id(genre_id) 
+*Страна_id (country_id) 
+
+	Носитель (carrier):
+		#id
+                             Название (name) not null
+		Объём(size) not null
+                             *Тип_id(type_id) not null
+                             *Формат записи_id (format_id) not null
+	 
+Издатель_Производитель (publisher_producer)
+#Id
+Название (name)
+*Адрес_id (address_id)
+              *Издатель_id (publisher_id)
+Издатель(publisher):
+              #Id 
+		Название (name) 
+                             *Сайт_id (website_id)  
+Сборник(Collection):
+#Id 
+	Название (name) 
+		(имеет связь М:М с Фильмом и Издателем)
+	Режиссёр(Director):
+                            #Id 
+		Имя (name) 
+               *Страна_id (country_id) 
+	Жанр(Genre):
+                             #Id 
+		Название (name) 
+	
+Пользователь(User):
+#Id 
+	Имя пользователя (name)
+	Возраст (age) 
+	Прокатчик(Rentaler):
+#Id 
+Название (name) 
+*Сайт_id (website_id)  
+	Конкретный прокатчик (Rentaler_Concrete):
+		#id
+		Телефон (phone_number)
+		* Прокатчик_id (rentaler_id)
+		* Адрес_id (address_id)
+	Адрес(Address):
+#Id 
+	Улица (street) 
+	Дом (house) ) 
+	Помещение (placement)  
+*Страна_id (country_id) 
+Страна (Country):
+	#Id
+	Название (name) 
+
+
+там я немного не дописывал некоторое, менял
+вот мой код запроса
+
+-- Задание 2
+
+-- сгенерированно для DBML на сайте https://dbdiagram.io/d
+CREATE TABLE [Movie] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [description] VARCHAR(255),
+  [rating] INT DEFAULT 0 CHECK ([rating] BETWEEN 0 AND 10),
+  [age_limit] INT DEFAULT 0 CHECK ([age_limit] BETWEEN 0 AND 21),
+  [number_of_views] INT DEFAULT 0 CHECK ([number_of_views] >= 0),
+  [duration] INT CHECK ([duration] > 0),
+  [release_year] INT CHECK ([release_year] >= 1888),
+  [country_id] INT,
+  [website_id] INT,
+  [publisher_id] INT,
+  [director_id] INT,
+  [genre_id] INT
+)
+GO
+
+CREATE TABLE [Genre] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255) NOT NULL
+)
+GO
+
+CREATE TABLE [Publisher] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255) NOT NULL,
+  [website_id] INT
+)
+GO
+
+CREATE TABLE [Director] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [country_id] INT,
+  [name] VARCHAR(255) NOT NULL,
+  [description] TEXT
+)
+GO
+
+CREATE TABLE [Country] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255) NOT NULL
+)
+GO
+
+CREATE TABLE [Collection] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255) NOT NULL,
+  [description] TEXT
+)
+GO
+
+CREATE TABLE [MovieCollection] (
+  [collection_id] INT,
+  [movie_id] INT,
+  PRIMARY KEY ([collection_id], [movie_id])
+)
+GO
+
+CREATE TABLE [Website] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255) NOT NULL,
+  [url] TEXT
+)
+GO
+
+CREATE TABLE [LocalityType] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(50) NOT NULL,
+  [code] VARCHAR(20) NOT NULL
+)
+GO
+
+CREATE TABLE [Locality] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [country_id] INT,
+  [locality_type_id] INT,
+  [name] VARCHAR(255) NOT NULL
+)
+GO
+
+CREATE TABLE [Address] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [locality_id] INT,
+  [street] VARCHAR(255) NOT NULL,
+  [house] INT CHECK ([house] > 0)
+)
+GO
+
+CREATE TABLE [Rentaler] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255) NOT NULL,
+  [website_id] INT
+)
+GO
+
+CREATE TABLE [Rentaler_Concrete] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [rentaler_id] INT,
+  [address_id] INT,
+  [phone_number] VARCHAR(255) NOT NULL
+)
+GO
+
+CREATE TABLE [User] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [age] INT CHECK ([age] >= 0 AND [age] <= 120),
+  [name] VARCHAR(255) NOT NULL
+)
+GO
+
+CREATE TABLE [UserFavoriteMovies] (
+  [user_id] INT,
+  [movie_id] INT,
+  PRIMARY KEY ([user_id], [movie_id])
+)
+GO
+
+CREATE TABLE [UserFavoriteGenre] (
+  [genre_id] INT,
+  [user_id] INT,
+  PRIMARY KEY ([genre_id], [user_id])
+)
+GO
+
+CREATE TABLE [Carrier] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [size] INT CHECK ([size] >= 0), -- 0 для облачных сервисов
+  [name] VARCHAR(255) NOT NULL,
+  [type_id] INT
+)
+GO
+
+CREATE TABLE [Type] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255) NOT NULL
+)
+GO
+
+CREATE TABLE [RentedCarriers] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [start_rent] TIME NOT NULL,
+  [end_rent] TIME NOT NULL,
+  [carrier_id] INT,
+  [rentaler_concrete_id] INT
+)
+GO
+
+CREATE TABLE [Recording_Format] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255) NOT NULL
+)
+GO
+
+CREATE TABLE [MovieCarrier] (
+  [movie_id] INT,
+  [carrier_id] INT,
+  [recording_format_id] INT,
+  PRIMARY KEY ([movie_id], [carrier_id], [recording_format_id])
+)
+GO
+
+CREATE TABLE [WatchHistory] (
+  [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [movie_id] INT,
+  [user_id] INT NULL,
+  [watched_at] DATETIME DEFAULT GETDATE()
+)
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Таблица сущности Фильм.
+Хранит информацию о фильмах:
+- количество просмотров
+- описание
+- рейтинг
+- страна производства
+- и другие метаданные
+',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Movie';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Таблица сущности Жанр, хранит название Жанра',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Genre';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Сущность Издатель (Дисней, Пиксар и т.п.).
+',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Publisher';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Таблица сущности Режиссер:
+хранит в себе имя, страну происхождения
+и описание режиссера
+',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Director';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Таблица сущности Страна: хранит название страны',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Country';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Таблица сущности Коллекция: хранит название и описание коллекции',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Collection';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Таблица, описывающая содержимое коллекций',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'MovieCollection';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Таблица, описывающая Веб-сайт',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Website';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Хранит виды населенных мест (город, деревня, поселок и т.п.)',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'LocalityType';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Связывает Страну и населенный пункт (с указанием типа)',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Locality';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Хранит адрес объекта',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Address';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Компания, предоставляющая носители с фильмами в аренду.
+Может иметь несколько точек по миру
+',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Rentaler';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Конкретная точка аренды с адресом и контактами',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Rentaler_Concrete';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Пользователь системы: имя и возраст',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'User';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Связь пользователя и понравившихся фильмов',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'UserFavoriteMovies';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Связь пользователя и предпочитаемых жанров',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'UserFavoriteGenre';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Физический носитель фильма (диск, кассета и т.д.)',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Carrier';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Типы носителей (DVD, Blu-ray, VHS и т.д.)',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Type';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'История аренды носителей',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'RentedCarriers';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Форматы записи (PAL, NTSC и т.д.)',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'Recording_Format';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'Связь между фильмом и его носителями',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'MovieCarrier';
+GO
+
+EXEC sp_addextendedproperty
+@name = N'Table_Description',
+@value = 'хранит информацию о просмотре фильма
+',
+@level0type = N'Schema', @level0name = 'dbo',
+@level1type = N'Table',  @level1name = 'WatchHistory';
+GO
+
+ALTER TABLE [Movie] ADD FOREIGN KEY ([country_id]) REFERENCES [Country] ([id])
+GO
+
+ALTER TABLE [Movie] ADD FOREIGN KEY ([website_id]) REFERENCES [Website] ([id])
+GO
+
+ALTER TABLE [Movie] ADD FOREIGN KEY ([publisher_id]) REFERENCES [Publisher] ([id])
+GO
+
+ALTER TABLE [Movie] ADD FOREIGN KEY ([director_id]) REFERENCES [Director] ([id])
+GO
+
+ALTER TABLE [Movie] ADD FOREIGN KEY ([genre_id]) REFERENCES [Genre] ([id])
+GO
+
+ALTER TABLE [Publisher] ADD FOREIGN KEY ([website_id]) REFERENCES [Website] ([id])
+GO
+
+ALTER TABLE [Director] ADD FOREIGN KEY ([country_id]) REFERENCES [Country] ([id])
+GO
+
+ALTER TABLE [MovieCollection] ADD FOREIGN KEY ([collection_id]) REFERENCES [Collection] ([id])
+GO
+
+ALTER TABLE [MovieCollection] ADD FOREIGN KEY ([movie_id]) REFERENCES [Movie] ([id])
+GO
+
+ALTER TABLE [Locality] ADD FOREIGN KEY ([country_id]) REFERENCES [Country] ([id])
+GO
+
+ALTER TABLE [Locality] ADD FOREIGN KEY ([locality_type_id]) REFERENCES [LocalityType] ([id])
+GO
+
+ALTER TABLE [Address] ADD FOREIGN KEY ([locality_id]) REFERENCES [Locality] ([id])
+GO
+
+ALTER TABLE [Rentaler] ADD FOREIGN KEY ([website_id]) REFERENCES [Website] ([id])
+GO
+
+ALTER TABLE [Rentaler_Concrete] ADD FOREIGN KEY ([rentaler_id]) REFERENCES [Rentaler] ([id])
+GO
+
+ALTER TABLE [Rentaler_Concrete] ADD FOREIGN KEY ([address_id]) REFERENCES [Address] ([id])
+GO
+
+ALTER TABLE [UserFavoriteMovies] ADD FOREIGN KEY ([user_id]) REFERENCES [User] ([id])
+GO
+
+ALTER TABLE [UserFavoriteMovies] ADD FOREIGN KEY ([movie_id]) REFERENCES [Movie] ([id])
+GO
+
+ALTER TABLE [UserFavoriteGenre] ADD FOREIGN KEY ([genre_id]) REFERENCES [Genre] ([id])
+GO
+
+ALTER TABLE [UserFavoriteGenre] ADD FOREIGN KEY ([user_id]) REFERENCES [User] ([id])
+GO
+
+ALTER TABLE [Carrier] ADD FOREIGN KEY ([type_id]) REFERENCES [Type] ([id])
+GO
+
+ALTER TABLE [RentedCarriers] ADD FOREIGN KEY ([carrier_id]) REFERENCES [Carrier] ([id])
+GO
+
+ALTER TABLE [RentedCarriers] ADD FOREIGN KEY ([rentaler_concrete_id]) REFERENCES [Rentaler_Concrete] ([id])
+GO
+
+ALTER TABLE [MovieCarrier] ADD FOREIGN KEY ([movie_id]) REFERENCES [Movie] ([id])
+GO
+
+ALTER TABLE [MovieCarrier] ADD FOREIGN KEY ([carrier_id]) REFERENCES [Carrier] ([id])
+GO
+
+ALTER TABLE [MovieCarrier] ADD FOREIGN KEY ([recording_format_id]) REFERENCES [Recording_Format] ([id])
+GO
+
+ALTER TABLE [WatchHistory] ADD FOREIGN KEY ([movie_id]) REFERENCES [Movie] ([id])
+GO
+
+ALTER TABLE [WatchHistory] ADD FOREIGN KEY ([user_id]) REFERENCES [User] ([id])
+GO
+
 
 -- Задание 3
 -- внести данные в созданные таблицы
+INSERT INTO LocalityType (name, code) VALUES
+('VILLAGE', 'VIL'),
+('CITY', 'CTY'),
+('TOWN', 'TWN'),
+('SETTLEMENT', 'SET'),
+('HAMLET', 'HMT'),
+('DISTRICT', 'DST'),
+('METROPOLIS', 'MET'),
+('CAPITAL', 'CPL'),
+('PROVINCE', 'PRV'),
+('SUBURB', 'SUB');
 
-INSERT INTO Country (name) VALUES 
-(N'Россия'),
-(N'США'),
-(N'Франция'),
-(N'Германия'),
-(N'Япония'),
-(N'Южная Корея'),
-(N'Китай'),
-(N'Великобритания'),
-(N'Италия'),
-(N'Испания'),
-(N'Индия'),
-(N'Бразилия');
+INSERT INTO Country (name) VALUES
+('USA'),
+('Canada'),
+('UK'),
+('France'),
+('Germany'),
+('Japan'),
+('Australia'),
+('Russia'),
+('Brazil'),
+('India'),
+('China'),
+('Mexico'),
+('South Korea'),
+('Italy'),
+('Spain');
 
-INSERT INTO Genre (name) VALUES 
-(N'Комедия'),
-(N'Драма'),
-(N'Боевик'),
-(N'Фантастика'),
-(N'Мелодрама'),
-(N'Ужасы'),
-(N'Триллер'),
-(N'Документальный'),
-(N'Анимация'),
-(N'Исторический'),
-(N'Фэнтези'),
-(N'Криминал');
+INSERT INTO Website (name, url) VALUES
+('Netflix', 'https://www.netflix.com'),
+('Amazon Prime', 'https://www.primevideo.com'),
+('Disney+', 'https://www.disneyplus.com'),
+('Hulu', 'https://www.hulu.com'),
+('HBO Max', 'https://www.hbomax.com'),
+('YouTube Movies', 'https://www.youtube.com/movies'),
+('Apple TV+', 'https://tv.apple.com'),
+('Google Play Movies', 'https://play.google.com/store/movies'),
+('Vudu', 'https://www.vudu.com'),
+('Peacock', 'https://www.peacocktv.com'),
+('Paramount+', 'https://www.paramountplus.com'),
+('Tubi', 'https://tubitv.com'),
+('Crunchyroll', 'https://www.crunchyroll.com'),
+('Mubi', 'https://mubi.com'),
+('Shudder', 'https://www.shudder.com');
 
-INSERT INTO Website (name, url) VALUES 
-(N'КиноПоиск', N'https://www.kinopoisk.ru'),
-(N'IMDb', N'https://www.imdb.com'),
-(N'Rotten Tomatoes', N'https://www.rottentomatoes.com'),
-(N'Film.ru', N'https://www.film.ru'),
-(N'Кино-Театр.ру', N'https://www.kino-teatr.ru'),
-(N'MoviePilot', N'https://www.moviepilot.de'),
-(N'MyDramaList', N'https://mydramalist.com'),
-(N'AsianWiki', N'https://asianwiki.com'),
-(N'SensCritique', N'https://www.senscritique.com'),
-(N'Metacritic', N'https://www.metacritic.com'),
-(N'ReviewFilm', N'https://reviewfilm.ru'),
-(N'Фильм.онлайн', N'https://film.online');
+INSERT INTO Rentaler (name, website_id) VALUES
+('Netflix', 1),
+('Amazon Rentals', 2),
+('Disney Rentals', 3),
+('Hulu Rentals', 4),
+('HBO Rentals', 5),
+('YouTube Rentals', 6),
+('Apple Rentals', 7),
+('Google Rentals', 8),
+('Vudu Rentals', 9),
+('Peacock Rentals', 10),
+('Paramount Rentals', 11),
+('Tubi Rentals', 12),
+('Crunchyroll Rentals', 13),
+('Mubi Rentals', 14),
+('Shudder Rentals', 15);
 
-INSERT INTO Publisher (name, website_id)
-SELECT name, id FROM (
-    VALUES 
-    (N'Walt Disney'),
-    (N'Pixar'),
-    (N'Warner Bros.'),
-    (N'Universal Pictures'),
-    (N'Paramount Pictures'),
-    (N'Sony Pictures'),
-    (N'Mosfilm'),
-    (N'Lenfilm'),
-    (N'Ghibli'),
-    (N'CJ Entertainment'),
-    (N'Netflix Studios'),
-    (N'HBO')
-) AS P(name)
-JOIN Website ON P.name LIKE '%' -- просто получаем любые id сайта для примера
-WHERE Website.id IN (SELECT TOP 12 id FROM Website);
-
-INSERT INTO Director (name, country_id, description)
-SELECT name, id, description FROM (
-    VALUES 
-    (N'Андрей Звягинцев', N'Россия', N'Известный российский режиссёр.'),
-    (N'Кристофер Нолан', N'Великобритания', N'Автор Темного Рыцаря и Интерстеллара.'),
-    (N'Квентин Тарантино', N'США', N'Стильный и харизматичный режиссёр.'),
-    (N'Хаяо Миядзаки', N'Япония', N'Мастер анимации и магии.'),
-    (N'Пон Джун Хо', N'Южная Корея', N'Оскароносный режиссёр Паразитов.'),
-    (N'Франсуа Озон', N'Франция', N'Французская драма и психология.'),
-    (N'Федерико Феллини', N'Италия', N'Классик итальянского кино.'),
-    (N'Ридли Скотт', N'Великобритания', N'Знаменитый фантаст и историк.'),
-    (N'Сергей Эйзенштейн', N'Россия', N'Один из родоначальников кино.'),
-    (N'Тим Бёртон', N'США', N'Готический фэнтези-режиссёр.'),
-    (N'Альмодовар', N'Испания', N'Испанская страсть на экране.'),
-    (N'Андрей Тарковский', N'Россия', N'Философия, пространство и время.')
-) AS D(name, country, description)
-JOIN Country ON Country.name = D.country;
-
-
-INSERT INTO Movie (description, rating, age_limit, number_of_views, duration, release_year, country_id, website_id, publisher_id, director_id, genre_id)
-VALUES
-(N'Фантастический фильм о будущем.', 9, 16, 1500000, 120, 2022, 
-  (SELECT id FROM Country WHERE name = N'США'),
-  (SELECT id FROM Website WHERE name = N'IMDb'),
-  (SELECT id FROM Publisher WHERE name = N'Warner Bros.'),
-  (SELECT id FROM Director WHERE name = N'Кристофер Нолан'),
-  (SELECT id FROM Genre WHERE name = N'Фантастика')),
-
-(N'Драма о семье, переживающей кризис.', 8, 12, 500000, 110, 2021,
-  (SELECT id FROM Country WHERE name = N'Россия'),
-  (SELECT id FROM Website WHERE name = N'КиноПоиск'),
-  (SELECT id FROM Publisher WHERE name = N'Mosfilm'),
-  (SELECT id FROM Director WHERE name = N'Андрей Звягинцев'),
-  (SELECT id FROM Genre WHERE name = N'Драма')),
-
-(N'Комедия о студентках, которые меняют свою жизнь.', 7, 12, 800000, 95, 2020, 
-  (SELECT id FROM Country WHERE name = N'Великобритания'),
-  (SELECT id FROM Website WHERE name = N'Rotten Tomatoes'),
-  (SELECT id FROM Publisher WHERE name = N'Paramount Pictures'),
-  (SELECT id FROM Director WHERE name = N'Гай Ричи'),
-  (SELECT id FROM Genre WHERE name = N'Комедия')),
-
-(N'Трогательная история любви на фоне войны.', 8, 16, 700000, 130, 2019, 
-  (SELECT id FROM Country WHERE name = N'Франция'),
-  (SELECT id FROM Website WHERE name = N'Film.ru'),
-  (SELECT id FROM Publisher WHERE name = N'Universal Pictures'),
-  (SELECT id FROM Director WHERE name = N'Жан-Пьер Жене'),
-  (SELECT id FROM Genre WHERE name = N'Мелодрама')),
-
-(N'Фильм ужасов о заброшенном доме.', 6, 18, 300000, 100, 2023, 
-  (SELECT id FROM Country WHERE name = N'Германия'),
-  (SELECT id FROM Website WHERE name = N'Кино-Театр.ру'),
-  (SELECT id FROM Publisher WHERE name = N'Sony Pictures'),
-  (SELECT id FROM Director WHERE name = N'Фридрих Шпахт'),
-  (SELECT id FROM Genre WHERE name = N'Ужасы')),
-
-(N'Документальный фильм о природе и экологии.', 9, 0, 200000, 60, 2021, 
-  (SELECT id FROM Country WHERE name = N'Италия'),
-  (SELECT id FROM Website WHERE name = N'MyDramaList'),
-  (SELECT id FROM Publisher WHERE name = N'Ghibli'),
-  (SELECT id FROM Director WHERE name = N'Фредерико Моччи'),
-  (SELECT id FROM Genre WHERE name = N'Документальный')),
-
-(N'Анимационный фильм о дружбе между детьми и животными.', 8, 6, 900000, 85, 2020, 
-  (SELECT id FROM Country WHERE name = N'Япония'),
-  (SELECT id FROM Website WHERE name = N'AsianWiki'),
-  (SELECT id FROM Publisher WHERE name = N'Mosfilm'),
-  (SELECT id FROM Director WHERE name = N'Хаяо Миядзаки'),
-  (SELECT id FROM Genre WHERE name = N'Анимация')),
-
-(N'Боевик с захватывающими гонками на машинах.', 7, 16, 1300000, 105, 2022, 
-  (SELECT id FROM Country WHERE name = N'Южная Корея'),
-  (SELECT id FROM Website WHERE name = N'Rotten Tomatoes'),
-  (SELECT id FROM Publisher WHERE name = N'Paramount Pictures'),
-  (SELECT id FROM Director WHERE name = N'Чан Вук'),
-  (SELECT id FROM Genre WHERE name = N'Боевик')),
-
-(N'Фэнтези о магии и приключениях.', 9, 12, 2000000, 140, 2023, 
-  (SELECT id FROM Country WHERE name = N'Китай'),
-  (SELECT id FROM Website WHERE name = N'SensCritique'),
-  (SELECT id FROM Publisher WHERE name = N'Walt Disney'),
-  (SELECT id FROM Director WHERE name = N'Тим Бёртон'),
-  (SELECT id FROM Genre WHERE name = N'Фэнтези')),
-
-(N'Мелодрама о сложных отношениях в семье.', 7, 18, 100000, 95, 2021, 
-  (SELECT id FROM Country WHERE name = N'Испания'),
-  (SELECT id FROM Website WHERE name = N'Metacritic'),
-  (SELECT id FROM Publisher WHERE name = N'Warner Bros.'),
-  (SELECT id FROM Director WHERE name = N'Педро Альмодовар'),
-  (SELECT id FROM Genre WHERE name = N'Мелодрама')),
-
-(N'Фильм о подростках и их проблемах в школе.', 7, 12, 750000, 100, 2019, 
-  (SELECT id FROM Country WHERE name = N'Индия'),
-  (SELECT id FROM Website WHERE name = N'Rotten Tomatoes'),
-  (SELECT id FROM Publisher WHERE name = N'Pixar'),
-  (SELECT id FROM Director WHERE name = N'Рита Махеш'),
-  (SELECT id FROM Genre WHERE name = N'Комедия')),
-
-(N'Психологический триллер о манипуляциях в отношениях.', 8, 18, 900000, 105, 2022, 
-  (SELECT id FROM Country WHERE name = N'Бразилия'),
-  (SELECT id FROM Website WHERE name = N'IMDb'),
-  (SELECT id FROM Publisher WHERE name = N'Sony Pictures'),
-  (SELECT id FROM Director WHERE name = N'Пауло Морено'),
-  (SELECT id FROM Genre WHERE name = N'Триллер'));
-
-INSERT INTO Collection (name, description) VALUES 
-(N'Лучшие драмы', N'Сборник трогательных и сильных драматических фильмов.'),
-(N'Комедии для всей семьи', N'Весёлые фильмы, подходящие для семейного просмотра.'),
-(N'Фильмы ужасов', N'Жуткие истории и страшные кадры.'),
-(N'Любимые мультфильмы', N'Анимационные фильмы, полные добра и юмора.'),
-(N'Классика кино', N'Самые известные фильмы всех времён.'),
-(N'Фильмы о войне', N'Истории, основанные на реальных событиях.'),
-(N'Фантастика и фэнтези', N'Миры магии и технологий.'),
-(N'Криминальные драмы', N'Фильмы о преступности и следствии.'),
-(N'Артхаус и фестивальное кино', N'Нестандартные фильмы с глубоким смыслом.'),
-(N'Лучшие фильмы года', N'Хиты последних лет.');
-
-INSERT INTO MovieCollection (collection_id, movie_id)
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Лучшие драмы'),
-    (SELECT id FROM Movie WHERE name = N'Фантастика 2045')
-UNION ALL
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Лучшие драмы'),
-    (SELECT id FROM Movie WHERE name = N'Жизнь в кризисе')
-UNION ALL
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Комедии для всей семьи'),
-    (SELECT id FROM Movie WHERE name = N'Студенческий переезд')
-UNION ALL
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Комедии для всей семьи'),
-    (SELECT id FROM Movie WHERE name = N'Любовь и война')
-UNION ALL
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Фильмы ужасов'),
-    (SELECT id FROM Movie WHERE name = N'Дом на холме')
-UNION ALL
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Фильмы ужасов'),
-    (SELECT id FROM Movie WHERE name = N'Жизнь в лесах')
-UNION ALL
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Любимые мультфильмы'),
-    (SELECT id FROM Movie WHERE name = N'Друзья на ферме')
-UNION ALL
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Любимые мультфильмы'),
-    (SELECT id FROM Movie WHERE name = N'Гонка века')
-UNION ALL
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Классика кино'),
-    (SELECT id FROM Movie WHERE name = N'Магия будущего')
-UNION ALL
-SELECT 
-    (SELECT id FROM Collection WHERE name = N'Классика кино'),
-    (SELECT id FROM Movie WHERE name = N'Сложные отношения');
+-- Пример для USA (id=1), LocalityType: CITY=2, VILLAGE=1
+INSERT INTO Locality (country_id, locality_type_id, name) VALUES
+(1, 2, 'New York'),
+(1, 2, 'Los Angeles'),
+(1, 2, 'Chicago'),
+(1, 1, 'Greenwich Village'),
+(1, 1, 'Sleepy Hollow'),
+(2, 2, 'Toronto'),
+(2, 1, 'Niagara-on-the-Lake'),
+(3, 2, 'London'),
+(3, 1, 'Little Venice'),
+(4, 2, 'Paris'),
+(4, 1, 'Giverny'),
+(5, 2, 'Berlin'),
+(5, 1, 'Neuhardenberg'),
+(6, 2, 'Tokyo'),
+(6, 1, 'Mitaka');
 
 
-INSERT INTO User (age, name)
-VALUES 
-(45, N'Мама'),
-(47, N'Папа'),
-(17, N'Дочка'),
-(14, N'Сын');
+INSERT INTO Address (locality_id, street, house) VALUES
+(1, 'Broadway', 123),
+(2, 'Sunset Blvd', 45),
+(3, 'Michigan Ave', 100),
+(4, 'Washington Square', 12),
+(5, 'Main St', 77),
+(6, 'Queen St', 555),
+(7, 'King St', 101),
+(8, 'Baker St', 221),
+(9, 'Rose St', 5),
+(10, 'Champs Elysees', 10),
+(11, 'Rue de Paris', 1),
+(12, 'Unter den Linden', 8),
+(13, 'Hauptstrasse', 15),
+(14, 'Shinjuku', 3),
+(15, 'Mitaka St', 7);
 
-INSERT INTO UserFavoriteMovies (user_id, movie_id)
-SELECT 
-    (SELECT id FROM User WHERE name = N'Мама'),
-    (SELECT id FROM Movie WHERE name = N'Фантастика 2045')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Мама'),
-    (SELECT id FROM Movie WHERE name = N'Жизнь в кризисе')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Мама'),
-    (SELECT id FROM Movie WHERE name = N'Комедийный марш')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Мама'),
-    (SELECT id FROM Movie WHERE name = N'Любовь и война')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Мама'),
-    (SELECT id FROM Movie WHERE name = N'Магия будущего')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Папа'),
-    (SELECT id FROM Movie WHERE name = N'Студенческий переезд')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Папа'),
-    (SELECT id FROM Movie WHERE name = N'Сложные отношения')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Папа'),
-    (SELECT id FROM Movie WHERE name = N'Магия будущего')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Папа'),
-    (SELECT id FROM Movie WHERE name = N'Гонка века')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    (SELECT id FROM Movie WHERE name = N'Дом на холме')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    (SELECT id FROM Movie WHERE name = N'Жизнь в лесах')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    (SELECT id FROM Movie WHERE name = N'Три ангела')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    (SELECT id FROM Movie WHERE name = N'Друзья на ферме')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Сын'),
-    (SELECT id FROM Movie WHERE name = N'Гонка века')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Сын'),
-    (SELECT id FROM Movie WHERE name = N'Любовь и война')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Сын'),
-    (SELECT id FROM Movie WHERE name = N'Три ангела');
+INSERT INTO Rentaler_Concrete (rentaler_id, address_id, phone_number) VALUES
+(1, 1, '+1-212-555-1234'),
+(1, 4, '+1-212-555-5678'),
+(2, 6, '+1-416-555-7890'),
+(2, 7, '+1-416-555-4567'),
+(3, 10, '+33-1-555-2345'),
+(3, 11, '+33-1-555-6789'),
+(4, 8, '+44-20-555-3456'),
+(4, 9, '+44-20-555-7890'),
+(5, 12, '+49-30-555-4567'),
+(5, 13, '+49-30-555-7891'),
+(6, 14, '+81-3-555-5678'),
+(6, 15, '+81-3-555-1234'),
+(7, 2, '+1-310-555-9876'),
+(8, 3, '+1-312-555-4321'),
+(9, 5, '+1-914-555-6543');
 
-INSERT INTO UserFavoriteGenre (user_id, genre_id)
-SELECT 
-    (SELECT id FROM User WHERE name = N'Мама'),
-    (SELECT id FROM Genre WHERE name = N'Фантастика')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Мама'),
-    (SELECT id FROM Genre WHERE name = N'Драма')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Мама'),
-    (SELECT id FROM Genre WHERE name = N'Комедия')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Мама'),
-    (SELECT id FROM Genre WHERE name = N'Мелодрама')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Папа'),
-    (SELECT id FROM Genre WHERE name = N'Драма')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Папа'),
-    (SELECT id FROM Genre WHERE name = N'Фантастика')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Папа'),
-    (SELECT id FROM Genre WHERE name = N'Триллер')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Папа'),
-    (SELECT id FROM Genre WHERE name = N'Комедия')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    (SELECT id FROM Genre WHERE name = N'Мелодрама')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    (SELECT id FROM Genre WHERE name = N'Фантастика')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    (SELECT id FROM Genre WHERE name = N'Анимация')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    (SELECT id FROM Genre WHERE name = N'Комедия')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Сын'),
-    (SELECT id FROM Genre WHERE name = N'Драма')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Сын'),
-    (SELECT id FROM Genre WHERE name = N'Триллер')
-UNION ALL
-SELECT 
-    (SELECT id FROM User WHERE name = N'Сын'),
-    (SELECT id FROM Genre WHERE name = N'Фантастика');
+INSERT INTO Type (name) VALUES
+('DVD'),
+('Blu-ray'),
+('VHS'),
+('Digital'),
+('LaserDisc'),
+('Betamax'),
+('HD DVD'),
+('4K UHD'),
+('CD'),
+('Cassette'),
+('Streaming'),
+('USB'),
+('External HDD'),
+('SD Card'),
+('Blu-ray 3D');
 
-INSERT INTO WatchHistory (movie_id, user_id, watched_at)
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Фантастика 2045'),
-    (SELECT id FROM User WHERE name = N'Мама'),
-    '2025-03-01 15:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Жизнь в кризисе'),
-    (SELECT id FROM User WHERE name = N'Папа'),
-    '2025-04-15 20:30:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Комедийный марш'),
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    '2025-02-20 10:15:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Любовь и война'),
-    (SELECT id FROM User WHERE name = N'Сын'),
-    '2025-03-12 18:45:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Магия будущего'),
-    (SELECT id FROM User WHERE name = N'Мама'),
-    '2025-05-01 22:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Студенческий переезд'),
-    (SELECT id FROM User WHERE name = N'Папа'),
-    '2025-03-25 13:30:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Сложные отношения'),
-    (SELECT id FROM User WHERE name = N'Папа'),
-    '2025-04-01 19:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Гонка века'),
-    (SELECT id FROM User WHERE name = N'Сын'),
-    '2025-04-10 14:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Дом на холме'),
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    '2025-04-02 11:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Жизнь в лесах'),
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    '2025-05-05 09:30:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Три ангела'),
-    (SELECT id FROM User WHERE name = N'Сын'),
-    '2025-02-28 16:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Друзья на ферме'),
-    (SELECT id FROM User WHERE name = N'Дочка'),
-    '2025-05-10 17:45:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Магия будущего'),
-    (SELECT id FROM User WHERE name = N'Мама'),
-    '2025-05-07 21:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Гонка века'),
-    (SELECT id FROM User WHERE name = N'Сын'),
-    '2025-05-03 15:30:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Три ангела'),
-    (SELECT id FROM User WHERE name = N'Сын'),
-    '2025-05-05 11:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Жизнь в кризисе'),
-    (SELECT id FROM User WHERE name = N'Папа'),
-    '2025-03-10 12:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Сложные отношения'),
-    (SELECT id FROM User WHERE name = N'Папа'),
-    '2025-04-05 20:00:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Фантастика 2045'),
-    (SELECT id FROM User WHERE name = N'Мама'),
-    '2025-04-20 14:30:00'
-UNION ALL
-SELECT 
-    (SELECT id FROM Movie WHERE name = N'Студенческий переезд'),
-    (SELECT id FROM User WHERE name = N'Папа'),
-    '2025-05-02 10:00:00';
+INSERT INTO Carrier (size, name, type_id) VALUES
+(700, 'Carrier A', 1),
+(2500, 'Carrier B', 2),
+(1200, 'Carrier C', 3),
+(0, 'Digital Stream', 4),
+(4400, 'LaserDisc 1', 5),
+(800, 'Betamax Tape', 6),
+(5000, 'HD DVD 1', 7),
+(6000, '4K UHD Disk', 8),
+(650, 'Audio CD', 9),
+(90, 'Music Cassette', 10),
+(0, 'Netflix Stream', 11),
+(16000, 'USB Stick', 12),
+(100000, 'External HDD 1', 13),
+(64, 'SD Card 64GB', 14),
+(2700, 'Blu-ray 3D Disc', 15);
 
 
-Сообщение 156, уровень 15, состояние 1, строка 224
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 233
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 237
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 241
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 245
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 249
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 253
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 257
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 261
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 265
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 269
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 273
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 277
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 281
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 285
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 289
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 293
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 298
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 302
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 306
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 310
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 314
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 318
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 322
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 326
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 330
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 334
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 338
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 342
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 346
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 350
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 354
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 360
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 365
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 370
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 375
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 380
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 385
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 390
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 395
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 400
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 405
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 410
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 415
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 420
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 425
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 430
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 435
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 440
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 445
-Неправильный синтаксис около ключевого слова "User".
-Сообщение 156, уровень 15, состояние 1, строка 450
-Неправильный синтаксис около ключевого слова "User".
+INSERT INTO Recording_Format (name) VALUES
+('PAL'),
+('NTSC'),
+('SECAM'),
+('HD'),
+('4K'),
+('8K'),
+('HDR'),
+('SD'),
+('Blu-ray'),
+('DVD');
 
-Время выполнения: 2025-05-13T08:56:04.0330189+03:00
+INSERT INTO Genre (name) VALUES
+('Action'),
+('Comedy'),
+('Drama'),
+('Horror'),
+('Thriller'),
+('Romance'),
+('Sci-Fi'),
+('Fantasy'),
+('Documentary'),
+('Animation'),
+('Adventure'),
+('Crime'),
+('Mystery'),
+('Musical'),
+('Western');
+
+INSERT INTO Publisher (name, website_id) VALUES
+('Disney', 3),
+('Warner Bros', 5),
+('Universal Pictures', 6),
+('Paramount Pictures', 11),
+('Sony Pictures', 8),
+('20th Century Fox', 9),
+('Lionsgate', 10),
+('MGM', 12),
+('Columbia Pictures', 7),
+('New Line Cinema', 13),
+('Pixar', 3),
+('DreamWorks', 14),
+('Focus Features', 15),
+('Blumhouse', 4),
+('A24', 2);
+
+INSERT INTO Director (country_id, name, description) VALUES
+(1, 'Steven Spielberg', 'Famous American director'),
+(2, 'James Cameron', 'Canadian director known for Titanic'),
+(3, 'Christopher Nolan', 'British-American film director'),
+(4, 'Luc Besson', 'French film director and producer'),
+(5, 'Werner Herzog', 'German film director'),
+(6, 'Hayao Miyazaki', 'Japanese animation director'),
+(7, 'Baz Luhrmann', 'Australian director known for musicals'),
+(8, 'Andrei Tarkovsky', 'Russian filmmaker'),
+(9, 'José Padilha', 'Brazilian director'),
+(10, 'Satyajit Ray', 'Indian film director'),
+(11, 'Zhang Yimou', 'Chinese director'),
+(12, 'Guillermo del Toro', 'Mexican director'),
+(13, 'Park Chan-wook', 'South Korean director'),
+(14, 'Paolo Sorrentino', 'Italian director'),
+(15, 'Pedro Almodóvar', 'Spanish director');
+
+INSERT INTO Movie (description, rating, age_limit, number_of_views, duration, release_year, country_id, website_id, publisher_id, director_id, genre_id) VALUES
+('Epic space adventure', 9, 13, 10000, 150, 2010, 1, 1, 1, 3, 7),
+('Romantic comedy about love', 7, 12, 5000, 120, 2015, 3, 3, 11, 3, 6),
+('Thrilling crime drama', 8, 16, 7000, 130, 2005, 5, 5, 2, 1, 12),
+('Animated children movie', 10, 0, 20000, 90, 2018, 6, 3, 11, 6, 10),
+('Historical documentary', 6, 0, 3000, 110, 2012, 4, 6, 13, 5, 9),
+('Horror story in village', 5, 18, 4000, 100, 2011, 8, 4, 14, 8, 4),
+('Fantasy epic saga', 9, 13, 8000, 140, 2014, 7, 7, 3, 7, 8),
+('Action packed thriller', 8, 16, 9000, 115, 2013, 1, 2, 1, 2, 1),
+('Comedy about everyday life', 7, 0, 6000, 105, 2016, 3, 3, 14, 3, 2),
+('Mystery crime story', 8, 16, 4000, 125, 2009, 5, 9, 2, 1, 13),
+('Sci-Fi thriller', 9, 14, 11000, 130, 2017, 1, 1, 3, 3, 7),
+('Romantic drama', 7, 12, 4500, 100, 2018, 3, 3, 11, 3, 6),
+('Documentary about nature', 8, 0, 2000, 90, 2014, 4, 6, 13, 5, 9),
+('Animation adventure', 9, 0, 15000, 95, 2019, 6, 3, 11, 6, 10),
+('Western cowboy story', 7, 16, 3000, 130, 2010, 1, 2, 1, 1, 15);
+
+INSERT INTO Collection (name, description) VALUES
+('Best of Sci-Fi', 'Top rated science fiction movies'),
+('Romantic Classics', 'Best romantic movies of all time'),
+('Horror Night', 'Scary horror movies'),
+('Family Fun', 'Movies suitable for family viewing'),
+('Comedy Hits', 'Top comedy movies'),
+('Action Thrillers', 'Best action packed thrillers'),
+('Documentaries', 'Educational and informative films'),
+('Animated Favorites', 'Popular animated movies'),
+('Crime Stories', 'Best crime drama movies'),
+('Fantasy Worlds', 'Movies set in fantasy universes'),
+('Adventure Journeys', 'Exciting adventure movies'),
+('Mystery and Suspense', 'Intriguing mystery films'),
+('Western Legends', 'Classic western films'),
+('Musicals', 'Famous musical movies'),
+('International Cinema', 'Best foreign movies');
+
+INSERT INTO MovieCollection (collection_id, movie_id) VALUES
+(1,1),(2,2),(3,6),(4,4),(5,9),
+(6,8),(7,5),(8,14),(9,3),(10,7),
+(11,11),(12,10),(13,15),(14,2),(15,13);
+
+INSERT INTO [User] (age, name) VALUES
+(45, 'Mom'),
+(48, 'Dad'),
+(20, 'Daughter'),
+(18, 'Son'),
+(3, 'Cat');
+
+
+INSERT INTO UserFavoriteMovies (user_id, movie_id) VALUES
+-- Mom
+(1, 1), (1, 3), (1, 5), (1, 7), (1, 9),
+
+-- Dad
+(2, 2), (2, 4), (2, 6), (2, 8), (2, 10),
+
+-- Daughter
+(3, 11), (3, 12), (3, 13), (3, 14), (3, 15),
+
+-- Son
+(4, 1), (4, 4), (4, 7), (4, 10), (4, 13),
+
+-- Cat
+(5, 2), (5, 5), (5, 8), (5, 11), (5, 14);
+
+INSERT INTO UserFavoriteGenre (genre_id, user_id) VALUES
+-- Mom 
+(1, 1), (3, 1), (5, 1),
+
+-- Dad 
+(2, 2), (4, 2), (6, 2),
+
+-- Daughter
+(1, 3), (2, 3), (7, 3),
+
+-- Son
+(3, 4), (5, 4), (7, 4),
+
+-- Cat
+(4, 5), (6, 5), (7, 5);
+
+INSERT INTO WatchHistory (movie_id, user_id, watched_at) VALUES
+-- Mom 
+(1, 1, '2024-05-01T20:00:00'),
+(3, 1, '2024-05-02T21:00:00'),
+(5, 1, '2024-05-03T22:00:00'),
+(7, 1, '2024-05-04T19:30:00'),
+(9, 1, '2024-05-05T20:15:00'),
+
+-- Dad 
+(2, 2, '2024-04-10T18:45:00'),
+(4, 2, '2024-04-12T20:00:00'),
+(6, 2, '2024-04-13T21:15:00'),
+(8, 2, '2024-04-15T19:00:00'),
+(10, 2, '2024-04-17T20:30:00'),
+
+-- Daughter 
+(11, 3, '2024-03-20T17:00:00'),
+(12, 3, '2024-03-22T18:00:00'),
+(13, 3, '2024-03-24T19:15:00'),
+(14, 3, '2024-03-26T20:45:00'),
+(15, 3, '2024-03-28T21:30:00'),
+
+-- Son
+(1, 4, '2024-02-10T16:30:00'),
+(4, 4, '2024-02-12T17:45:00'),
+(7, 4, '2024-02-14T19:00:00'),
+(10, 4, '2024-02-16T20:15:00'),
+(13, 4, '2024-02-18T21:00:00'),
+
+-- Cat
+(2, 5, '2024-01-05T15:00:00'),
+(5, 5, '2024-01-07T16:30:00'),
+(8, 5, '2024-01-09T17:45:00'),
+(11, 5, '2024-01-11T19:00:00'),
+(14, 5, '2024-01-13T20:30:00');
+-- Задание 4
+-- сформировать запросы
+
+-- 1
+-- Любимый жанр месяца пользователя
+SELECT TOP 1 g.name AS favorite_genre, COUNT(*) AS views_count
+FROM WatchHistory wh
+JOIN Movie m ON wh.movie_id = m.id
+JOIN Genre g ON m.genre_id = g.id
+WHERE wh.user_id = 3 -- ID пользователя (например, Daughter)
+  AND wh.watched_at >= DATEADD(month, -1, GETDATE())
+GROUP BY g.name
+ORDER BY views_count DESC;
+
+-- 2
+-- любимый режисер пользоватля
+SELECT TOP 1 d.name AS favorite_director, COUNT(*) AS movies_watched
+FROM WatchHistory wh
+JOIN Movie m ON wh.movie_id = m.id
+JOIN Director d ON m.director_id = d.id
+WHERE wh.user_id = 1 -- ID пользователя (например, Mom)
+GROUP BY d.name
+ORDER BY movies_watched DESC;
+
+-- 3
+-- фильмы режисёра
+SELECT m.description AS movie_title, m.release_year, m.rating
+FROM Movie m
+JOIN Director d ON m.director_id = d.id
+WHERE d.name = 'Christopher Nolan' -- Имя режиссера
+ORDER BY m.release_year DESC;
+
+-- 4 
+-- самый популярный фильм среди домоседцев
+SELECT TOP 1 m.description AS most_popular_movie, COUNT(*) AS times_watched
+FROM WatchHistory wh
+JOIN Movie m ON wh.movie_id = m.id
+GROUP BY m.description
+ORDER BY times_watched DESC;
+
+-- 5
+-- фильмы, которые можно смотреть всей семье
+SELECT m.description, m.age_limit, g.name AS genre
+FROM Movie m
+JOIN Genre g ON m.genre_id = g.id
+WHERE m.age_limit <= 12
+ORDER BY m.rating DESC;
+
+
+-- что я хочу еще добавить
+-- добавить таблицу UserFavorityDirector 
+
+
+
+и такой вопрос
+как тебе моя реализация? что можно добавить?
+в частности прошу тебя предложить: какие еще отчеты(select-запросы) 
+ты можешь предлодить написать?

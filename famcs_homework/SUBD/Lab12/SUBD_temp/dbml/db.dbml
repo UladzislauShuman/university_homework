@@ -47,7 +47,7 @@ Table Publisher {
 
 Table Director {
     id int [pk, increment]            // Ключевое (первичный ключ)
-    country_id int [ref: > Country.id, unique] // Неключевое (внешний ключ)
+    country_id int [ref: > Country.id] // Неключевое (внешний ключ)
     name varchar(255)                 // Неключевое
     description text                  // Неключевое
     
