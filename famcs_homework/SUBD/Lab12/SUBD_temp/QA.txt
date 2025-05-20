@@ -1,128 +1,12 @@
-вот моя лабараторная работа по СУБД
-ее условие и как я ее продумал
-
-Вариант 2. Видеотека. 
-Описание предметной области. В домашней видеотеке хранятся видеозаписи на различных носителях. Имеются как видеосборники различных изданий, так и издания отдельных фильмов. Видеоносители могут передаваться во временное пользование, приобретаться из различных источников. 
-Задачи. Учету подлежат носители различных типов – видеокассеты, видео CD, видео DVD и прочие. Необходимо обеспечить поиск сборников определенного издателя, фильмы определённого жанра, режиссера, страны, года выпуска. Учитывается также формат видеозаписи и длительность фильма. В случае передачи носителя во временное пользование контролировать сроки возврата.
- 
-ФИО студента, номер группы: Шуман Владислав Олегович, 2
-ПРЕДМЕТНАЯ ОБЛАСТЬ: Видеотека
-1. ОПИСАНИЕ ПРЕДМЕТНОЙ ОБЛАСТИ 
-1.1 НАЗНАЧЕНИЕ И ОБЛАСТЬ ПРИМЕНЕНИЯ БАЗЫ ДАННЫХ
-	Назначение: исходя из названия можно предположить, что в каком-то доме, где живёт семья, завалялось очень много кассет/дисков/… , на которых есть Фильмы, детские утренники детей, свадьба мамы и папы и тд. И жители дома столкнулись с проблемой — фильмов много, всё разбросанно, иногда не помнишь, когда вдруг захотелось посмотреть, какие фильмы есть. Хочется всё упорядочить и быстро получать необходимую информацию. Так же пользователь может брать продукт и на время и у кого-то. И как порядочный пользователь он хочет возвращать его в сроки.
-	Область применения : личное использование для организации и контроля домашней коллекции видеозаписей.
-1.2 ПРЕДПОЛАГАЕМЫЕ ПОЛЬЗОВАТЕЛИ
-	Семья. Система должна стараться покрыть желания большинства членов семьи. Далее предположим, что речь идёт о семье, в которой живут отец, мать, дочка, сын, бабушка и дедушка.
-1.3 ФУНКЦИОНАЛЬНЫЕ ТРЕБОВАНИЯ
-	Изменение информации о видеозаписях (добавление новых видеозаписей, удаление и пр).
-	Поиск видеозаписей по различным критериям (название, режиссер, жанр, страна, год выпуска, издатель, формат носителя, ).
-	Учет видеоносителей во временное пользование с указанием даты выдачи и возврата.
-	Генерацию различных отчетов:
-		список всех фильмов в зависимости от значений полей(включая/не включая какое-либо) (определенного жанра /в зависимости от возраста/ и тд).
-		список всех носителей определенного типа
-		список фильмов, которые должны быть возвращены
-		детали о конкретном фильме/сборнике
-		Любимый жанр, фильм, режиссер пользователя (за месяц, в таблице «Избранные»)
-		Список фильмов для всей семьи
-		История просмотра
-		
-2. ОПИСАНИЕ БАЗЫ ДАННЫХ В ТЕРМИНАХ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
-2.1 ОПИСАНИЕ ВХОДНЫХ ДОКУМЕНТОВ И СООБЩЕНИЙ В ТЕРМИНАХ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
-	Входными данными являются сведения о каждой Материале, которые пользователь вводит в систему. Входные данные представляют собой атрибуты объектов Фильм и Носитель.
-2.2 ОПИСАНИЕ ВЫХОДНЫХ ДОКУМЕНТОВ И СООБЩЕНИЙ В ТЕРМИНАХ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
-	Выходными данными являются результаты запросов к базе данных, представленные в виде списков, отчетов или отдельных записей. Например, список фильмов определенного жанра, список всех фильмов, взятых во временное пользование, информация об отдельном фильме и тд.
-3. ПОСТРОЕНИЕ ИНФОЛОГИЧЕСКОЙ (КОНЦЕПТУАЛЬНОЙ) МОДЕЛИ ПРЕДМЕТНОЙ ОБЛАСТИ
-3.1 ВЫДЕЛЕНИЕ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
-	Фильм — видеозапись, расположенная на носителе 
-	Носитель — место, где храниться видеозапись
-Издатель– компания, что сняла фильм и может являться как бы дочерней компанией одной большой компании.
-	Издатель — компания фильма
-	Сборник — конечный список фильмов / подмножество всех фильмов
-	Режиссёр — режиссёр фильма
-	Жанр — жанр фильма
-	Пользователь — в нашем случае один из членов семьи
-Конкретный_Прокатчик – своего рода «пункт выдачи» прокатчика
-Прокатчик — тот, кто предоставил носитель на время
-Адрес — определённый адрес без описания кому он принадлежит]
-Страна – страна, где может быть и Фильм, и Издатель, и Адреса и тд.
-Сайт – сама сущность будет хранить в себе название сайта и URL на него.
-
-3.2 ВЫДЕЛЕНИЕ АТРИБУТОВ ОБЪЕКТОВ ПРЕДМЕТНОЙ ОБЛАСТИ
-	Фильм (movie):
-		#id
-		Название (titile) 
- 		Оригинальное название (original_title) 
-		Год выпуска (release_year) 
-		Продолжительность (duration) 
-		Описание (description) 
-		Рейтинг (rating) 
-		Возраст (age_limit) 
-		Сколько раз смотрели (number_of_views) 
-*Издатель_id (publisher_id) 
-*Главный_режиссёр_id (main_director_id) 
-*Жанр_id(genre_id) 
-*Страна_id (country_id) 
-
-	Носитель (carrier):
-		#id
-                             Название (name) not null
-		Объём(size) not null
-                             *Тип_id(type_id) not null
-                             *Формат записи_id (format_id) not null
-	 
-Издатель_Производитель (publisher_producer)
-#Id
-Название (name)
-*Адрес_id (address_id)
-              *Издатель_id (publisher_id)
-Издатель(publisher):
-              #Id 
-		Название (name) 
-                             *Сайт_id (website_id)  
-Сборник(Collection):
-#Id 
-	Название (name) 
-		(имеет связь М:М с Фильмом и Издателем)
-	Режиссёр(Director):
-                            #Id 
-		Имя (name) 
-               *Страна_id (country_id) 
-	Жанр(Genre):
-                             #Id 
-		Название (name) 
-	
-Пользователь(User):
-#Id 
-	Имя пользователя (name)
-	Возраст (age) 
-	Прокатчик(Rentaler):
-#Id 
-Название (name) 
-*Сайт_id (website_id)  
-	Конкретный прокатчик (Rentaler_Concrete):
-		#id
-		Телефон (phone_number)
-		* Прокатчик_id (rentaler_id)
-		* Адрес_id (address_id)
-	Адрес(Address):
-#Id 
-	Улица (street) 
-	Дом (house) ) 
-	Помещение (placement)  
-*Страна_id (country_id) 
-Страна (Country):
-	#Id
-	Название (name) 
-
-
-там я немного не дописывал некоторое, менял
-вот мой код запроса
-
+можешь заполнить таблицу [MovieCarrier] 
+можешь записать 1 фильм -- 1 носитель
+и 1 носитель -- 1 фильм
 -- Задание 2
 
 -- сгенерированно для DBML на сайте https://dbdiagram.io/d
 CREATE TABLE [Movie] (
   [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255),
   [description] VARCHAR(255),
   [rating] INT DEFAULT 0 CHECK ([rating] BETWEEN 0 AND 10),
   [age_limit] INT DEFAULT 0 CHECK ([age_limit] BETWEEN 0 AND 21),
@@ -260,8 +144,8 @@ GO
 
 CREATE TABLE [RentedCarriers] (
   [id] INT PRIMARY KEY IDENTITY(1, 1),
-  [start_rent] TIME NOT NULL,
-  [end_rent] TIME NOT NULL,
+  [start_rent] DATETIME NOT NULL,
+  [end_rent] DATETIME NOT NULL,
   [carrier_id] INT,
   [rentaler_concrete_id] INT
 )
@@ -604,7 +488,6 @@ INSERT INTO Rentaler (name, website_id) VALUES
 ('Mubi Rentals', 14),
 ('Shudder Rentals', 15);
 
--- Пример для USA (id=1), LocalityType: CITY=2, VILLAGE=1
 INSERT INTO Locality (country_id, locality_type_id, name) VALUES
 (1, 2, 'New York'),
 (1, 2, 'Los Angeles'),
@@ -689,7 +572,13 @@ INSERT INTO Carrier (size, name, type_id) VALUES
 (16000, 'USB Stick', 12),
 (100000, 'External HDD 1', 13),
 (64, 'SD Card 64GB', 14),
-(2700, 'Blu-ray 3D Disc', 15);
+(2700, 'Blu-ray 3D Disc', 15),
+
+(2700, 'Blu-ray with Intersteller', 15),
+(3700, 'Blu-ray with La La Land', 15),
+(2500, 'Blu-ray withThe Shawshank Redemption', 15),
+(2900, 'Blu-ray with Spirited Away', 15),
+(3000, 'Blu-ray with The Grand Budapest Hotel', 15);
 
 
 INSERT INTO Recording_Format (name) VALUES
@@ -755,22 +644,28 @@ INSERT INTO Director (country_id, name, description) VALUES
 (14, 'Paolo Sorrentino', 'Italian director'),
 (15, 'Pedro Almodóvar', 'Spanish director');
 
-INSERT INTO Movie (description, rating, age_limit, number_of_views, duration, release_year, country_id, website_id, publisher_id, director_id, genre_id) VALUES
-('Epic space adventure', 9, 13, 10000, 150, 2010, 1, 1, 1, 3, 7),
-('Romantic comedy about love', 7, 12, 5000, 120, 2015, 3, 3, 11, 3, 6),
-('Thrilling crime drama', 8, 16, 7000, 130, 2005, 5, 5, 2, 1, 12),
-('Animated children movie', 10, 0, 20000, 90, 2018, 6, 3, 11, 6, 10),
-('Historical documentary', 6, 0, 3000, 110, 2012, 4, 6, 13, 5, 9),
-('Horror story in village', 5, 18, 4000, 100, 2011, 8, 4, 14, 8, 4),
-('Fantasy epic saga', 9, 13, 8000, 140, 2014, 7, 7, 3, 7, 8),
-('Action packed thriller', 8, 16, 9000, 115, 2013, 1, 2, 1, 2, 1),
-('Comedy about everyday life', 7, 0, 6000, 105, 2016, 3, 3, 14, 3, 2),
-('Mystery crime story', 8, 16, 4000, 125, 2009, 5, 9, 2, 1, 13),
-('Sci-Fi thriller', 9, 14, 11000, 130, 2017, 1, 1, 3, 3, 7),
-('Romantic drama', 7, 12, 4500, 100, 2018, 3, 3, 11, 3, 6),
-('Documentary about nature', 8, 0, 2000, 90, 2014, 4, 6, 13, 5, 9),
-('Animation adventure', 9, 0, 15000, 95, 2019, 6, 3, 11, 6, 10),
-('Western cowboy story', 7, 16, 3000, 130, 2010, 1, 2, 1, 1, 15);
+INSERT INTO Movie ([name], description, rating, age_limit, number_of_views, duration, release_year, country_id, website_id, publisher_id, director_id, genre_id) VALUES
+('Star Wars: New Hope', 'Epic space adventure', 9, 13, 2, 150, 2010, 1, 1, 1, 3, 7),
+('Love Actually', 'Romantic comedy about love', 7, 12, 3, 120, 2015, 3, 3, 11, 3, 6),
+('The Dark Knight', 'Thrilling crime drama', 8, 16, 1, 130, 2005, 5, 5, 2, 1, 12),
+('Toy Story 4', 'Animated children movie', 10, 0, 2, 90, 2018, 6, 3, 11, 6, 10),
+('The History of Rome', 'Historical documentary', 6, 0, 2, 110, 2012, 4, 6, 13, 5, 9),
+('The Village', 'Horror story in village', 5, 18, 1, 100, 2011, 8, 4, 14, 8, 4),
+('The Lord of the Rings', 'Fantasy epic saga', 9, 13, 6, 140, 2014, 7, 7, 3, 7, 8),
+('John Wick', 'Action packed thriller', 8, 16, 3, 115, 2013, 1, 2, 1, 2, 1),
+('The Hangover', 'Comedy about everyday life', 7, 0, 6000, 105, 2016, 3, 3, 14, 3, 2),
+('Gone Girl', 'Mystery crime story', 8, 16, 6, 125, 2009, 5, 9, 2, 1, 13),
+('Inception', 'Sci-Fi thriller', 9, 14, 2, 130, 2017, 1, 1, 3, 3, 7),
+('The Notebook', 'Romantic drama', 7, 12, 3, 100, 2018, 3, 3, 11, 3, 6),
+('Planet Earth II', 'Documentary about nature', 8, 0, 1, 90, 2014, 4, 6, 13, 5, 9),
+('Frozen II', 'Animation adventure', 9, 0, 1, 95, 2019, 6, 3, 11, 6, 10),
+('True Grit', 'Western cowboy story', 7, 16, 1, 130, 2010, 1, 2, 1, 1, 15),
+
+('Interstellar', 'Mind-bending space odyssey about love and time', 9, 13, 0, 169, 2014, 1, 1, 3, 3, 7),
+('La La Land', 'Modern musical about dreams and romance in Hollywood', 8, 12, 0, 128, 2016, 1, 3, 14, 7, 14),
+('The Shawshank Redemption', 'Powerful drama about hope and friendship in prison', 10, 16, 0, 142, 1994, 1, 5, 2, 1, 3),
+('Spirited Away', 'Magical anime about a girl in a spirit world', 9, 0, 0, 125, 2001, 6, 3, 11, 6, 10),
+('The Grand Budapest Hotel', 'Whimsical comedy about a legendary hotel concierge', 8, 13, 0, 100, 2014, 1, 7, 3, 15, 2);
 
 INSERT INTO Collection (name, description) VALUES
 ('Best of Sci-Fi', 'Top rated science fiction movies'),
@@ -869,61 +764,24 @@ INSERT INTO WatchHistory (movie_id, user_id, watched_at) VALUES
 (8, 5, '2024-01-09T17:45:00'),
 (11, 5, '2024-01-11T19:00:00'),
 (14, 5, '2024-01-13T20:30:00');
--- Задание 4
--- сформировать запросы
 
--- 1
--- Любимый жанр месяца пользователя
-SELECT TOP 1 g.name AS favorite_genre, COUNT(*) AS views_count
-FROM WatchHistory wh
-JOIN Movie m ON wh.movie_id = m.id
-JOIN Genre g ON m.genre_id = g.id
-WHERE wh.user_id = 3 -- ID пользователя (например, Daughter)
-  AND wh.watched_at >= DATEADD(month, -1, GETDATE())
-GROUP BY g.name
-ORDER BY views_count DESC;
+INSERT INTO RentedCarriers (start_rent, end_rent, carrier_id, rentaler_concrete_id) VALUES
+-- просрочил
+(DATEADD(DAY, -10, GETDATE()), DATEADD(DAY, -9, GETDATE()), 1, 1),
+(DATEADD(DAY, -8, GETDATE()), DATEADD(DAY, -7, GETDATE()), 2, 2),
+(DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, -5, GETDATE()), 3, 3),
+(DATEADD(DAY, -4, GETDATE()), DATEADD(DAY, -3, GETDATE()), 4, 4),
 
--- 2
--- любимый режисер пользоватля
-SELECT TOP 1 d.name AS favorite_director, COUNT(*) AS movies_watched
-FROM WatchHistory wh
-JOIN Movie m ON wh.movie_id = m.id
-JOIN Director d ON m.director_id = d.id
-WHERE wh.user_id = 1 -- ID пользователя (например, Mom)
-GROUP BY d.name
-ORDER BY movies_watched DESC;
+-- сегодня закончиться
+(DATEADD(DAY, -1, GETDATE()), DATEADD(HOUR, 2, GETDATE()), 5, 5),
 
--- 3
--- фильмы режисёра
-SELECT m.description AS movie_title, m.release_year, m.rating
-FROM Movie m
-JOIN Director d ON m.director_id = d.id
-WHERE d.name = 'Christopher Nolan' -- Имя режиссера
-ORDER BY m.release_year DESC;
-
--- 4 
--- самый популярный фильм среди домоседцев
-SELECT TOP 1 m.description AS most_popular_movie, COUNT(*) AS times_watched
-FROM WatchHistory wh
-JOIN Movie m ON wh.movie_id = m.id
-GROUP BY m.description
-ORDER BY times_watched DESC;
-
--- 5
--- фильмы, которые можно смотреть всей семье
-SELECT m.description, m.age_limit, g.name AS genre
-FROM Movie m
-JOIN Genre g ON m.genre_id = g.id
-WHERE m.age_limit <= 12
-ORDER BY m.rating DESC;
+-- активные
+(DATEADD(DAY, -2, GETDATE()), DATEADD(DAY, 1, GETDATE()), 6, 6),
+(DATEADD(DAY, -3, GETDATE()), DATEADD(DAY, 2, GETDATE()), 7, 7),
+(DATEADD(DAY, -4, GETDATE()), DATEADD(DAY, 3, GETDATE()), 8, 8),
+(DATEADD(DAY, -5, GETDATE()), DATEADD(DAY, 4, GETDATE()), 9, 9),
+(DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, 5, GETDATE()), 10, 10);
 
 
--- что я хочу еще добавить
--- добавить таблицу UserFavorityDirector 
+INSERT INTO [MovieCarrier] VALUES
 
-
-
-и такой вопрос
-как тебе моя реализация? что можно добавить?
-в частности прошу тебя предложить: какие еще отчеты(select-запросы) 
-ты можешь предлодить написать?

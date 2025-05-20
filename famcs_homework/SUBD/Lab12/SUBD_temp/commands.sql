@@ -3,6 +3,7 @@
 -- сгенерированно для DBML на сайте https://dbdiagram.io/d
 CREATE TABLE [Movie] (
   [id] INT PRIMARY KEY IDENTITY(1, 1),
+  [name] VARCHAR(255),
   [description] VARCHAR(255),
   [rating] INT DEFAULT 0 CHECK ([rating] BETWEEN 0 AND 10),
   [age_limit] INT DEFAULT 0 CHECK ([age_limit] BETWEEN 0 AND 21),
@@ -140,8 +141,8 @@ GO
 
 CREATE TABLE [RentedCarriers] (
   [id] INT PRIMARY KEY IDENTITY(1, 1),
-  [start_rent] TIME NOT NULL,
-  [end_rent] TIME NOT NULL,
+  [start_rent] DATETIME NOT NULL,
+  [end_rent] DATETIME NOT NULL,
   [carrier_id] INT,
   [rentaler_concrete_id] INT
 )
@@ -484,7 +485,6 @@ INSERT INTO Rentaler (name, website_id) VALUES
 ('Mubi Rentals', 14),
 ('Shudder Rentals', 15);
 
--- Пример для USA (id=1), LocalityType: CITY=2, VILLAGE=1
 INSERT INTO Locality (country_id, locality_type_id, name) VALUES
 (1, 2, 'New York'),
 (1, 2, 'Los Angeles'),
@@ -569,20 +569,25 @@ INSERT INTO Carrier (size, name, type_id) VALUES
 (16000, 'USB Stick', 12),
 (100000, 'External HDD 1', 13),
 (64, 'SD Card 64GB', 14),
-(2700, 'Blu-ray 3D Disc', 15);
+(2700, 'Blu-ray 3D Disc', 15),
 
+(2700, 'Blu-ray with Intersteller', 15),
+(3700, 'Blu-ray with La La Land', 15),
+(2500, 'Blu-ray withThe Shawshank Redemption', 15),
+(2900, 'Blu-ray with Spirited Away', 15),
+(3000, 'Blu-ray with The Grand Budapest Hotel', 15);
 
 INSERT INTO Recording_Format (name) VALUES
-('PAL'),
-('NTSC'),
-('SECAM'),
-('HD'),
-('4K'),
-('8K'),
-('HDR'),
-('SD'),
-('Blu-ray'),
-('DVD');
+('MP4'),
+('MKV'),
+('AVI'),
+('MOV'),
+('WMV'),
+('FLV'),
+('MPEG'),
+('WEBM'),
+('HEVC'),
+('ProRes');
 
 INSERT INTO Genre (name) VALUES
 ('Action'),
@@ -635,22 +640,28 @@ INSERT INTO Director (country_id, name, description) VALUES
 (14, 'Paolo Sorrentino', 'Italian director'),
 (15, 'Pedro Almodóvar', 'Spanish director');
 
-INSERT INTO Movie (description, rating, age_limit, number_of_views, duration, release_year, country_id, website_id, publisher_id, director_id, genre_id) VALUES
-('Epic space adventure', 9, 13, 10000, 150, 2010, 1, 1, 1, 3, 7),
-('Romantic comedy about love', 7, 12, 5000, 120, 2015, 3, 3, 11, 3, 6),
-('Thrilling crime drama', 8, 16, 7000, 130, 2005, 5, 5, 2, 1, 12),
-('Animated children movie', 10, 0, 20000, 90, 2018, 6, 3, 11, 6, 10),
-('Historical documentary', 6, 0, 3000, 110, 2012, 4, 6, 13, 5, 9),
-('Horror story in village', 5, 18, 4000, 100, 2011, 8, 4, 14, 8, 4),
-('Fantasy epic saga', 9, 13, 8000, 140, 2014, 7, 7, 3, 7, 8),
-('Action packed thriller', 8, 16, 9000, 115, 2013, 1, 2, 1, 2, 1),
-('Comedy about everyday life', 7, 0, 6000, 105, 2016, 3, 3, 14, 3, 2),
-('Mystery crime story', 8, 16, 4000, 125, 2009, 5, 9, 2, 1, 13),
-('Sci-Fi thriller', 9, 14, 11000, 130, 2017, 1, 1, 3, 3, 7),
-('Romantic drama', 7, 12, 4500, 100, 2018, 3, 3, 11, 3, 6),
-('Documentary about nature', 8, 0, 2000, 90, 2014, 4, 6, 13, 5, 9),
-('Animation adventure', 9, 0, 15000, 95, 2019, 6, 3, 11, 6, 10),
-('Western cowboy story', 7, 16, 3000, 130, 2010, 1, 2, 1, 1, 15);
+INSERT INTO Movie ([name], description, rating, age_limit, number_of_views, duration, release_year, country_id, website_id, publisher_id, director_id, genre_id) VALUES
+('Star Wars: New Hope', 'Epic space adventure', 9, 13, 2, 150, 2010, 1, 1, 1, 3, 7),
+('Love Actually', 'Romantic comedy about love', 7, 12, 3, 120, 2015, 3, 3, 11, 3, 6),
+('The Dark Knight', 'Thrilling crime drama', 8, 16, 1, 130, 2005, 5, 5, 2, 1, 12),
+('Toy Story 4', 'Animated children movie', 10, 0, 2, 90, 2018, 6, 3, 11, 6, 10),
+('The History of Rome', 'Historical documentary', 6, 0, 2, 110, 2012, 4, 6, 13, 5, 9),
+('The Village', 'Horror story in village', 5, 18, 1, 100, 2011, 8, 4, 14, 8, 4),
+('The Lord of the Rings', 'Fantasy epic saga', 9, 13, 6, 140, 2014, 7, 7, 3, 7, 8),
+('John Wick', 'Action packed thriller', 8, 16, 3, 115, 2013, 1, 2, 1, 2, 1),
+('The Hangover', 'Comedy about everyday life', 7, 0, 6000, 105, 2016, 3, 3, 14, 3, 2),
+('Gone Girl', 'Mystery crime story', 8, 16, 6, 125, 2009, 5, 9, 2, 1, 13),
+('Inception', 'Sci-Fi thriller', 9, 14, 2, 130, 2017, 1, 1, 3, 3, 7),
+('The Notebook', 'Romantic drama', 7, 12, 3, 100, 2018, 3, 3, 11, 3, 6),
+('Planet Earth II', 'Documentary about nature', 8, 0, 1, 90, 2014, 4, 6, 13, 5, 9),
+('Frozen II', 'Animation adventure', 9, 0, 1, 95, 2019, 6, 3, 11, 6, 10),
+('True Grit', 'Western cowboy story', 7, 16, 1, 130, 2010, 1, 2, 1, 1, 15),
+
+('Interstellar', 'Mind-bending space odyssey about love and time', 9, 13, 0, 169, 2014, 1, 1, 3, 3, 7),
+('La La Land', 'Modern musical about dreams and romance in Hollywood', 8, 12, 0, 128, 2016, 1, 3, 14, 7, 14),
+('The Shawshank Redemption', 'Powerful drama about hope and friendship in prison', 10, 16, 0, 142, 1994, 1, 5, 2, 1, 3),
+('Spirited Away', 'Magical anime about a girl in a spirit world', 9, 0, 0, 125, 2001, 6, 3, 11, 6, 10),
+('The Grand Budapest Hotel', 'Whimsical comedy about a legendary hotel concierge', 8, 13, 0, 100, 2014, 1, 7, 3, 15, 2);
 
 INSERT INTO Collection (name, description) VALUES
 ('Best of Sci-Fi', 'Top rated science fiction movies'),
@@ -749,33 +760,74 @@ INSERT INTO WatchHistory (movie_id, user_id, watched_at) VALUES
 (8, 5, '2024-01-09T17:45:00'),
 (11, 5, '2024-01-11T19:00:00'),
 (14, 5, '2024-01-13T20:30:00');
+
+INSERT INTO RentedCarriers (start_rent, end_rent, carrier_id, rentaler_concrete_id) VALUES
+-- просрочил
+(DATEADD(DAY, -10, GETDATE()), DATEADD(DAY, -9, GETDATE()), 1, 1),
+(DATEADD(DAY, -8, GETDATE()), DATEADD(DAY, -7, GETDATE()), 2, 2),
+(DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, -5, GETDATE()), 3, 3),
+(DATEADD(DAY, -4, GETDATE()), DATEADD(DAY, -3, GETDATE()), 4, 4),
+
+-- сегодня закончиться
+(DATEADD(DAY, -1, GETDATE()), DATEADD(HOUR, 2, GETDATE()), 5, 5),
+
+-- активные
+(DATEADD(DAY, -2, GETDATE()), DATEADD(DAY, 1, GETDATE()), 6, 6),
+(DATEADD(DAY, -3, GETDATE()), DATEADD(DAY, 2, GETDATE()), 7, 7),
+(DATEADD(DAY, -4, GETDATE()), DATEADD(DAY, 3, GETDATE()), 8, 8),
+(DATEADD(DAY, -5, GETDATE()), DATEADD(DAY, 4, GETDATE()), 9, 9),
+(DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, 5, GETDATE()), 10, 10);
+
+
+INSERT INTO [MovieCarrier] (movie_id, carrier_id, recording_format_id) VALUES
+(1, 1, 1),
+(2, 2, 7),
+(3, 3, 3),
+(4, 4, 10),
+(5, 5, 1),
+(6, 6, 1),
+(7, 7, 1),
+(8, 8, 3),
+(9, 9, 4),
+(10, 10, 5),
+(11, 11, 7),
+(12, 12, 1),
+(13, 13, 1),
+(14, 14, 1),
+(15, 15, 9),
+(16, 16, 6),
+(17, 17, 2),
+(18, 18, 8),
+(19, 19, 1),
+(20, 20, 1);
+
 -- Задание 4
 -- сформировать запросы
 
 -- 1
--- Любимый жанр месяца пользователя
-SELECT TOP 1 g.name AS favorite_genre, COUNT(*) AS views_count
+-- Любимый жанр месяца пользователя Daughter (id = 3)
+SELECT TOP 1 g.name AS favorite_month_genre, COUNT(*) AS amount_of_views
 FROM WatchHistory wh
 JOIN Movie m ON wh.movie_id = m.id
 JOIN Genre g ON m.genre_id = g.id
-WHERE wh.user_id = 3 -- ID пользователя (например, Daughter)
+WHERE wh.user_id = 3
   AND wh.watched_at >= DATEADD(month, -1, GETDATE())
 GROUP BY g.name
-ORDER BY views_count DESC;
+ORDER BY amount_of_views DESC;
 
 -- 2
--- любимый режисер пользоватля
+-- любимый режисер пользоватля id = 1
 SELECT TOP 1 d.name AS favorite_director, COUNT(*) AS movies_watched
 FROM WatchHistory wh
 JOIN Movie m ON wh.movie_id = m.id
 JOIN Director d ON m.director_id = d.id
-WHERE wh.user_id = 1 -- ID пользователя (например, Mom)
+WHERE wh.user_id = 1
 GROUP BY d.name
 ORDER BY movies_watched DESC;
 
 -- 3
 -- фильмы режисёра
-SELECT m.description AS movie_title, m.release_year, m.rating
+SELECT m.name AS movie_title, m.release_year, m.rating
 FROM Movie m
 JOIN Director d ON m.director_id = d.id
 WHERE d.name = 'Christopher Nolan' -- Имя режиссера
@@ -783,10 +835,10 @@ ORDER BY m.release_year DESC;
 
 -- 4 
 -- самый популярный фильм среди домоседцев
-SELECT TOP 1 m.description AS most_popular_movie, COUNT(*) AS times_watched
+SELECT TOP 1 m.name AS most_popular_movie, COUNT(*) AS times_watched
 FROM WatchHistory wh
 JOIN Movie m ON wh.movie_id = m.id
-GROUP BY m.description
+GROUP BY m.name
 ORDER BY times_watched DESC;
 
 -- 5
@@ -797,8 +849,30 @@ JOIN Genre g ON m.genre_id = g.id
 WHERE m.age_limit <= 12
 ORDER BY m.rating DESC;
 
+-- 6
+-- список носителей и статус их просроченности
+SELECT 
+  c.name AS carrier_name,
+  rc.end_rent,
+  CASE 
+    WHEN rc.end_rent < GETDATE() THEN 'Overdue'
+    WHEN CAST(rc.end_rent AS DATE) = CAST(GETDATE() AS DATE) THEN 'Due today'
+    ELSE 'Not due yet'
+  END AS status
+FROM RentedCarriers rc
+LEFT JOIN Carrier c ON rc.carrier_id = c.id
+ORDER BY 
+  CASE 
+    WHEN rc.end_rent < GETDATE() THEN 0
+    WHEN CAST(rc.end_rent AS DATE) = CAST(GETDATE() AS DATE) THEN 1
+    ELSE 2
+  END,
+  rc.end_rent;
 
--- что я хочу еще добавить
--- добавить таблицу UserFavorityDirector 
-
+-- 7
+-- фильмы, которые ни разу не смотрели
+SELECT m.name AS movie_title
+FROM Movie m
+LEFT JOIN WatchHistory wh ON m.id = wh.movie_id
+WHERE wh.movie_id IS NULL;
 
