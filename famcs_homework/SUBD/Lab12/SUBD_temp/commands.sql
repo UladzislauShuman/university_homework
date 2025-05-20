@@ -419,7 +419,6 @@ GO
 ALTER TABLE [WatchHistory] ADD FOREIGN KEY ([user_id]) REFERENCES [User] ([id])
 GO
 
-
 -- Задание 3
 -- внести данные в созданные таблицы
 INSERT INTO LocalityType (name, code) VALUES
@@ -575,7 +574,28 @@ INSERT INTO Carrier (size, name, type_id) VALUES
 (3700, 'Blu-ray with La La Land', 15),
 (2500, 'Blu-ray withThe Shawshank Redemption', 15),
 (2900, 'Blu-ray with Spirited Away', 15),
-(3000, 'Blu-ray with The Grand Budapest Hotel', 15);
+(3000, 'Blu-ray with The Grand Budapest Hotel', 15),
+
+(700, 'Collectors DVD', 6),
+(2500, 'Directors Blu-ray', 6),
+(700, 'Limited VHS', 2),
+(16000, 'HD Stream', 1),
+(0, 'LaserClassic', 11),
+(700, 'BetaArchive', 15),
+(0, 'HD Master Copy', 6),
+(700, '4K Collector Edition', 11),
+(700, 'Studio CD', 14),
+(0, 'Classic Cassette', 9),
+(700, 'Netflix Digital', 11),
+(700, 'USB Archive', 4),
+(5000, 'HDD Vault', 7),
+(5000, 'SD Memory', 10),
+(5000, 'Blu-ray 3D Master', 13),
+(2500, 'Bonus Disk', 1),
+(2500, 'Behind the Scenes', 9),
+(5000, 'Remastered Copy', 10),
+(0, 'Studio Screener', 5),
+(0, 'Original Print', 13);
 
 INSERT INTO Recording_Format (name) VALUES
 ('MP4'),
@@ -624,73 +644,117 @@ INSERT INTO Publisher (name, website_id) VALUES
 ('A24', 2);
 
 INSERT INTO Director (country_id, name, description) VALUES
-(1, 'Steven Spielberg', 'Famous American director'),
-(2, 'James Cameron', 'Canadian director known for Titanic'),
-(3, 'Christopher Nolan', 'British-American film director'),
-(4, 'Luc Besson', 'French film director and producer'),
-(5, 'Werner Herzog', 'German film director'),
-(6, 'Hayao Miyazaki', 'Japanese animation director'),
-(7, 'Baz Luhrmann', 'Australian director known for musicals'),
-(8, 'Andrei Tarkovsky', 'Russian filmmaker'),
-(9, 'José Padilha', 'Brazilian director'),
-(10, 'Satyajit Ray', 'Indian film director'),
-(11, 'Zhang Yimou', 'Chinese director'),
-(12, 'Guillermo del Toro', 'Mexican director'),
-(13, 'Park Chan-wook', 'South Korean director'),
-(14, 'Paolo Sorrentino', 'Italian director'),
-(15, 'Pedro Almodóvar', 'Spanish director');
+(1, 'Стивен Спилберг', 'Знаменитый американский режиссёр'),
+(2, 'Джеймс Кэмерон', 'Канадский режиссёр, известный по фильму «Титаник»'),
+(3, 'Кристофер Нолан', 'Британско-американский кинорежиссёр'),
+(4, 'Люк Бессон', 'Французский режиссёр и продюсер'),
+(5, 'Вернер Херцог', 'Немецкий режиссёр'),
+(6, 'Хаяо Миядзаки', 'Японский режиссёр анимации'),
+(7, 'Баз Лурман', 'Австралийский режиссёр, известный мюзиклами'),
+(8, 'Андрей Тарковский', 'Российский кинорежиссёр'),
+(9, 'Жозе Падилья', 'Бразильский режиссёр'),
+(10, 'Сатьяджит Рей', 'Индийский режиссёр'),
+(11, 'Чжан Имоу', 'Китайский режиссёр'),
+(12, 'Гильермо дель Торо', 'Мексиканский режиссёр'),
+(13, 'Пак Чхан Ук', 'Южнокорейский режиссёр'),
+(14, 'Паоло Соррентино', 'Итальянский режиссёр'),
+(15, 'Педро Альмодовар', 'Испанский режиссёр');
 
 INSERT INTO Movie ([name], description, rating, age_limit, number_of_views, duration, release_year, country_id, website_id, publisher_id, director_id, genre_id) VALUES
-('Star Wars: New Hope', 'Epic space adventure', 9, 13, 2, 150, 2010, 1, 1, 1, 3, 7),
-('Love Actually', 'Romantic comedy about love', 7, 12, 3, 120, 2015, 3, 3, 11, 3, 6),
-('The Dark Knight', 'Thrilling crime drama', 8, 16, 1, 130, 2005, 5, 5, 2, 1, 12),
-('Toy Story 4', 'Animated children movie', 10, 0, 2, 90, 2018, 6, 3, 11, 6, 10),
-('The History of Rome', 'Historical documentary', 6, 0, 2, 110, 2012, 4, 6, 13, 5, 9),
-('The Village', 'Horror story in village', 5, 18, 1, 100, 2011, 8, 4, 14, 8, 4),
-('The Lord of the Rings', 'Fantasy epic saga', 9, 13, 6, 140, 2014, 7, 7, 3, 7, 8),
-('John Wick', 'Action packed thriller', 8, 16, 3, 115, 2013, 1, 2, 1, 2, 1),
-('The Hangover', 'Comedy about everyday life', 7, 0, 6000, 105, 2016, 3, 3, 14, 3, 2),
-('Gone Girl', 'Mystery crime story', 8, 16, 6, 125, 2009, 5, 9, 2, 1, 13),
-('Inception', 'Sci-Fi thriller', 9, 14, 2, 130, 2017, 1, 1, 3, 3, 7),
-('The Notebook', 'Romantic drama', 7, 12, 3, 100, 2018, 3, 3, 11, 3, 6),
-('Planet Earth II', 'Documentary about nature', 8, 0, 1, 90, 2014, 4, 6, 13, 5, 9),
-('Frozen II', 'Animation adventure', 9, 0, 1, 95, 2019, 6, 3, 11, 6, 10),
-('True Grit', 'Western cowboy story', 7, 16, 1, 130, 2010, 1, 2, 1, 1, 15),
+('Звёздные войны: Новая надежда', 'Эпическое космическое приключение', 9, 13, 2, 150, 2010, 1, 1, 1, 3, 7),
+('Реальная любовь', 'Романтическая комедия о любви', 7, 12, 3, 120, 2015, 3, 3, 11, 3, 6),
+('Тёмный рыцарь', 'Остросюжетная криминальная драма', 8, 16, 1, 130, 2005, 5, 5, 2, 1, 12),
+('История игрушек 4', 'Анимационный фильм для детей', 10, 0, 2, 90, 2018, 6, 3, 11, 6, 10),
+('История Рима', 'Исторический документальный фильм', 6, 0, 2, 110, 2012, 4, 6, 13, 5, 9),
+('Деревня', 'История ужасов в деревне', 5, 18, 1, 100, 2011, 8, 4, 14, 8, 4),
+('Властелин колец', 'Фэнтезийная эпическая сага', 9, 13, 6, 140, 2014, 7, 7, 3, 7, 8),
+('Джон Уик', 'Остросюжетный боевик', 8, 16, 3, 115, 2013, 1, 2, 1, 2, 1),
+('Мальчишник в Вегасе', 'Комедия о повседневной жизни', 7, 0, 6000, 105, 2016, 3, 3, 14, 3, 2),
+('Исчезнувшая', 'Детективная история о преступлении', 8, 16, 6, 125, 2009, 5, 9, 2, 1, 13),
+('Начало', 'Научно-фантастический триллер', 9, 14, 2, 130, 2017, 1, 1, 3, 3, 7),
+('Дневник памяти', 'Романтическая драма', 7, 12, 3, 100, 2018, 3, 3, 11, 3, 6),
+('Планета Земля II', 'Документальный фильм о природе', 8, 0, 1, 90, 2014, 4, 6, 13, 5, 9),
+('Холодное сердце 2', 'Анимационное приключение', 9, 0, 1, 95, 2019, 6, 3, 11, 6, 10),
+('Настоящая grit', 'Ковбойская история в стиле вестерн', 7, 16, 1, 130, 2010, 1, 2, 1, 1, 15),
 
-('Interstellar', 'Mind-bending space odyssey about love and time', 9, 13, 0, 169, 2014, 1, 1, 3, 3, 7),
-('La La Land', 'Modern musical about dreams and romance in Hollywood', 8, 12, 0, 128, 2016, 1, 3, 14, 7, 14),
-('The Shawshank Redemption', 'Powerful drama about hope and friendship in prison', 10, 16, 0, 142, 1994, 1, 5, 2, 1, 3),
-('Spirited Away', 'Magical anime about a girl in a spirit world', 9, 0, 0, 125, 2001, 6, 3, 11, 6, 10),
-('The Grand Budapest Hotel', 'Whimsical comedy about a legendary hotel concierge', 8, 13, 0, 100, 2014, 1, 7, 3, 15, 2);
+('Интерстеллар', 'Захватывающая космическая одиссея о любви и времени', 9, 13, 0, 169, 2014, 1, 1, 3, 3, 7),
+('Ла-Ла Ленд', 'Современный мюзикл о мечтах и романтике в Голливуде', 8, 12, 0, 128, 2016, 1, 3, 14, 7, 14),
+('Побег из Шоушенка', 'Мощная драма о надежде и дружбе в тюрьме', 10, 16, 0, 142, 1994, 1, 5, 2, 1, 3),
+('Унесённые призраками', 'Магическое аниме о девочке в мире духов', 9, 0, 0, 125, 2001, 6, 3, 11, 6, 10),
+('Отель «Гранд Будапешт»', 'Причудливая комедия о легендарном консьерже отеля', 8, 13, 0, 100, 2014, 1, 7, 3, 15, 2),
+
+('Матрица', 'Хакер обнаруживает, что реальность — это симуляция', 7, 18, 18, 143, 1991, 8, 12, 6, 3, 6),
+('Форрест Гамп', 'Малоумный человек становится свидетелем исторических событий', 9, 6, 7, 127, 2022, 11, 4, 8, 3, 14),
+('Криминальное чтиво', 'Истории преступлений в Лос-Анджелесе', 9, 18, 19, 113, 2003, 4, 4, 13, 2, 10),
+('Крёстный отец', 'Мафиозная семья борется за власть и верность', 9, 16, 7, 155, 2000, 8, 13, 6, 12, 1),
+('Молчание ягнят', 'Стажер ФБР просит помощи у каннибала', 8, 18, 0, 117, 2022, 3, 4, 15, 6, 4),
+('Выживший', 'Колонист сражается за выживание после предательства', 7, 12, 0, 118, 2018, 13, 11, 13, 15, 13),
+('Чёрный лебедь', 'Балерина погружается в безумие', 10, 16, 10, 109, 2022, 7, 2, 9, 8, 8),
+('Социальная сеть', 'История создания Facebook', 9, 18, 7, 163, 2019, 10, 10, 5, 12, 6),
+('Одержимость', 'Молодой барабанщик сталкивается с требовательным учителем', 8, 6, 7, 97, 2005, 7, 12, 8, 14, 13),
+('Она', 'Мужчина влюбляется в систему искусственного интеллекта', 6, 18, 2, 134, 2012, 14, 5, 3, 6, 9),
+('Прибытие', 'Лингвист расшифровывает язык пришельцев', 10, 16, 12, 95, 1995, 2, 7, 5, 6, 1),
+('Паразиты', 'Бедная семья проникает в богатый дом', 6, 12, 14, 176, 2020, 11, 13, 15, 7, 6),
+('Престиж', 'Два мага в смертельном соперничестве', 8, 16, 14, 169, 1996, 3, 3, 10, 9, 5),
+('Игра в имитацию', 'Алан Тьюринг взламывает нацистскую Энигму', 6, 18, 19, 144, 2000, 15, 7, 12, 1, 9),
+('Амели', 'Причудливая француженка меняет жизни окружающих', 9, 18, 1, 179, 2006, 13, 14, 12, 10, 11),
+('Миллионер из трущоб', 'Сирота побеждает в телеигре вопреки всему', 8, 16, 10, 99, 2017, 11, 5, 11, 14, 12),
+('Джокер', 'Психически больной человек погружается в безумие', 6, 6, 11, 172, 1991, 12, 1, 4, 9, 6),
+('1917', 'Два солдата Первой мировой несут важное сообщение', 9, 6, 2, 133, 2004, 12, 5, 6, 10, 14),
+('Тайна Коко', 'Мальчик попадает в мир мёртвых', 9, 16, 2, 96, 2010, 13, 15, 8, 10, 3),
+('Головоломка', 'Эмоции внутри сознания девочки', 6, 16, 1, 176, 1994, 5, 1, 6, 15, 11);
 
 INSERT INTO Collection (name, description) VALUES
-('Best of Sci-Fi', 'Top rated science fiction movies'),
-('Romantic Classics', 'Best romantic movies of all time'),
-('Horror Night', 'Scary horror movies'),
-('Family Fun', 'Movies suitable for family viewing'),
-('Comedy Hits', 'Top comedy movies'),
-('Action Thrillers', 'Best action packed thrillers'),
-('Documentaries', 'Educational and informative films'),
-('Animated Favorites', 'Popular animated movies'),
-('Crime Stories', 'Best crime drama movies'),
-('Fantasy Worlds', 'Movies set in fantasy universes'),
-('Adventure Journeys', 'Exciting adventure movies'),
-('Mystery and Suspense', 'Intriguing mystery films'),
-('Western Legends', 'Classic western films'),
-('Musicals', 'Famous musical movies'),
-('International Cinema', 'Best foreign movies');
+('Лучшая научная фантастика', 'Лучшие научно-фантастические фильмы'),
+('Романтическая классика', 'Лучшие романтические фильмы всех времён'),
+('Ночь ужасов', 'Страшные фильмы ужасов'),
+('Семейные развлечения', 'Фильмы, подходящие для семейного просмотра'),
+('Лучшие комедии', 'Лучшие комедийные фильмы'),
+('Экшн-триллеры', 'Лучшие остросюжетные боевики'),
+('Документальное кино', 'Образовательные и познавательные фильмы'),
+('Любимая анимация', 'Популярные анимационные фильмы'),
+('Криминальные истории', 'Лучшие криминальные драмы'),
+('Фэнтези-миры', 'Фильмы, действие которых происходит в фантастических мирах'),
+('Приключенческие путешествия', 'Захватывающие приключенческие фильмы'),
+('Тайны и саспенс', 'Интригующие детективные фильмы'),
+('Вестерн-легенды', 'Классические вестерны'),
+('Мюзиклы', 'Знаменитые мюзиклы'),
+('Мировое кино', 'Лучшие зарубежные фильмы');
 
 INSERT INTO MovieCollection (collection_id, movie_id) VALUES
-(1,1),(2,2),(3,6),(4,4),(5,9),
-(6,8),(7,5),(8,14),(9,3),(10,7),
-(11,11),(12,10),(13,15),(14,2),(15,13);
+(1,1),
+(1, 16), 
+(1, 21), 
+(1, 11),
+(2,2),
+(2, 12), 
+(2, 17), 
+(2, 30),
+(3,6),
+(3, 25),
+(3, 10),
+(4,4),
+(4, 19),
+(4, 31),
+(4, 14),
+(5,9),
+(6,8),
+(7,5),
+(8,14),
+(9,3),
+(10,7),
+(11,11),
+(12,10),
+(13,15),
+(14,2),
+(15,13);
 
 INSERT INTO [User] (age, name) VALUES
 (45, 'Mom'),
 (48, 'Dad'),
 (20, 'Daughter'),
 (18, 'Son'),
-(3, 'Cat');
+(6, 'Cat');
 
 
 INSERT INTO UserFavoriteMovies (user_id, movie_id) VALUES
@@ -732,6 +796,12 @@ INSERT INTO WatchHistory (movie_id, user_id, watched_at) VALUES
 (5, 1, '2024-05-03T22:00:00'),
 (7, 1, '2024-05-04T19:30:00'),
 (9, 1, '2024-05-05T20:15:00'),
+(27, 1, '2025-04-06T15:34:55'),
+(28, 1, '2025-05-09T15:34:55'),
+(36, 1, '2025-05-13T15:34:55'),
+(38, 1, '2025-05-01T15:34:55'),
+(40, 1, '2025-04-06T15:34:55'),
+(40, 1, '2025-05-11T15:34:55'),
 
 -- Dad 
 (2, 2, '2024-04-10T18:45:00'),
@@ -739,6 +809,13 @@ INSERT INTO WatchHistory (movie_id, user_id, watched_at) VALUES
 (6, 2, '2024-04-13T21:15:00'),
 (8, 2, '2024-04-15T19:00:00'),
 (10, 2, '2024-04-17T20:30:00'),
+(25, 2, '2025-05-13T15:34:55'),
+(27, 2, '2025-05-12T15:34:55'),
+(29, 2, '2025-03-29T15:34:55'),
+(34, 2, '2025-04-15T15:34:55'),
+(35, 2, '2025-04-07T15:34:55'),
+(38, 2, '2025-03-25T15:34:55'),
+(39, 2, '2025-04-15T15:34:55'),
 
 -- Daughter 
 (11, 3, '2024-03-20T17:00:00'),
@@ -746,6 +823,17 @@ INSERT INTO WatchHistory (movie_id, user_id, watched_at) VALUES
 (13, 3, '2024-03-24T19:15:00'),
 (14, 3, '2024-03-26T20:45:00'),
 (15, 3, '2024-03-28T21:30:00'),
+(25, 3, '2025-05-06T15:34:55'),
+(27, 3, '2025-04-12T15:34:55'),
+(28, 3, '2025-04-16T15:34:55'),
+(31, 3, '2025-04-19T15:34:55'),
+(31, 3, '2025-05-04T15:34:55'),
+(32, 3, '2025-04-12T15:34:55'),
+(33, 3, '2025-04-09T15:34:55'),
+(37, 3, '2025-04-07T15:34:55'),
+(38, 3, '2025-05-11T15:34:55'),
+(39, 3, '2025-04-15T15:34:55'),
+
 
 -- Son
 (1, 4, '2024-02-10T16:30:00'),
@@ -753,13 +841,29 @@ INSERT INTO WatchHistory (movie_id, user_id, watched_at) VALUES
 (7, 4, '2024-02-14T19:00:00'),
 (10, 4, '2024-02-16T20:15:00'),
 (13, 4, '2024-02-18T21:00:00'),
+(21, 4, '2025-05-05T15:34:55'),
+(21, 4, '2025-03-21T15:34:55'),
+(25, 4, '2025-03-28T15:34:55'),
+(26, 4, '2025-05-10T15:34:55'),
+(29, 4, '2025-04-03T15:34:55'),
+(30, 4, '2025-04-23T15:34:55'),
 
 -- Cat
 (2, 5, '2024-01-05T15:00:00'),
 (5, 5, '2024-01-07T16:30:00'),
 (8, 5, '2024-01-09T17:45:00'),
 (11, 5, '2024-01-11T19:00:00'),
-(14, 5, '2024-01-13T20:30:00');
+(14, 5, '2024-01-13T20:30:00'),
+(22, 5, '2025-05-02T15:34:55'),
+(23, 5, '2025-04-28T15:34:55'),
+(24, 5, '2025-05-08T15:34:55'),
+(26, 5, '2025-03-24T15:34:55'),
+(32, 5, '2025-04-16T15:34:55'),
+(32, 5, '2025-04-10T15:34:55'),
+(36, 5, '2025-05-06T15:34:55'),
+(36, 5, '2025-04-03T15:34:55'),
+(39, 5, '2025-04-06T15:34:55'),
+(40, 5, '2025-05-11T15:34:55');
 
 INSERT INTO RentedCarriers (start_rent, end_rent, carrier_id, rentaler_concrete_id) VALUES
 -- просрочил
@@ -776,7 +880,18 @@ INSERT INTO RentedCarriers (start_rent, end_rent, carrier_id, rentaler_concrete_
 (DATEADD(DAY, -3, GETDATE()), DATEADD(DAY, 2, GETDATE()), 7, 7),
 (DATEADD(DAY, -4, GETDATE()), DATEADD(DAY, 3, GETDATE()), 8, 8),
 (DATEADD(DAY, -5, GETDATE()), DATEADD(DAY, 4, GETDATE()), 9, 9),
-(DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, 5, GETDATE()), 10, 10);
+(DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, 5, GETDATE()), 10, 10),
+
+(GETDATE(), DATEADD(DAY, 1, GETDATE()), 21, 11),
+(GETDATE(), DATEADD(DAY, 1, GETDATE()), 23, 9),
+(GETDATE(), DATEADD(DAY, 5, GETDATE()), 25, 8),
+(GETDATE(), DATEADD(DAY, 4, GETDATE()), 27, 11),
+(GETDATE(), DATEADD(DAY, 3, GETDATE()), 29, 7),
+(GETDATE(), DATEADD(DAY, 2, GETDATE()), 31, 13),
+(GETDATE(), DATEADD(DAY, 2, GETDATE()), 33, 6),
+(GETDATE(), DATEADD(DAY, 1, GETDATE()), 35, 11),
+(GETDATE(), DATEADD(DAY, 5, GETDATE()), 37, 11),
+(GETDATE(), DATEADD(DAY, 3, GETDATE()), 39, 7);
 
 
 INSERT INTO [MovieCarrier] (movie_id, carrier_id, recording_format_id) VALUES
@@ -799,13 +914,33 @@ INSERT INTO [MovieCarrier] (movie_id, carrier_id, recording_format_id) VALUES
 (17, 17, 2),
 (18, 18, 8),
 (19, 19, 1),
-(20, 20, 1);
+(20, 20, 1),
+(21, 21, 6),
+(22, 22, 7),
+(23, 23, 7),
+(24, 24, 8),
+(25, 25, 6),
+(26, 26, 10),
+(27, 27, 7),
+(28, 28, 7),
+(29, 29, 6),
+(30, 30, 1),
+(31, 31, 3),
+(32, 32, 7),
+(33, 33, 2),
+(34, 34, 4),
+(35, 35, 10),
+(36, 36, 6),
+(37, 37, 3),
+(38, 38, 8),
+(39, 39, 4),
+(40, 40, 5);
 
 -- Задание 4
 -- сформировать запросы
 
 -- 1
--- Любимый жанр месяца пользователя Daughter (id = 3)
+-- любимый жанр месяца пользователя Daughter (id = 3)
 SELECT TOP 1 g.name AS favorite_month_genre, COUNT(*) AS amount_of_views
 FROM WatchHistory wh
 JOIN Movie m ON wh.movie_id = m.id
@@ -830,7 +965,7 @@ ORDER BY movies_watched DESC;
 SELECT m.name AS movie_title, m.release_year, m.rating
 FROM Movie m
 JOIN Director d ON m.director_id = d.id
-WHERE d.name = 'Christopher Nolan' -- Имя режиссера
+WHERE d.name = 'Кристофер Нолан' 
 ORDER BY m.release_year DESC;
 
 -- 4 
@@ -846,18 +981,21 @@ ORDER BY times_watched DESC;
 SELECT m.description, m.age_limit, g.name AS genre
 FROM Movie m
 JOIN Genre g ON m.genre_id = g.id
-WHERE m.age_limit <= 12
+WHERE m.age_limit <= (
+	SELECT MIN(age)
+	FROM [User]
+	WHERE [name] <> 'Cat' -- по человеческим годам кот старше
+)
 ORDER BY m.rating DESC;
-
 -- 6
 -- список носителей и статус их просроченности
 SELECT 
   c.name AS carrier_name,
   rc.end_rent,
   CASE 
-    WHEN rc.end_rent < GETDATE() THEN 'Overdue'
-    WHEN CAST(rc.end_rent AS DATE) = CAST(GETDATE() AS DATE) THEN 'Due today'
-    ELSE 'Not due yet'
+    WHEN rc.end_rent < GETDATE() THEN 'Просроченный'
+    WHEN CAST(rc.end_rent AS DATE) = CAST(GETDATE() AS DATE) THEN 'Срок сегодня'
+    ELSE 'Срок еще не наступил'
   END AS status
 FROM RentedCarriers rc
 LEFT JOIN Carrier c ON rc.carrier_id = c.id
@@ -876,3 +1014,49 @@ FROM Movie m
 LEFT JOIN WatchHistory wh ON m.id = wh.movie_id
 WHERE wh.movie_id IS NULL;
 
+-- 8
+-- сортировка пользователей по самым смотрящим (кто больше всего смотрел)
+SELECT u.name AS user_name, COUNT(*) AS watched_movies
+FROM WatchHistory wh
+JOIN [User] u ON wh.user_id = u.id
+GROUP BY u.name
+ORDER BY watched_movies DESC;
+
+-- 9
+-- рекомендация фильмов пользователю id = 3 согласно его любимым жанрам
+SELECT m.name AS recommended_movie
+FROM Movie m
+WHERE m.genre_id IN (
+  SELECT genre_id
+  FROM UserFavoriteGenre
+  WHERE user_id = 3
+)
+AND m.id NOT IN (
+  SELECT movie_id FROM WatchHistory WHERE user_id = 3
+);
+
+-- 10
+-- фильмы, у которых рейтинг выше среднего
+SELECT name, rating
+FROM Movie
+WHERE rating > (SELECT AVG(rating) FROM Movie)
+ORDER BY rating DESC;
+
+-- 11
+-- Вся информация о коллекциях
+SELECT 
+    c.id AS collection_id,
+    c.name AS collection_name,
+    CAST(c.description AS NVARCHAR(MAX)) AS description,
+    COUNT(mc.movie_id) AS movies_count,
+    STRING_AGG(CAST(m.name AS NVARCHAR(MAX)), ', ') WITHIN GROUP (ORDER BY m.name) AS movies_list
+FROM 
+    [Collection] c
+LEFT JOIN 
+    [MovieCollection] mc ON c.id = mc.collection_id
+LEFT JOIN 
+    [Movie] m ON mc.movie_id = m.id
+GROUP BY 
+    c.id, c.name, CAST(c.description AS NVARCHAR(MAX))
+ORDER BY 
+    c.name;
