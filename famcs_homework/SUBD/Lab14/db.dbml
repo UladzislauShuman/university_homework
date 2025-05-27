@@ -158,7 +158,10 @@ Table Carrier {
     size int                          // Неключевое
     name varchar(255)                 // Неключевое
     type_id int [ref: > Type.id]      // Неключевое (внешний ключ)
-    
+    rentaler_concrete_id int [ref: > Rentaler_Concrete.id, null]
+    rental_start_datetime datetime [null]
+    rental_due_datetime datetime [null]
+
     Note: "Физический носитель фильма (диск, кассета и т.д.)"
 }
 
@@ -167,16 +170,6 @@ Table Type {
     name varchar(255)                 // Неключевое
     
     Note: "Типы носителей (DVD, Blu-ray, VHS и т.д.)"
-}
-
-Table RentedCarriers {
-    id int [pk, increment]            // Ключевое (первичный ключ)
-    start_rent time                   // Неключевое
-    end_rent time                     // Неключевое
-    carrier_id int [ref: > Carrier.id] // Неключевое (внешний ключ)
-    rentaler_concrete_id int [ref: > Rentaler_Concrete.id] // Неключевое (внешний ключ)
-    
-    Note: "История аренды носителей"
 }
 
 Table Recording_Format {

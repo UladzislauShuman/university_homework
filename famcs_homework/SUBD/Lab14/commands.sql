@@ -1,3 +1,4 @@
+-- Лаб12
 -- Задание 2
 
 -- сгенерированно для DBML на сайте https://dbdiagram.io/d
@@ -129,22 +130,17 @@ CREATE TABLE [Carrier] (
   [id] INT PRIMARY KEY IDENTITY(1, 1),
   [size] INT CHECK ([size] >= 0), -- 0 для облачных сервисов
   [name] VARCHAR(255) NOT NULL,
-  [type_id] INT
+  [type_id] INT,
+
+  [start_rent] DATETIME,
+  [end_rent] DATETIME,
+  [rentaler_concrete_id] INT
 )
 GO
 
 CREATE TABLE [Type] (
   [id] INT PRIMARY KEY IDENTITY(1, 1),
   [name] VARCHAR(255) NOT NULL
-)
-GO
-
-CREATE TABLE [RentedCarriers] (
-  [id] INT PRIMARY KEY IDENTITY(1, 1),
-  [start_rent] DATETIME NOT NULL,
-  [end_rent] DATETIME NOT NULL,
-  [carrier_id] INT,
-  [rentaler_concrete_id] INT
 )
 GO
 
@@ -311,13 +307,6 @@ GO
 
 EXEC sp_addextendedproperty
 @name = N'Table_Description',
-@value = 'История аренды носителей',
-@level0type = N'Schema', @level0name = 'dbo',
-@level1type = N'Table',  @level1name = 'RentedCarriers';
-GO
-
-EXEC sp_addextendedproperty
-@name = N'Table_Description',
 @value = 'Форматы записи (PAL, NTSC и т.д.)',
 @level0type = N'Schema', @level0name = 'dbo',
 @level1type = N'Table',  @level1name = 'Recording_Format';
@@ -398,10 +387,7 @@ GO
 ALTER TABLE [Carrier] ADD FOREIGN KEY ([type_id]) REFERENCES [Type] ([id])
 GO
 
-ALTER TABLE [RentedCarriers] ADD FOREIGN KEY ([carrier_id]) REFERENCES [Carrier] ([id])
-GO
-
-ALTER TABLE [RentedCarriers] ADD FOREIGN KEY ([rentaler_concrete_id]) REFERENCES [Rentaler_Concrete] ([id])
+ALTER TABLE [Carrier] ADD FOREIGN KEY ([rentaler_concrete_id]) REFERENCES [Rentaler_Concrete] ([id])
 GO
 
 ALTER TABLE [MovieCarrier] ADD FOREIGN KEY ([movie_id]) REFERENCES [Movie] ([id])
@@ -865,34 +851,54 @@ INSERT INTO WatchHistory (movie_id, user_id, watched_at) VALUES
 (39, 5, '2025-04-06T15:34:55'),
 (40, 5, '2025-05-11T15:34:55');
 
-INSERT INTO RentedCarriers (start_rent, end_rent, carrier_id, rentaler_concrete_id) VALUES
+INSERT INTO Carrier (size, name, type_id, start_rent, end_rent, rentaler_concrete_id) VALUES
 -- просрочил
-(DATEADD(DAY, -10, GETDATE()), DATEADD(DAY, -9, GETDATE()), 1, 1),
-(DATEADD(DAY, -8, GETDATE()), DATEADD(DAY, -7, GETDATE()), 2, 2),
-(DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, -5, GETDATE()), 3, 3),
-(DATEADD(DAY, -4, GETDATE()), DATEADD(DAY, -3, GETDATE()), 4, 4),
+(700, 'Carrier A', 1,DATEADD(DAY, -10, GETDATE()), DATEADD(DAY, -9, GETDATE()), 1), 
+(2500, 'Carrier B', 2, DATEADD(DAY, -8, GETDATE()), DATEADD(DAY, -7, GETDATE()), 2), 
+(1200, 'Carrier C', 3, DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, -5, GETDATE()), 3),
+(0, 'Digital Stream', 4, DATEADD(DAY, -4, GETDATE()), DATEADD(DAY, -3, GETDATE()), 4), 
 
 -- сегодня закончиться
-(DATEADD(DAY, -1, GETDATE()), DATEADD(HOUR, 2, GETDATE()), 5, 5),
+(4400, 'LaserDisc 1', 5, DATEADD(DAY, -1, GETDATE()), DATEADD(HOUR, 2, GETDATE()), 5),
 
 -- активные
-(DATEADD(DAY, -2, GETDATE()), DATEADD(DAY, 1, GETDATE()), 6, 6),
-(DATEADD(DAY, -3, GETDATE()), DATEADD(DAY, 2, GETDATE()), 7, 7),
-(DATEADD(DAY, -4, GETDATE()), DATEADD(DAY, 3, GETDATE()), 8, 8),
-(DATEADD(DAY, -5, GETDATE()), DATEADD(DAY, 4, GETDATE()), 9, 9),
-(DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, 5, GETDATE()), 10, 10),
+(800, 'Betamax Tape', 6, DATEADD(DAY, -2, GETDATE()), DATEADD(DAY, 1, GETDATE()), 6),
+(5000, 'HD DVD 1', 7, DATEADD(DAY, -3, GETDATE()), DATEADD(DAY, 2, GETDATE()), 7),
+(6000, '4K UHD Disk', 8, DATEADD(DAY, -4, GETDATE()), DATEADD(DAY, 3, GETDATE()), 8),
+(650, 'Audio CD', 9, DATEADD(DAY, -5, GETDATE()), DATEADD(DAY, 4, GETDATE()), 9),
+(90, 'Music Cassette', 10, DATEADD(DAY, -6, GETDATE()), DATEADD(DAY, 5, GETDATE()), 10),
 
-(GETDATE(), DATEADD(DAY, 1, GETDATE()), 21, 11),
-(GETDATE(), DATEADD(DAY, 1, GETDATE()), 23, 9),
-(GETDATE(), DATEADD(DAY, 5, GETDATE()), 25, 8),
-(GETDATE(), DATEADD(DAY, 4, GETDATE()), 27, 11),
-(GETDATE(), DATEADD(DAY, 3, GETDATE()), 29, 7),
-(GETDATE(), DATEADD(DAY, 2, GETDATE()), 31, 13),
-(GETDATE(), DATEADD(DAY, 2, GETDATE()), 33, 6),
-(GETDATE(), DATEADD(DAY, 1, GETDATE()), 35, 11),
-(GETDATE(), DATEADD(DAY, 5, GETDATE()), 37, 11),
-(GETDATE(), DATEADD(DAY, 3, GETDATE()), 39, 7);
-
+-- и тд
+(0, 'Netflix Stream', 11, NULL, NULL, NULL),
+(16000, 'USB Stick', 12, NULL, NULL, NULL),
+(100000, 'External HDD 1', 13, NULL, NULL, NULL),
+(64, 'SD Card 64GB', 14, NULL, NULL, NULL),
+(2700, 'Blu-ray 3D Disc', 15, NULL, NULL, NULL),
+(2700, 'Blu-ray with Intersteller', 15, NULL, NULL, NULL),
+(3700, 'Blu-ray with La La Land', 15, NULL, NULL, NULL),
+(2500, 'Blu-ray withThe Shawshank Redemption', 15, NULL, NULL, NULL),
+(2900, 'Blu-ray with Spirited Away', 15, NULL, NULL, NULL),
+(3000, 'Blu-ray with The Grand Budapest Hotel', 15, NULL, NULL, NULL),
+(700, 'Collectors DVD', 6, GETDATE(), DATEADD(DAY, 1, GETDATE()), 11),
+(2500, 'Directors Blu-ray', 6, NULL, NULL, NULL),
+(700, 'Limited VHS', 2, GETDATE(), DATEADD(DAY, 1, GETDATE()), 9),
+(16000, 'HD Stream', 1, NULL, NULL, NULL),
+(0, 'LaserClassic', 11, GETDATE(), DATEADD(DAY, 5, GETDATE()), 8),
+(700, 'BetaArchive', 15, NULL, NULL, NULL),
+(0, 'HD Master Copy', 6, GETDATE(), DATEADD(DAY, 4, GETDATE()), 11),
+(700, '4K Collector Edition', 11, NULL, NULL, NULL),
+(700, 'Studio CD', 14, GETDATE(), DATEADD(DAY, 3, GETDATE()), 7),
+(0, 'Classic Cassette', 9, NULL, NULL, NULL),
+(700, 'Netflix Digital', 11, GETDATE(), DATEADD(DAY, 2, GETDATE()), 13),
+(700, 'USB Archive', 4, NULL, NULL, NULL),
+(5000, 'HDD Vault', 7, GETDATE(), DATEADD(DAY, 2, GETDATE()), 6),
+(5000, 'SD Memory', 10, NULL, NULL, NULL),
+(5000, 'Blu-ray 3D Master', 13, GETDATE(), DATEADD(DAY, 1, GETDATE()), 11),
+(2500, 'Bonus Disk', 1, NULL, NULL, NULL),
+(2500, 'Behind the Scenes', 9, GETDATE(), DATEADD(DAY, 5, GETDATE()), 11),
+(5000, 'Remastered Copy', 10, NULL, NULL, NULL),
+(0, 'Studio Screener', 5, GETDATE(), DATEADD(DAY, 3, GETDATE()), 7),
+(0, 'Original Print', 13, NULL, NULL, NULL);
 
 INSERT INTO [MovieCarrier] (movie_id, carrier_id, recording_format_id) VALUES
 (1, 1, 1),
@@ -987,16 +993,18 @@ WHERE m.age_limit <= (
 	WHERE [name] <> 'Cat' -- по человеческим годам кот старше
 )
 ORDER BY m.rating DESC;
+
 -- 6
 -- список носителей и статус их просроченности
 SELECT 
   c.name AS carrier_name,
-  rc.end_rent,
+  c.end_rent, -- Берем дату окончания аренды прямо из таблицы Carrier
   'Просроченный' AS status
-FROM RentedCarriers rc
-LEFT JOIN Carrier c ON rc.carrier_id = c.id
-WHERE rc.end_rent < GETDATE()
-ORDER BY rc.end_rent;
+FROM Carrier c
+WHERE 
+  c.start_rent IS NOT NULL   -- он арендованный?
+  AND c.end_rent < GETDATE()  -- проверяем дату
+ORDER BY c.end_rent;
 
 
 -- 7
@@ -1047,3 +1055,217 @@ JOIN [MovieCollection] mc ON c.id = mc.collection_id
 JOIN [Movie] m ON mc.movie_id = m.id
 GROUP BY c.id, c.name, CAST(c.description AS NVARCHAR(MAX))
 ORDER BY c.name;
+
+--Лаб14
+
+-- 1. Разработать 2 хранимые процедуры для формирования
+-- отчетных документов по специфике предметной области Вашего варианта
+-- индивидального задания и описанию выходных документов (ЛР-4).
+
+-- 1 процедура -- отчет по фильмам относительно различных критериев
+CREATE PROCEDURE GetMoviesByCriteria (
+    @GenreName NVARCHAR(255) = NULL,
+    @DirectorName NVARCHAR(255) = NULL,
+    @MinReleaseYear INT = NULL,
+    @MaxReleaseYear INT = NULL,
+    @MaxAgeLimit INT = NULL,
+    @PublisherName NVARCHAR(255) = NULL -- Добавлен поиск по издателю
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        m.name AS MovieTitle,
+        g.name AS Genre,
+        d.name AS Director,
+        p.name AS Publisher,
+        m.release_year AS ReleaseYear,
+        m.duration AS DurationMinutes,
+        m.rating AS Rating,
+        m.age_limit AS AgeLimit,
+        c.name AS Country
+    FROM Movie m
+    JOIN Genre g ON m.genre_id = g.id
+    JOIN Director d ON m.director_id = d.id
+    JOIN Publisher p ON m.publisher_id = p.id
+    JOIN Country c ON m.country_id = c.id
+    WHERE
+        (@GenreName IS NULL OR g.name = @GenreName)
+        AND (@DirectorName IS NULL OR d.name = @DirectorName)
+        AND (@MinReleaseYear IS NULL OR m.release_year >= @MinReleaseYear)
+        AND (@MaxReleaseYear IS NULL OR m.release_year <= @MaxReleaseYear)
+        AND (@MaxAgeLimit IS NULL OR m.age_limit <= @MaxAgeLimit)
+        AND (@PublisherName IS NULL OR p.name = @PublisherName)
+    ORDER BY
+        m.release_year DESC, m.name;
+END
+GO
+
+-- примеры:
+
+-- все комедии, выпущенные с 2010 по 2020 год, с возрастным ограничением до 18 лет
+EXEC GetMoviesByCriteria @GenreName = 'Комедия', @MinReleaseYear = 2010, @MaxReleaseYear = 2020, @MaxAgeLimit = 18;
+
+-- все фильмы без фильтров 
+EXEC GetMoviesByCriteria;
+
+-- 2 выбираем фильмы по продолжительности
+CREATE PROCEDURE GetMoviesByDuration (
+    @MinDurationMinutes INT,     
+    @MaxDurationMinutes INT,    
+    @SortOrder NVARCHAR(10) = 'ASC' -- 'ASC', 'DESC' 
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- проверка
+    IF @MinDurationMinutes > @MaxDurationMinutes
+    BEGIN
+        PRINT 'exception: min > max';
+        RETURN;
+    END
+
+    -- еще проверка
+    IF @SortOrder NOT IN ('ASC', 'DESC')
+    BEGIN
+        PRINT 'не ASC и не DESC, default = ASC';
+        SET @SortOrder = 'ASC';
+    END
+
+    SELECT
+        m.name AS MovieTitle,
+        m.duration AS DurationMinutes,
+        g.name AS Genre,
+        d.name AS Director,
+        m.release_year AS ReleaseYear,
+        m.rating AS Rating,
+        m.age_limit AS AgeLimit
+    FROM Movie m
+    LEFT JOIN Genre g ON m.genre_id = g.id
+    LEFT JOIN Director d ON m.director_id = d.id
+    WHERE
+        m.duration >= @MinDurationMinutes
+        AND m.duration <= @MaxDurationMinutes
+    ORDER BY
+        CASE WHEN @SortOrder = 'ASC' THEN m.duration END ASC,
+        CASE WHEN @SortOrder = 'DESC' THEN m.duration END DESC,
+        m.name ASC;
+END
+GO
+
+-- Пример использования:
+EXEC GetMoviesByDuration @MinDurationMinutes = 120, @MaxDurationMinutes = 150, @SortOrder = 'DESC';
+
+
+
+-- 2. Разработать 1 триггер для поддержания ограничений
+-- целостности БД предметной области Вашего варианта индивидального
+-- задания или выполнения заданных действий с некоторыми ее таблицами
+-- после определенных DML-запросов пользователей.
+
+-- триггер для автоматического обновления количества просмотров фильма после
+-- добавления его в WatchHistory
+
+CREATE TRIGGER Trigger_UpdateMovieViewsAfterWatching
+ON WatchHistory -- после того как в таблицу
+AFTER INSERT -- была вставленна новая запись
+AS
+BEGIN
+    WITH MovieViewCounts AS ( -- сохраняем результат запроса (CTE), 
+        SELECT
+            i.movie_id, -- id фильма из insert
+            COUNT(*) AS NewViews -- сколько он там фигурирует
+        FROM inserted i
+        GROUP BY i.movie_id
+    )
+    UPDATE Movie -- и используем его для Обновления данных в Movie
+    SET number_of_views = Movie.number_of_views + mvc.NewViews
+    FROM Movie
+    INNER JOIN MovieViewCounts mvc ON Movie.id = mvc.movie_id;
+
+END
+GO
+
+-- Проверка работы триггера:
+-- до
+SELECT name, number_of_views FROM Movie WHERE id = 1;
+
+-- добавляем
+INSERT INTO WatchHistory (movie_id, user_id, watched_at)
+VALUES (1, 2, GETDATE()); 
+
+-- перепроверяем
+SELECT name, number_of_views FROM Movie WHERE id = 1;
+
+-- 3. Создать 2 представления, представляющих выборочные данные
+-- отдельных таблиц БД предметной области вашего варианта индивидального
+-- задания.-- подробная информация о носителяхCREATE VIEW view_DetailedCarrierInfo
+AS
+SELECT
+    c.id AS Id, -- id
+    c.name AS Carrier_Name, -- имя
+    t.name AS Carrier_Type, -- тип
+    c.size AS Carrier_SizeMB, -- размер
+    ( -- фильмы через запятую
+        SELECT STRING_AGG(CAST(m.name AS NVARCHAR(MAX)), ', ') WITHIN GROUP (ORDER BY m.name)
+        FROM MovieCarrier mc
+        JOIN Movie m ON mc.movie_id = m.id
+        WHERE mc.carrier_id = c.id
+    ) AS MoviesOnCarrier,
+    c.start_rent AS Start_date_,
+    c.end_rent AS End_date,
+    rc.name AS RentedFrom_Name,
+    CASE -- cтатус носителя
+        WHEN c.rentaler_concrete_id IS NULL THEN 'Наше'
+        WHEN c.end_rent IS NOT NULL AND c.end_rent < GETDATE() THEN 'просрочил (до: ' + CONVERT(VARCHAR(10), c.end_rent, 120) + ')'
+        WHEN c.end_rent IS NOT NULL AND c.end_rent >= GETDATE() THEN 'активно (до: ' + CONVERT(VARCHAR(10), c.end_rent, 120) + ')'
+        WHEN c.start_rent IS NOT NULL AND c.end_rent IS NULL THEN 'не укащано когда вернуть'
+    END AS Carrier_Status,
+    DATEDIFF(day, GETDATE(), c.end_rent) AS Due 
+FROM Carrier c
+JOIN Type t ON c.type_id = t.id
+LEFT JOIN Rentaler_Concrete rc_details ON c.rentaler_concrete_id = rc_details.id
+LEFT JOIN Rentaler rc ON rc_details.rentaler_id = rc.id
+GO
+
+-- например:
+SELECT *
+FROM view_DetailedCarrierInfo;
+
+
+--2 Любимый жанр пользователя за месяц
+CREATE VIEW view_UserTopGenresOfMonth
+AS
+WITH MonthlyUserGenreViews AS (
+    SELECT
+        wh.user_id,
+        g.id AS genre_id,
+        g.name AS genre_name,
+        COUNT(*) AS amount_of_views,
+        ROW_NUMBER() OVER (PARTITION BY wh.user_id ORDER BY COUNT(*) DESC, g.name ASC) as rang
+    FROM WatchHistory wh
+    JOIN Movie m ON wh.movie_id = m.id
+    JOIN Genre g ON m.genre_id = g.id
+    WHERE wh.watched_at >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0) -- левая рамка месяца
+      AND wh.watched_at < DATEADD(month, DATEDIFF(month, 0, GETDATE()) + 1, 0) -- правая
+      AND wh.user_id IS NOT NULL
+    GROUP BY wh.user_id, g.id, g.name
+)
+SELECT
+    mu.user_id,
+    u.name AS UserName,
+    mu.genre_name AS GenreName,
+    mu.amount_of_views AS ViewsInMonth,
+    mu.rang AS GenreRankInMonth
+FROM MonthlyUserGenreViews mu
+JOIN [User] u ON mu.user_id = u.id;
+-- WHERE mu.rn <= 5;
+GO
+
+-- пример
+SELECT GenreName, ViewsInMonth, GenreRankInMonth
+FROM view_UserTopGenresOfMonth
+WHERE user_id = 3 AND GenreRankInMonth <= 5
+ORDER BY GenreRankInMonth;
