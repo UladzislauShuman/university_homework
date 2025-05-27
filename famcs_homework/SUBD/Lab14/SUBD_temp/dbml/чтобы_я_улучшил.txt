@@ -1,0 +1,3 @@
+Director
+	добавил бы поля Name, Surname
+    	убрать unique

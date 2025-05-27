@@ -2,7 +2,6 @@
 
 Table Movie {
     id int [pk, increment]            // Ключевое (первичный ключ)
-    name varchar(255)                 // Неключевое
     description varchar(255)          // Неключевое
     rating int                        // Неключевое
     age_limit int                     // Неключевое
