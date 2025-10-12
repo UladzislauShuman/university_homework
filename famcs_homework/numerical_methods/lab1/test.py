@@ -8,7 +8,10 @@ from lab1 import generate_matrix, make_invert_matrix
 
 def run_performance_test(start_size, end_size, step):
     """
-    полный цикл эксперимента: 
+    из файла lab1.py, я пришел к выводу, что сложность имеет вид O(n^3)
+    собственно далее я буду на нее проверять
+    
+    в методе реализован полный цикл эксперимента: 
     - замеры 
     - анализ 
     - сохранение отчета и графика
@@ -25,7 +28,7 @@ def run_performance_test(start_size, end_size, step):
         os.makedirs(OUTPUT_DIR)
     report_path = os.path.join(OUTPUT_DIR, REPORT_FILE)
     plot_path = os.path.join(OUTPUT_DIR, PLOT_FILE)
-    results = []
+    results = [] # здесь будут храняться результаты всех вычислений эксперемента
     sizes_to_test = range(start_size, end_size + 1, step)
 
     print("="*60)
@@ -36,8 +39,9 @@ def run_performance_test(start_size, end_size, step):
     
     # --- цикл замеров ---
     for n in sizes_to_test:
-        times_for_current_size = []
+        times_for_current_size = [] # (массив, который хранит замеры за все NUM_RUNS_PER_SIZE пробегов матрицы размером n на n)
         print(f"Обработка матриц размера {n}x{n}...")
+        # делаем NUM_RUNS_PER_SIZE прогонок
         for i in range(NUM_RUNS_PER_SIZE):
             matrix = generate_matrix(n)
             start_time = time.time()
@@ -45,7 +49,9 @@ def run_performance_test(start_size, end_size, step):
             end_time = time.time()
             times_for_current_size.append(end_time - start_time)
         
+        # считаем среднее время
         avg_time = np.mean(times_for_current_size)
+        # добавляем Размер-Время
         results.append((n, avg_time))
         print(f"-> Среднее время: {avg_time:.6f} сек.")
 
@@ -59,12 +65,20 @@ def run_performance_test(start_size, end_size, step):
     dims = np.array([res[0] for res in results])
     times = np.array([res[1] for res in results])
     
+    """
+    далее нарисуем апроксимирующий график T(n) = C * n^3, чтобы подтвердить ассимптотическую сложность O(n^3)
+    как я считал C:
+    - вот мы получили все размеры (dims) и все времена их вычисления (times)
+    - посчитали все C в каждой точке (constants_c) (<итоговое время>/<размерность>^3)
+    - C становиться тем точнее, чем мы смотрим с конца (то есть -- на конце у нас самые больше n, а чем больше n, тем n^3 большее "доминирует" над n^2, n,...)
+    - поэтому мы берем -- либо длинну constants_c, либо 5 результатов (min из этих двоих) и считаем среднее из них
+    """
     # считаем константу c = T/n^3. исключаем n=0
     constants_c = times / (dims**3 + 1e-9)  # добавляем небольшое число к знаменателю для избежания деления на ноль
     num_points_for_avg = min(len(constants_c), 5)
     c_avg = np.mean(constants_c[-num_points_for_avg:])
     
-    n_max_for_target_time = int((TARGET_TIME_SEC / c_avg)**(1/3)) if c_avg > 0 else 0
+    n_max_for_target_time = int((TARGET_TIME_SEC / c_avg)**(1/3)) if c_avg > 0 else 0 # ответ на вопрос "сколько я могу посчитать за 1 минуту"
 
     # --- запись отчета ---
     with open(report_path, 'w', encoding='utf-8') as f:
