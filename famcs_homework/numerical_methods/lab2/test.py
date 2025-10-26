@@ -102,11 +102,11 @@ def run_performance_experiment(start_size, end_size, step):
     fig, ax = plt.subplots(figsize=(12, 7))
     
     ax.plot(dims, errors_rot, 'o-', label='метод вращений', color='blue')
-    ax.plot(dims, errors_gauss, 's--', label='оптимизированный метод гаусса', color='red')
+    ax.plot(dims, errors_gauss, 's--', label='оптимизированный метод Гаусса', color='red')
     
     ax.set_xlabel('размерность матрицы (n)', fontsize=12)
-    ax.set_ylabel('норма погрешности ||x_0 - x_computed||₂', fontsize=12)
-    ax.set_title('зависимость точности решения слау от размерности матрицы', fontsize=14)
+    ax.set_ylabel('норма погрешности', fontsize=12)
+    ax.set_title('зависимость точности решения СЛАУ от размерности', fontsize=14)
     ax.set_yscale('log')
     ax.legend(fontsize=10)
     ax.grid(True, which="both", ls="--")
