@@ -14,7 +14,7 @@ def run_performance_experiment(start_size, end_size, step):
     проводит полный цикл эксперимента по исследованию методов:
     - запускает решатели для диапазона размерностей.
     - собирает данные о погрешностях.
-    - сохраняет результаты в текстовый отчет и строит график.
+    - сохраняет результаты в txt и строит график.
     """
     # --- настройки ---
     OUTPUT_DIR = "performance_results"
@@ -84,10 +84,10 @@ def run_performance_experiment(start_size, end_size, step):
     errors_rot = np.array([res[1] for res in results])
     errors_gauss = np.array([res[3] for res in results])
 
-    # --- запись отчета ---
+    # --- запись результата ---
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write("="*70 + "\n")
-        f.write("отчет об исследовании методов решения слау\n")
+        f.write("отчет\n")
         f.write("="*70 + "\n\n")
         f.write(f"{'размер (n)':<15} | {'погрешность (вращения)':<25} | {'погрешность (гаусс)':<25}\n")
         f.write("-" * 70 + "\n")
