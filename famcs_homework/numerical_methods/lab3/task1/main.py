@@ -8,8 +8,8 @@ from gauss_seidel import gauss_seidel_method
 def main():
 
     OUTPUT_DIR = "task1_results"
-    REPORT_FILE = "convergence_report.txt"
-    PLOT_FILE = "convergence_plot.png"
+    REPORT_FILE = "report.txt"
+    PLOT_FILE = "plot.png"
 
     A = np.array([
         [4., -5., 5.],
@@ -44,7 +44,7 @@ def main():
 
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write("="*70 + "\n")
-        f.write("Отчет о сходимости итерационных методов\n")
+        f.write("Отчет\n")
         f.write("="*70 + "\n\n")
         f.write(f"Решаемая система для матрицы A:\n{A}\n\n")
         f.write(f"Вектор правой части b = {b.tolist()}\n")
@@ -56,14 +56,12 @@ def main():
         f.write("-" * 30 + "\n")
         f.write(f" - Конечное решение: {x_jacobi}\n")
         f.write(f" - Норма невязки на последней итерации: {jacobi_residuals[-1]:.4e}\n")
-        f.write(" - Вывод: Метод расходится, что соответствует теоретическому анализу (ρ(B_J) > 1).\n\n")
-
+        
         f.write("-" * 30 + "\n")
         f.write("Метод Гаусса-Зейделя\n")
         f.write("-" * 30 + "\n")
         f.write(f" - Конечное решение: {x_gauss_seidel}\n")
         f.write(f" - Норма невязки на последней итерации: {gs_residuals[-1]:.4e}\n")
-        f.write(" - Вывод: Метод сходится к ожидаемому решению, что соответствует теоретическому анализу (ρ(B_S) < 1).\n")
         f.write("="*70 + "\n")
 
     print(f"-> Текстовый отчет успешно сохранен в: {report_path}")
