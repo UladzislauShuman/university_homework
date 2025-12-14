@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from task1.data import get_matrices
 from task1.inverse_power import inverse_power_method_with_shift
 from danilevsky import danilevsky_method
-from horner import evaluate_frobenius_poly, format_polynomial
+from horner import evaluate_frobenius_polynome, format_polynomial
 
 def main():
     OUTPUT_DIR = "task2_results"
@@ -45,7 +45,7 @@ def main():
                 polynome_string_parts.append(f"({polynome_str})")
                 
                 # вычисляем значение
-                val = evaluate_frobenius_poly(coefficients, lambda_found)
+                val = evaluate_frobenius_polynome(coefficients, lambda_found)
                 total_value_at_lambda *= val
 
             # собираем итоговую строку

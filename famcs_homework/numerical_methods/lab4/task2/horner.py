@@ -1,8 +1,8 @@
-def evaluate_frobenius_poly(coefficients, lambda_):
+def evaluate_frobenius_polynome(coefficients, lambda_):
     """
     вычисляет значение характеристического многочлена в lambda_ по схеме Горнера, указаной в условии.
     P(x) = x^n - p[0]*x^(n-1) - p[1]*x^(n-2) - ... - p[n-1]
-    coeffs: список [p1, p2, ..., pn]
+    coefficients: список [p1, p2, ..., pn]
     lambda_: значение x
     """
     result = 1.0 # так как у нас цель проверить, правильно ли мы нашли и СЗн и равно ли нулю выражение, 
