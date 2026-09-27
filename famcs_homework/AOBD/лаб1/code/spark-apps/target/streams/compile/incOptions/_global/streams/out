@@ -1,0 +1,11 @@
+[debug] Created transactional ClassFileManager with tempDir = /Users/vladsuman/git/famcs/university_homework/famcs_homework/AOBD/лаб1_new/code/spark-apps/target/scala-2.12/classes.bak
+[debug] About to delete class files:
+[debug] 	PageRank$.class
+[debug] 	PageRank.class
+[debug] We backup class files:
+[debug] 	PageRank$.class
+[debug] 	PageRank.class
+[debug] Registering generated classes:
+[debug] 	PageRank$.class
+[debug] 	PageRank.class
+[debug] Removing the temporary directory used for backing up class files: /Users/vladsuman/git/famcs/university_homework/famcs_homework/AOBD/лаб1_new/code/spark-apps/target/scala-2.12/classes.bak
