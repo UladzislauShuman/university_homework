@@ -1,0 +1,43 @@
+x-flink-config: &flink-config
+  # общие настройки для всех узлов flink
+  FLINK_PROPERTIES: |
+    jobmanager.rpc.address: flink-jobmanager
+    taskmanager.numberOfTaskSlots: 2
+    parallelism.default: 4
+
+services:
+  flink-jobmanager:
+    image: flink:1.20-java17
+    container_name: lab2-flink-jobmanager
+    command: jobmanager
+    ports:
+      - "8081:8081"
+    environment: *flink-config
+    volumes:
+      - ..:/workspace
+
+  flink-taskmanager-1:
+    image: flink:1.20-java17
+    container_name: lab2-flink-taskmanager-1
+    command: taskmanager
+    depends_on:
+      - flink-jobmanager
+    environment: *flink-config
+    volumes:
+      - ..:/workspace
+
+  flink-taskmanager-2:
+    image: flink:1.20-java17
+    container_name: lab2-flink-taskmanager-2
+    command: taskmanager
+    depends_on:
+      - flink-jobmanager
+    environment: *flink-config
+    volumes:
+      - ..:/workspace
+
+# сеть, которую создал kafka-cluster - чтобы flink видел брокер по имени kafka
+networks:
+  default:
+    name: lab2-stream
+    external: true

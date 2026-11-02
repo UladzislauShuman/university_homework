@@ -1,0 +1,6 @@
+target/
+project/target/
+project/project/
+checkpoints/
+logs/
+__pycache__/
