@@ -1,0 +1,100 @@
+# инфраструктура лабы: база, кэш и мониторинг.
+# само приложение и jmeter запускаются с компа (не в докере), как советовал преподаватель.
+# у каждого контейнера свой лимит cpu/ram, чтобы нагрузка не съела весь компьютер.
+
+name: lab2
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: lab2-postgres
+    environment:
+      POSTGRES_DB: lab2
+      POSTGRES_USER: lab2
+      POSTGRES_PASSWORD: lab2
+    ports: ["5432:5432"]
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lab2 -d lab2"]
+      interval: 2s
+      retries: 30
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 1g }   # база — самый "дорогой" ресурс, ей даём одно ядро
+
+  redis:
+    image: redis:8-alpine
+    container_name: lab2-redis
+    # без записи на диск: после перезапуска кэш пустой, как у настоящего in-memory кэша
+    command: ["redis-server", "--save", "", "--appendonly", "no",
+              "--maxmemory", "200mb", "--maxmemory-policy", "allkeys-lru"]
+    ports: ["6379:6379"]
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 256m }
+
+  # ---------------- мониторинг ----------------
+
+  postgres-exporter:   # метрики postgres -> prometheus
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.17.1
+    container_name: lab2-postgres-exporter
+    environment:
+      DATA_SOURCE_NAME: "postgresql://lab2:lab2@postgres:5432/lab2?sslmode=disable"
+    depends_on:
+      postgres: { condition: service_healthy }
+    deploy:
+      resources:
+        limits: { cpus: "0.2", memory: 128m }
+
+  redis-exporter:      # метрики redis -> prometheus
+    image: oliver006/redis_exporter:v1.74.0
+    container_name: lab2-redis-exporter
+    environment:
+      REDIS_ADDR: "redis://redis:6379"
+    deploy:
+      resources:
+        limits: { cpus: "0.2", memory: 64m }
+
+  cgroup-exporter:     # cpu/ram каждого контейнера -> prometheus (см. monitoring/cgroup-exporter/exporter.py)
+    image: python:3.13-alpine
+    container_name: lab2-cgroup-exporter
+    command: ["python", "-u", "/exporter.py"]
+    volumes:
+      - ./monitoring/cgroup-exporter/exporter.py:/exporter.py:ro
+      - /sys/fs/cgroup:/cg:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      resources:
+        limits: { cpus: "0.2", memory: 64m }
+
+  prometheus:          # собирает метрики раз в секунду
+    image: prom/prometheus:v3.5.0
+    container_name: lab2-prometheus
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.retention.time=7d"]
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports: ["9090:9090"]
+    extra_hosts: ["host.docker.internal:host-gateway"]   # чтобы достучаться до приложения на компе
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 512m }
+
+  grafana:             # графики
+    image: grafana/grafana:12.1.1
+    container_name: lab2-grafana
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports: ["3000:3000"]
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 512m }
+
+volumes:
+  prometheus-data:

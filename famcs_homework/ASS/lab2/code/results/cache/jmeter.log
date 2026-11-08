@@ -1,0 +1,778 @@
+2026-11-08 14:14:27,038 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2026-11-08 14:14:27,045 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/user.properties
+2026-11-08 14:14:27,045 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/system.properties
+2026-11-08 14:14:27,045 INFO o.a.j.JMeter: Loading additional properties from: jmeter/lab2.properties
+2026-11-08 14:14:27,046 INFO o.a.j.JMeter: Setting JMeter property: threads=200
+2026-11-08 14:14:27,046 INFO o.a.j.JMeter: Setting JMeter property: rampup=30
+2026-11-08 14:14:27,046 INFO o.a.j.JMeter: Setting JMeter property: duration=600
+2026-11-08 14:14:27,047 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2026-11-08 14:14:27,047 INFO o.a.j.JMeter: Version 5.6.3
+2026-11-08 14:14:27,047 INFO o.a.j.JMeter: java.version=21.0.13.0.3
+2026-11-08 14:14:27,047 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2026-11-08 14:14:27,048 INFO o.a.j.JMeter: os.name=Mac OS X
+2026-11-08 14:14:27,048 INFO o.a.j.JMeter: os.arch=aarch64
+2026-11-08 14:14:27,048 INFO o.a.j.JMeter: os.version=26.6.2
+2026-11-08 14:14:27,048 INFO o.a.j.JMeter: file.encoding=UTF-8
+2026-11-08 14:14:27,048 INFO o.a.j.JMeter: java.awt.headless=true
+2026-11-08 14:14:27,048 INFO o.a.j.JMeter: Max memory     =1073741824
+2026-11-08 14:14:27,048 INFO o.a.j.JMeter: Available Processors =12
+2026-11-08 14:14:27,051 INFO o.a.j.JMeter: Default Locale=English (EN)
+2026-11-08 14:14:27,051 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2026-11-08 14:14:27,051 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.6.3/libexec
+2026-11-08 14:14:27,051 INFO o.a.j.JMeter: user.dir  =/Users/vladsuman/git/famcs/university_homework/famcs_homework/ASS/lab2/code
+2026-11-08 14:14:27,051 INFO o.a.j.JMeter: PWD       =/Users/vladsuman/git/famcs/university_homework/famcs_homework/ASS/lab2/code
+2026-11-08 14:14:27,053 INFO o.a.j.JMeter: IP: 192.168.0.34 Name: MacBook-Pro-Vlad-2.local FullName: 192.168.0.34
+2026-11-08 14:14:27,057 INFO o.a.j.s.FileServer: Default base='/Users/vladsuman/git/famcs/university_homework/famcs_homework/ASS/lab2/code'
+2026-11-08 14:14:27,057 INFO o.a.j.s.FileServer: Set new base='/Users/vladsuman/git/famcs/university_homework/famcs_homework/ASS/lab2/code/jmeter'
+2026-11-08 14:14:27,114 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2026-11-08 14:14:27,125 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2026-11-08 14:14:27,126 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2026-11-08 14:14:27,127 INFO o.a.j.s.SaveService: Loading file: jmeter/users.jmx
+2026-11-08 14:14:27,144 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-11-08 14:14:27,144 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-11-08 14:14:27,144 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-11-08 14:14:27,144 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2026-11-08 14:14:27,144 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2026-11-08 14:14:27,144 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2026-11-08 14:14:27,152 INFO o.a.j.JMeter: Creating summariser <summary>
+2026-11-08 14:14:27,156 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2026-11-08 14:14:27,156 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2026-11-08 14:14:27,156 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2026-11-08 14:14:27,157 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2026-11-08 14:14:27,157 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2026-11-08 14:14:27,177 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2026-11-08 14:14:27,206 INFO o.a.j.JMeter: Running test (1794136467206)
+2026-11-08 14:14:27,212 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : users
+2026-11-08 14:14:27,212 INFO o.a.j.e.StandardJMeterEngine: Starting 200 threads for group users.
+2026-11-08 14:14:27,212 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2026-11-08 14:14:27,213 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=200 ramp-up=30 delayedStart=false
+2026-11-08 14:14:27,214 INFO o.a.j.t.JMeterThread: Thread started: users 1-1
+2026-11-08 14:14:27,220 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = MacBook-Pro-Vlad-2.local
+2026-11-08 14:14:27,222 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2026-11-08 14:14:27,222 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2026-11-08 14:14:27,222 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2026-11-08 14:14:27,223 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2026-11-08 14:14:27,223 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2026-11-08 14:14:27,230 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2026-11-08 14:14:27,230 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2026-11-08 14:14:27,364 INFO o.a.j.t.JMeterThread: Thread started: users 1-2
+2026-11-08 14:14:27,514 INFO o.a.j.t.JMeterThread: Thread started: users 1-3
+2026-11-08 14:14:27,664 INFO o.a.j.t.JMeterThread: Thread started: users 1-4
+2026-11-08 14:14:27,814 INFO o.a.j.t.JMeterThread: Thread started: users 1-5
+2026-11-08 14:14:27,964 INFO o.a.j.t.JMeterThread: Thread started: users 1-6
+2026-11-08 14:14:28,114 INFO o.a.j.t.JMeterThread: Thread started: users 1-7
+2026-11-08 14:14:28,268 INFO o.a.j.t.JMeterThread: Thread started: users 1-8
+2026-11-08 14:14:28,418 INFO o.a.j.t.JMeterThread: Thread started: users 1-9
+2026-11-08 14:14:28,563 INFO o.a.j.t.JMeterThread: Thread started: users 1-10
+2026-11-08 14:14:28,714 INFO o.a.j.t.JMeterThread: Thread started: users 1-11
+2026-11-08 14:14:28,867 INFO o.a.j.t.JMeterThread: Thread started: users 1-12
+2026-11-08 14:14:29,014 INFO o.a.j.t.JMeterThread: Thread started: users 1-13
+2026-11-08 14:14:29,164 INFO o.a.j.t.JMeterThread: Thread started: users 1-14
+2026-11-08 14:14:29,317 INFO o.a.j.t.JMeterThread: Thread started: users 1-15
+2026-11-08 14:14:29,464 INFO o.a.j.t.JMeterThread: Thread started: users 1-16
+2026-11-08 14:14:29,613 INFO o.a.j.t.JMeterThread: Thread started: users 1-17
+2026-11-08 14:14:29,763 INFO o.a.j.t.JMeterThread: Thread started: users 1-18
+2026-11-08 14:14:29,913 INFO o.a.j.t.JMeterThread: Thread started: users 1-19
+2026-11-08 14:14:30,000 INFO o.a.j.r.Summariser: summary +  74837 in 00:00:03 = 26784.9/s Avg:     0 Min:     0 Max:    30 Err:     0 (0.00%) Active: 19 Started: 19 Finished: 0
+2026-11-08 14:14:30,069 INFO o.a.j.t.JMeterThread: Thread started: users 1-20
+2026-11-08 14:14:30,213 INFO o.a.j.t.JMeterThread: Thread started: users 1-21
+2026-11-08 14:14:30,364 INFO o.a.j.t.JMeterThread: Thread started: users 1-22
+2026-11-08 14:14:30,514 INFO o.a.j.t.JMeterThread: Thread started: users 1-23
+2026-11-08 14:14:30,664 INFO o.a.j.t.JMeterThread: Thread started: users 1-24
+2026-11-08 14:14:30,818 INFO o.a.j.t.JMeterThread: Thread started: users 1-25
+2026-11-08 14:14:30,963 INFO o.a.j.t.JMeterThread: Thread started: users 1-26
+2026-11-08 14:14:31,113 INFO o.a.j.t.JMeterThread: Thread started: users 1-27
+2026-11-08 14:14:31,263 INFO o.a.j.t.JMeterThread: Thread started: users 1-28
+2026-11-08 14:14:31,413 INFO o.a.j.t.JMeterThread: Thread started: users 1-29
+2026-11-08 14:14:31,563 INFO o.a.j.t.JMeterThread: Thread started: users 1-30
+2026-11-08 14:14:31,713 INFO o.a.j.t.JMeterThread: Thread started: users 1-31
+2026-11-08 14:14:31,864 INFO o.a.j.t.JMeterThread: Thread started: users 1-32
+2026-11-08 14:14:32,013 INFO o.a.j.t.JMeterThread: Thread started: users 1-33
+2026-11-08 14:14:32,163 INFO o.a.j.t.JMeterThread: Thread started: users 1-34
+2026-11-08 14:14:32,314 INFO o.a.j.t.JMeterThread: Thread started: users 1-35
+2026-11-08 14:14:32,464 INFO o.a.j.t.JMeterThread: Thread started: users 1-36
+2026-11-08 14:14:32,613 INFO o.a.j.t.JMeterThread: Thread started: users 1-37
+2026-11-08 14:14:32,763 INFO o.a.j.t.JMeterThread: Thread started: users 1-38
+2026-11-08 14:14:32,913 INFO o.a.j.t.JMeterThread: Thread started: users 1-39
+2026-11-08 14:14:33,063 INFO o.a.j.t.JMeterThread: Thread started: users 1-40
+2026-11-08 14:14:33,218 INFO o.a.j.t.JMeterThread: Thread started: users 1-41
+2026-11-08 14:14:33,363 INFO o.a.j.t.JMeterThread: Thread started: users 1-42
+2026-11-08 14:14:33,513 INFO o.a.j.t.JMeterThread: Thread started: users 1-43
+2026-11-08 14:14:33,664 INFO o.a.j.t.JMeterThread: Thread started: users 1-44
+2026-11-08 14:14:33,813 INFO o.a.j.t.JMeterThread: Thread started: users 1-45
+2026-11-08 14:14:33,965 INFO o.a.j.t.JMeterThread: Thread started: users 1-46
+2026-11-08 14:14:34,117 INFO o.a.j.t.JMeterThread: Thread started: users 1-47
+2026-11-08 14:14:34,264 INFO o.a.j.t.JMeterThread: Thread started: users 1-48
+2026-11-08 14:14:34,414 INFO o.a.j.t.JMeterThread: Thread started: users 1-49
+2026-11-08 14:14:34,563 INFO o.a.j.t.JMeterThread: Thread started: users 1-50
+2026-11-08 14:14:34,714 INFO o.a.j.t.JMeterThread: Thread started: users 1-51
+2026-11-08 14:14:34,863 INFO o.a.j.t.JMeterThread: Thread started: users 1-52
+2026-11-08 14:14:35,013 INFO o.a.j.t.JMeterThread: Thread started: users 1-53
+2026-11-08 14:14:35,163 INFO o.a.j.t.JMeterThread: Thread started: users 1-54
+2026-11-08 14:14:35,314 INFO o.a.j.t.JMeterThread: Thread started: users 1-55
+2026-11-08 14:14:35,463 INFO o.a.j.t.JMeterThread: Thread started: users 1-56
+2026-11-08 14:14:35,616 INFO o.a.j.t.JMeterThread: Thread started: users 1-57
+2026-11-08 14:14:35,765 INFO o.a.j.t.JMeterThread: Thread started: users 1-58
+2026-11-08 14:14:35,914 INFO o.a.j.t.JMeterThread: Thread started: users 1-59
+2026-11-08 14:14:36,063 INFO o.a.j.t.JMeterThread: Thread started: users 1-60
+2026-11-08 14:14:36,213 INFO o.a.j.t.JMeterThread: Thread started: users 1-61
+2026-11-08 14:14:36,363 INFO o.a.j.t.JMeterThread: Thread started: users 1-62
+2026-11-08 14:14:36,513 INFO o.a.j.t.JMeterThread: Thread started: users 1-63
+2026-11-08 14:14:36,664 INFO o.a.j.t.JMeterThread: Thread started: users 1-64
+2026-11-08 14:14:36,813 INFO o.a.j.t.JMeterThread: Thread started: users 1-65
+2026-11-08 14:14:36,964 INFO o.a.j.t.JMeterThread: Thread started: users 1-66
+2026-11-08 14:14:37,113 INFO o.a.j.t.JMeterThread: Thread started: users 1-67
+2026-11-08 14:14:37,264 INFO o.a.j.t.JMeterThread: Thread started: users 1-68
+2026-11-08 14:14:37,415 INFO o.a.j.t.JMeterThread: Thread started: users 1-69
+2026-11-08 14:14:37,565 INFO o.a.j.t.JMeterThread: Thread started: users 1-70
+2026-11-08 14:14:37,713 INFO o.a.j.t.JMeterThread: Thread started: users 1-71
+2026-11-08 14:14:37,863 INFO o.a.j.t.JMeterThread: Thread started: users 1-72
+2026-11-08 14:14:38,018 INFO o.a.j.t.JMeterThread: Thread started: users 1-73
+2026-11-08 14:14:38,163 INFO o.a.j.t.JMeterThread: Thread started: users 1-74
+2026-11-08 14:14:38,314 INFO o.a.j.t.JMeterThread: Thread started: users 1-75
+2026-11-08 14:14:38,465 INFO o.a.j.t.JMeterThread: Thread started: users 1-76
+2026-11-08 14:14:38,614 INFO o.a.j.t.JMeterThread: Thread started: users 1-77
+2026-11-08 14:14:38,763 INFO o.a.j.t.JMeterThread: Thread started: users 1-78
+2026-11-08 14:14:38,914 INFO o.a.j.t.JMeterThread: Thread started: users 1-79
+2026-11-08 14:14:39,063 INFO o.a.j.t.JMeterThread: Thread started: users 1-80
+2026-11-08 14:14:39,214 INFO o.a.j.t.JMeterThread: Thread started: users 1-81
+2026-11-08 14:14:39,364 INFO o.a.j.t.JMeterThread: Thread started: users 1-82
+2026-11-08 14:14:39,513 INFO o.a.j.t.JMeterThread: Thread started: users 1-83
+2026-11-08 14:14:39,665 INFO o.a.j.t.JMeterThread: Thread started: users 1-84
+2026-11-08 14:14:39,814 INFO o.a.j.t.JMeterThread: Thread started: users 1-85
+2026-11-08 14:14:39,964 INFO o.a.j.t.JMeterThread: Thread started: users 1-86
+2026-11-08 14:14:40,000 INFO o.a.j.r.Summariser: summary + 616347 in 00:00:10 = 61634.7/s Avg:     0 Min:     0 Max:     7 Err:     0 (0.00%) Active: 86 Started: 86 Finished: 0
+2026-11-08 14:14:40,000 INFO o.a.j.r.Summariser: summary = 691184 in 00:00:13 = 54024.1/s Avg:     0 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:14:40,113 INFO o.a.j.t.JMeterThread: Thread started: users 1-87
+2026-11-08 14:14:40,263 INFO o.a.j.t.JMeterThread: Thread started: users 1-88
+2026-11-08 14:14:40,413 INFO o.a.j.t.JMeterThread: Thread started: users 1-89
+2026-11-08 14:14:40,564 INFO o.a.j.t.JMeterThread: Thread started: users 1-90
+2026-11-08 14:14:40,713 INFO o.a.j.t.JMeterThread: Thread started: users 1-91
+2026-11-08 14:14:40,864 INFO o.a.j.t.JMeterThread: Thread started: users 1-92
+2026-11-08 14:14:41,013 INFO o.a.j.t.JMeterThread: Thread started: users 1-93
+2026-11-08 14:14:41,163 INFO o.a.j.t.JMeterThread: Thread started: users 1-94
+2026-11-08 14:14:41,314 INFO o.a.j.t.JMeterThread: Thread started: users 1-95
+2026-11-08 14:14:41,465 INFO o.a.j.t.JMeterThread: Thread started: users 1-96
+2026-11-08 14:14:41,614 INFO o.a.j.t.JMeterThread: Thread started: users 1-97
+2026-11-08 14:14:41,764 INFO o.a.j.t.JMeterThread: Thread started: users 1-98
+2026-11-08 14:14:41,914 INFO o.a.j.t.JMeterThread: Thread started: users 1-99
+2026-11-08 14:14:42,065 INFO o.a.j.t.JMeterThread: Thread started: users 1-100
+2026-11-08 14:14:42,213 INFO o.a.j.t.JMeterThread: Thread started: users 1-101
+2026-11-08 14:14:42,365 INFO o.a.j.t.JMeterThread: Thread started: users 1-102
+2026-11-08 14:14:42,514 INFO o.a.j.t.JMeterThread: Thread started: users 1-103
+2026-11-08 14:14:42,663 INFO o.a.j.t.JMeterThread: Thread started: users 1-104
+2026-11-08 14:14:42,813 INFO o.a.j.t.JMeterThread: Thread started: users 1-105
+2026-11-08 14:14:42,963 INFO o.a.j.t.JMeterThread: Thread started: users 1-106
+2026-11-08 14:14:43,114 INFO o.a.j.t.JMeterThread: Thread started: users 1-107
+2026-11-08 14:14:43,264 INFO o.a.j.t.JMeterThread: Thread started: users 1-108
+2026-11-08 14:14:43,416 INFO o.a.j.t.JMeterThread: Thread started: users 1-109
+2026-11-08 14:14:43,565 INFO o.a.j.t.JMeterThread: Thread started: users 1-110
+2026-11-08 14:14:43,714 INFO o.a.j.t.JMeterThread: Thread started: users 1-111
+2026-11-08 14:14:43,864 INFO o.a.j.t.JMeterThread: Thread started: users 1-112
+2026-11-08 14:14:44,014 INFO o.a.j.t.JMeterThread: Thread started: users 1-113
+2026-11-08 14:14:44,164 INFO o.a.j.t.JMeterThread: Thread started: users 1-114
+2026-11-08 14:14:44,313 INFO o.a.j.t.JMeterThread: Thread started: users 1-115
+2026-11-08 14:14:44,464 INFO o.a.j.t.JMeterThread: Thread started: users 1-116
+2026-11-08 14:14:44,614 INFO o.a.j.t.JMeterThread: Thread started: users 1-117
+2026-11-08 14:14:44,764 INFO o.a.j.t.JMeterThread: Thread started: users 1-118
+2026-11-08 14:14:44,914 INFO o.a.j.t.JMeterThread: Thread started: users 1-119
+2026-11-08 14:14:45,063 INFO o.a.j.t.JMeterThread: Thread started: users 1-120
+2026-11-08 14:14:45,213 INFO o.a.j.t.JMeterThread: Thread started: users 1-121
+2026-11-08 14:14:45,365 INFO o.a.j.t.JMeterThread: Thread started: users 1-122
+2026-11-08 14:14:45,514 INFO o.a.j.t.JMeterThread: Thread started: users 1-123
+2026-11-08 14:14:45,666 INFO o.a.j.t.JMeterThread: Thread started: users 1-124
+2026-11-08 14:14:45,814 INFO o.a.j.t.JMeterThread: Thread started: users 1-125
+2026-11-08 14:14:45,967 INFO o.a.j.t.JMeterThread: Thread started: users 1-126
+2026-11-08 14:14:46,118 INFO o.a.j.t.JMeterThread: Thread started: users 1-127
+2026-11-08 14:14:46,264 INFO o.a.j.t.JMeterThread: Thread started: users 1-128
+2026-11-08 14:14:46,414 INFO o.a.j.t.JMeterThread: Thread started: users 1-129
+2026-11-08 14:14:46,564 INFO o.a.j.t.JMeterThread: Thread started: users 1-130
+2026-11-08 14:14:46,716 INFO o.a.j.t.JMeterThread: Thread started: users 1-131
+2026-11-08 14:14:46,864 INFO o.a.j.t.JMeterThread: Thread started: users 1-132
+2026-11-08 14:14:47,013 INFO o.a.j.t.JMeterThread: Thread started: users 1-133
+2026-11-08 14:14:47,163 INFO o.a.j.t.JMeterThread: Thread started: users 1-134
+2026-11-08 14:14:47,313 INFO o.a.j.t.JMeterThread: Thread started: users 1-135
+2026-11-08 14:14:47,466 INFO o.a.j.t.JMeterThread: Thread started: users 1-136
+2026-11-08 14:14:47,614 INFO o.a.j.t.JMeterThread: Thread started: users 1-137
+2026-11-08 14:14:47,764 INFO o.a.j.t.JMeterThread: Thread started: users 1-138
+2026-11-08 14:14:47,916 INFO o.a.j.t.JMeterThread: Thread started: users 1-139
+2026-11-08 14:14:48,068 INFO o.a.j.t.JMeterThread: Thread started: users 1-140
+2026-11-08 14:14:48,213 INFO o.a.j.t.JMeterThread: Thread started: users 1-141
+2026-11-08 14:14:48,364 INFO o.a.j.t.JMeterThread: Thread started: users 1-142
+2026-11-08 14:14:48,513 INFO o.a.j.t.JMeterThread: Thread started: users 1-143
+2026-11-08 14:14:48,664 INFO o.a.j.t.JMeterThread: Thread started: users 1-144
+2026-11-08 14:14:48,814 INFO o.a.j.t.JMeterThread: Thread started: users 1-145
+2026-11-08 14:14:48,964 INFO o.a.j.t.JMeterThread: Thread started: users 1-146
+2026-11-08 14:14:49,115 INFO o.a.j.t.JMeterThread: Thread started: users 1-147
+2026-11-08 14:14:49,264 INFO o.a.j.t.JMeterThread: Thread started: users 1-148
+2026-11-08 14:14:49,415 INFO o.a.j.t.JMeterThread: Thread started: users 1-149
+2026-11-08 14:14:49,564 INFO o.a.j.t.JMeterThread: Thread started: users 1-150
+2026-11-08 14:14:49,714 INFO o.a.j.t.JMeterThread: Thread started: users 1-151
+2026-11-08 14:14:49,863 INFO o.a.j.t.JMeterThread: Thread started: users 1-152
+2026-11-08 14:14:50,000 INFO o.a.j.r.Summariser: summary + 709147 in 00:00:10 = 70914.7/s Avg:     1 Min:     0 Max:     9 Err:     0 (0.00%) Active: 152 Started: 152 Finished: 0
+2026-11-08 14:14:50,000 INFO o.a.j.r.Summariser: summary = 1400331 in 00:00:23 = 61434.2/s Avg:     1 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:14:50,014 INFO o.a.j.t.JMeterThread: Thread started: users 1-153
+2026-11-08 14:14:50,168 INFO o.a.j.t.JMeterThread: Thread started: users 1-154
+2026-11-08 14:14:50,318 INFO o.a.j.t.JMeterThread: Thread started: users 1-155
+2026-11-08 14:14:50,468 INFO o.a.j.t.JMeterThread: Thread started: users 1-156
+2026-11-08 14:14:50,614 INFO o.a.j.t.JMeterThread: Thread started: users 1-157
+2026-11-08 14:14:50,763 INFO o.a.j.t.JMeterThread: Thread started: users 1-158
+2026-11-08 14:14:50,913 INFO o.a.j.t.JMeterThread: Thread started: users 1-159
+2026-11-08 14:14:51,063 INFO o.a.j.t.JMeterThread: Thread started: users 1-160
+2026-11-08 14:14:51,216 INFO o.a.j.t.JMeterThread: Thread started: users 1-161
+2026-11-08 14:14:51,368 INFO o.a.j.t.JMeterThread: Thread started: users 1-162
+2026-11-08 14:14:51,518 INFO o.a.j.t.JMeterThread: Thread started: users 1-163
+2026-11-08 14:14:51,665 INFO o.a.j.t.JMeterThread: Thread started: users 1-164
+2026-11-08 14:14:51,813 INFO o.a.j.t.JMeterThread: Thread started: users 1-165
+2026-11-08 14:14:51,964 INFO o.a.j.t.JMeterThread: Thread started: users 1-166
+2026-11-08 14:14:52,118 INFO o.a.j.t.JMeterThread: Thread started: users 1-167
+2026-11-08 14:14:52,265 INFO o.a.j.t.JMeterThread: Thread started: users 1-168
+2026-11-08 14:14:52,416 INFO o.a.j.t.JMeterThread: Thread started: users 1-169
+2026-11-08 14:14:52,564 INFO o.a.j.t.JMeterThread: Thread started: users 1-170
+2026-11-08 14:14:52,714 INFO o.a.j.t.JMeterThread: Thread started: users 1-171
+2026-11-08 14:14:52,864 INFO o.a.j.t.JMeterThread: Thread started: users 1-172
+2026-11-08 14:14:53,014 INFO o.a.j.t.JMeterThread: Thread started: users 1-173
+2026-11-08 14:14:53,163 INFO o.a.j.t.JMeterThread: Thread started: users 1-174
+2026-11-08 14:14:53,314 INFO o.a.j.t.JMeterThread: Thread started: users 1-175
+2026-11-08 14:14:53,464 INFO o.a.j.t.JMeterThread: Thread started: users 1-176
+2026-11-08 14:14:53,614 INFO o.a.j.t.JMeterThread: Thread started: users 1-177
+2026-11-08 14:14:53,763 INFO o.a.j.t.JMeterThread: Thread started: users 1-178
+2026-11-08 14:14:53,914 INFO o.a.j.t.JMeterThread: Thread started: users 1-179
+2026-11-08 14:14:54,064 INFO o.a.j.t.JMeterThread: Thread started: users 1-180
+2026-11-08 14:14:54,216 INFO o.a.j.t.JMeterThread: Thread started: users 1-181
+2026-11-08 14:14:54,366 INFO o.a.j.t.JMeterThread: Thread started: users 1-182
+2026-11-08 14:14:54,514 INFO o.a.j.t.JMeterThread: Thread started: users 1-183
+2026-11-08 14:14:54,663 INFO o.a.j.t.JMeterThread: Thread started: users 1-184
+2026-11-08 14:14:54,813 INFO o.a.j.t.JMeterThread: Thread started: users 1-185
+2026-11-08 14:14:54,964 INFO o.a.j.t.JMeterThread: Thread started: users 1-186
+2026-11-08 14:14:55,113 INFO o.a.j.t.JMeterThread: Thread started: users 1-187
+2026-11-08 14:14:55,263 INFO o.a.j.t.JMeterThread: Thread started: users 1-188
+2026-11-08 14:14:55,415 INFO o.a.j.t.JMeterThread: Thread started: users 1-189
+2026-11-08 14:14:55,564 INFO o.a.j.t.JMeterThread: Thread started: users 1-190
+2026-11-08 14:14:55,714 INFO o.a.j.t.JMeterThread: Thread started: users 1-191
+2026-11-08 14:14:55,868 INFO o.a.j.t.JMeterThread: Thread started: users 1-192
+2026-11-08 14:14:56,014 INFO o.a.j.t.JMeterThread: Thread started: users 1-193
+2026-11-08 14:14:56,164 INFO o.a.j.t.JMeterThread: Thread started: users 1-194
+2026-11-08 14:14:56,314 INFO o.a.j.t.JMeterThread: Thread started: users 1-195
+2026-11-08 14:14:56,464 INFO o.a.j.t.JMeterThread: Thread started: users 1-196
+2026-11-08 14:14:56,614 INFO o.a.j.t.JMeterThread: Thread started: users 1-197
+2026-11-08 14:14:56,763 INFO o.a.j.t.JMeterThread: Thread started: users 1-198
+2026-11-08 14:14:56,918 INFO o.a.j.t.JMeterThread: Thread started: users 1-199
+2026-11-08 14:14:57,068 INFO o.a.j.t.JMeterThread: Thread started: users 1-200
+2026-11-08 14:15:00,000 INFO o.a.j.r.Summariser: summary + 722511 in 00:00:10 = 72251.1/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:15:00,000 INFO o.a.j.r.Summariser: summary = 2122842 in 00:00:33 = 64732.6/s Avg:     1 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:15:10,000 INFO o.a.j.r.Summariser: summary + 724023 in 00:00:10 = 72402.3/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:15:10,000 INFO o.a.j.r.Summariser: summary = 2846865 in 00:00:43 = 66524.9/s Avg:     1 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:15:20,000 INFO o.a.j.r.Summariser: summary + 724099 in 00:00:10 = 72409.9/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:15:20,000 INFO o.a.j.r.Summariser: summary = 3570964 in 00:00:53 = 67639.6/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:15:30,000 INFO o.a.j.r.Summariser: summary + 727601 in 00:00:10 = 72760.1/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:15:30,000 INFO o.a.j.r.Summariser: summary = 4298565 in 00:01:03 = 68455.0/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:15:40,000 INFO o.a.j.r.Summariser: summary + 719928 in 00:00:10 = 71992.8/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:15:40,000 INFO o.a.j.r.Summariser: summary = 5018493 in 00:01:13 = 68941.0/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:15:50,000 INFO o.a.j.r.Summariser: summary + 721547 in 00:00:10 = 72154.7/s Avg:     2 Min:     0 Max:    17 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:15:50,000 INFO o.a.j.r.Summariser: summary = 5740040 in 00:01:23 = 69329.2/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:16:00,000 INFO o.a.j.r.Summariser: summary + 725538 in 00:00:10 = 72553.8/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:16:00,000 INFO o.a.j.r.Summariser: summary = 6465578 in 00:01:33 = 69676.7/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:16:10,000 INFO o.a.j.r.Summariser: summary + 723614 in 00:00:10 = 72361.4/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:16:10,000 INFO o.a.j.r.Summariser: summary = 7189192 in 00:01:43 = 69937.9/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:16:20,000 INFO o.a.j.r.Summariser: summary + 728203 in 00:00:10 = 72820.3/s Avg:     2 Min:     0 Max:    11 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:16:20,000 INFO o.a.j.r.Summariser: summary = 7917395 in 00:01:53 = 70193.4/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:16:30,000 INFO o.a.j.r.Summariser: summary + 725005 in 00:00:10 = 72500.5/s Avg:     2 Min:     0 Max:    15 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:16:30,000 INFO o.a.j.r.Summariser: summary = 8642400 in 00:02:03 = 70381.3/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:16:40,000 INFO o.a.j.r.Summariser: summary + 720729 in 00:00:10 = 72072.9/s Avg:     2 Min:     0 Max:    11 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:16:40,000 INFO o.a.j.r.Summariser: summary = 9363129 in 00:02:13 = 70508.7/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:16:50,000 INFO o.a.j.r.Summariser: summary + 728678 in 00:00:10 = 72867.8/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:16:50,000 INFO o.a.j.r.Summariser: summary = 10091807 in 00:02:23 = 70673.9/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:17:00,000 INFO o.a.j.r.Summariser: summary + 730141 in 00:00:10 = 73014.1/s Avg:     2 Min:     0 Max:    16 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:17:00,000 INFO o.a.j.r.Summariser: summary = 10821948 in 00:02:33 = 70827.0/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:17:10,000 INFO o.a.j.r.Summariser: summary + 722947 in 00:00:10 = 72294.7/s Avg:     2 Min:     0 Max:    13 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:17:10,000 INFO o.a.j.r.Summariser: summary = 11544895 in 00:02:43 = 70917.2/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:17:20,000 INFO o.a.j.r.Summariser: summary + 723955 in 00:00:10 = 72395.5/s Avg:     2 Min:     0 Max:    13 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:17:20,000 INFO o.a.j.r.Summariser: summary = 12268850 in 00:02:53 = 71002.8/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:17:30,000 INFO o.a.j.r.Summariser: summary + 721192 in 00:00:10 = 72119.2/s Avg:     2 Min:     0 Max:    13 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:17:30,000 INFO o.a.j.r.Summariser: summary = 12990042 in 00:03:03 = 71063.8/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:17:40,000 INFO o.a.j.r.Summariser: summary + 721907 in 00:00:10 = 72190.7/s Avg:     2 Min:     0 Max:    10 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:17:40,000 INFO o.a.j.r.Summariser: summary = 13711949 in 00:03:13 = 71122.3/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:17:50,000 INFO o.a.j.r.Summariser: summary + 716608 in 00:00:10 = 71660.8/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:17:50,000 INFO o.a.j.r.Summariser: summary = 14428557 in 00:03:23 = 71148.8/s Avg:     2 Min:     0 Max:    30 Err:     0 (0.00%)
+2026-11-08 14:18:00,000 INFO o.a.j.r.Summariser: summary + 725554 in 00:00:10 = 72555.4/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:18:00,001 INFO o.a.j.r.Summariser: summary = 15154111 in 00:03:33 = 71214.9/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:18:10,000 INFO o.a.j.r.Summariser: summary + 723803 in 00:00:10 = 72380.3/s Avg:     2 Min:     0 Max:    16 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:18:10,000 INFO o.a.j.r.Summariser: summary = 15877914 in 00:03:43 = 71267.2/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:18:20,000 INFO o.a.j.r.Summariser: summary + 721687 in 00:00:10 = 72168.7/s Avg:     2 Min:     0 Max:    13 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:18:20,000 INFO o.a.j.r.Summariser: summary = 16599601 in 00:03:53 = 71306.0/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:18:30,000 INFO o.a.j.r.Summariser: summary + 722561 in 00:00:10 = 72256.1/s Avg:     2 Min:     0 Max:    11 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:18:30,000 INFO o.a.j.r.Summariser: summary = 17322162 in 00:04:03 = 71345.1/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:18:40,000 INFO o.a.j.r.Summariser: summary + 723053 in 00:00:10 = 72305.3/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:18:40,000 INFO o.a.j.r.Summariser: summary = 18045215 in 00:04:13 = 71383.1/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:18:50,000 INFO o.a.j.r.Summariser: summary + 718729 in 00:00:10 = 71872.9/s Avg:     2 Min:     0 Max:    13 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:18:50,000 INFO o.a.j.r.Summariser: summary = 18763944 in 00:04:23 = 71401.7/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:19:00,000 INFO o.a.j.r.Summariser: summary + 727012 in 00:00:10 = 72701.2/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:19:00,000 INFO o.a.j.r.Summariser: summary = 19490956 in 00:04:33 = 71449.4/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:19:10,000 INFO o.a.j.r.Summariser: summary + 709155 in 00:00:10 = 70915.5/s Avg:     2 Min:     0 Max:    11 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:19:10,000 INFO o.a.j.r.Summariser: summary = 20200111 in 00:04:43 = 71430.5/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:19:20,000 INFO o.a.j.r.Summariser: summary + 725977 in 00:00:10 = 72597.7/s Avg:     2 Min:     0 Max:    18 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:19:20,000 INFO o.a.j.r.Summariser: summary = 20926088 in 00:04:53 = 71470.3/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:19:30,000 INFO o.a.j.r.Summariser: summary + 725806 in 00:00:10 = 72580.6/s Avg:     2 Min:     0 Max:    11 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:19:30,000 INFO o.a.j.r.Summariser: summary = 21651894 in 00:05:03 = 71507.0/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:19:40,000 INFO o.a.j.r.Summariser: summary + 721701 in 00:00:10 = 72170.1/s Avg:     2 Min:     0 Max:    11 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:19:40,000 INFO o.a.j.r.Summariser: summary = 22373595 in 00:05:13 = 71528.2/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:19:50,000 INFO o.a.j.r.Summariser: summary + 722964 in 00:00:10 = 72296.4/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:19:50,001 INFO o.a.j.r.Summariser: summary = 23096559 in 00:05:23 = 71552.0/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:20:00,000 INFO o.a.j.r.Summariser: summary + 722994 in 00:00:10 = 72299.4/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:20:00,000 INFO o.a.j.r.Summariser: summary = 23819553 in 00:05:33 = 71574.5/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:20:10,000 INFO o.a.j.r.Summariser: summary + 722656 in 00:00:10 = 72265.6/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:20:10,001 INFO o.a.j.r.Summariser: summary = 24542209 in 00:05:43 = 71594.6/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:20:20,000 INFO o.a.j.r.Summariser: summary + 725524 in 00:00:10 = 72552.4/s Avg:     2 Min:     0 Max:    45 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:20:20,000 INFO o.a.j.r.Summariser: summary = 25267733 in 00:05:53 = 71621.8/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:20:30,000 INFO o.a.j.r.Summariser: summary + 721002 in 00:00:10 = 72100.2/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:20:30,000 INFO o.a.j.r.Summariser: summary = 25988735 in 00:06:03 = 71635.0/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:20:40,000 INFO o.a.j.r.Summariser: summary + 726762 in 00:00:10 = 72676.2/s Avg:     2 Min:     0 Max:    16 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:20:40,000 INFO o.a.j.r.Summariser: summary = 26715497 in 00:06:13 = 71662.9/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:20:50,000 INFO o.a.j.r.Summariser: summary + 721931 in 00:00:10 = 72193.1/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:20:50,000 INFO o.a.j.r.Summariser: summary = 27437428 in 00:06:23 = 71676.7/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:21:00,000 INFO o.a.j.r.Summariser: summary + 718421 in 00:00:10 = 71842.1/s Avg:     2 Min:     0 Max:    15 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:21:00,000 INFO o.a.j.r.Summariser: summary = 28155849 in 00:06:33 = 71681.0/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:21:10,000 INFO o.a.j.r.Summariser: summary + 723297 in 00:00:10 = 72329.7/s Avg:     2 Min:     0 Max:    16 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:21:10,000 INFO o.a.j.r.Summariser: summary = 28879146 in 00:06:43 = 71697.1/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:21:20,000 INFO o.a.j.r.Summariser: summary + 728983 in 00:00:10 = 72898.3/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:21:20,000 INFO o.a.j.r.Summariser: summary = 29608129 in 00:06:53 = 71726.2/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:21:30,000 INFO o.a.j.r.Summariser: summary + 671133 in 00:00:10 = 67113.3/s Avg:     2 Min:     0 Max:    11 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:21:30,000 INFO o.a.j.r.Summariser: summary = 30279262 in 00:07:03 = 71617.1/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:21:40,000 INFO o.a.j.r.Summariser: summary + 589618 in 00:00:10 = 58961.8/s Avg:     3 Min:     0 Max:    20 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:21:40,000 INFO o.a.j.r.Summariser: summary = 30868880 in 00:07:13 = 71324.6/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:21:50,000 INFO o.a.j.r.Summariser: summary + 596868 in 00:00:10 = 59686.8/s Avg:     3 Min:     0 Max:    16 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:21:50,000 INFO o.a.j.r.Summariser: summary = 31465748 in 00:07:23 = 71061.8/s Avg:     2 Min:     0 Max:    49 Err:     0 (0.00%)
+2026-11-08 14:22:00,000 INFO o.a.j.r.Summariser: summary + 611492 in 00:00:10 = 61149.2/s Avg:     3 Min:     0 Max:    88 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:22:00,000 INFO o.a.j.r.Summariser: summary = 32077240 in 00:07:33 = 70842.9/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:22:10,000 INFO o.a.j.r.Summariser: summary + 608300 in 00:00:10 = 60830.0/s Avg:     3 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:22:10,000 INFO o.a.j.r.Summariser: summary = 32685540 in 00:07:43 = 70626.5/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:22:20,000 INFO o.a.j.r.Summariser: summary + 651534 in 00:00:10 = 65153.4/s Avg:     3 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:22:20,001 INFO o.a.j.r.Summariser: summary = 33337074 in 00:07:53 = 70510.8/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:22:30,000 INFO o.a.j.r.Summariser: summary + 617639 in 00:00:10 = 61763.9/s Avg:     3 Min:     0 Max:    17 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:22:30,001 INFO o.a.j.r.Summariser: summary = 33954713 in 00:08:03 = 70329.6/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:22:40,000 INFO o.a.j.r.Summariser: summary + 613147 in 00:00:10 = 61314.7/s Avg:     3 Min:     0 Max:    21 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:22:40,000 INFO o.a.j.r.Summariser: summary = 34567860 in 00:08:13 = 70146.7/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:22:50,000 INFO o.a.j.r.Summariser: summary + 662296 in 00:00:10 = 66229.6/s Avg:     3 Min:     0 Max:    18 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:22:50,000 INFO o.a.j.r.Summariser: summary = 35230156 in 00:08:23 = 70068.8/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:23:00,000 INFO o.a.j.r.Summariser: summary + 728161 in 00:00:10 = 72816.1/s Avg:     2 Min:     0 Max:    13 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:23:00,000 INFO o.a.j.r.Summariser: summary = 35958317 in 00:08:33 = 70122.3/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:23:10,000 INFO o.a.j.r.Summariser: summary + 724466 in 00:00:10 = 72446.6/s Avg:     2 Min:     0 Max:    13 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:23:10,000 INFO o.a.j.r.Summariser: summary = 36682783 in 00:08:43 = 70166.8/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:23:20,000 INFO o.a.j.r.Summariser: summary + 704013 in 00:00:10 = 70401.3/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:23:20,000 INFO o.a.j.r.Summariser: summary = 37386796 in 00:08:53 = 70171.2/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:23:30,000 INFO o.a.j.r.Summariser: summary + 721073 in 00:00:10 = 72107.3/s Avg:     2 Min:     0 Max:    12 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:23:30,000 INFO o.a.j.r.Summariser: summary = 38107869 in 00:09:03 = 70206.9/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:23:40,000 INFO o.a.j.r.Summariser: summary + 719132 in 00:00:10 = 71913.2/s Avg:     2 Min:     0 Max:    15 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:23:40,000 INFO o.a.j.r.Summariser: summary = 38827001 in 00:09:13 = 70237.7/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:23:50,000 INFO o.a.j.r.Summariser: summary + 718663 in 00:00:10 = 71866.3/s Avg:     2 Min:     0 Max:    15 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:23:50,000 INFO o.a.j.r.Summariser: summary = 39545664 in 00:09:23 = 70266.7/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:24:00,000 INFO o.a.j.r.Summariser: summary + 725765 in 00:00:10 = 72576.5/s Avg:     2 Min:     0 Max:    13 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:24:00,000 INFO o.a.j.r.Summariser: summary = 40271429 in 00:09:33 = 70307.0/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:24:10,000 INFO o.a.j.r.Summariser: summary + 718224 in 00:00:10 = 71822.4/s Avg:     2 Min:     0 Max:    77 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:24:10,000 INFO o.a.j.r.Summariser: summary = 40989653 in 00:09:43 = 70333.0/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:24:20,000 INFO o.a.j.r.Summariser: summary + 722336 in 00:00:10 = 72233.6/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 200 Started: 200 Finished: 0
+2026-11-08 14:24:20,000 INFO o.a.j.r.Summariser: summary = 41711989 in 00:09:53 = 70365.1/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-4
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-1
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Thread finished: users 1-4
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-3
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Thread finished: users 1-3
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-2
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Thread finished: users 1-2
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Thread finished: users 1-1
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-6
+2026-11-08 14:24:27,214 INFO o.a.j.t.JMeterThread: Thread finished: users 1-6
+2026-11-08 14:24:27,215 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-12
+2026-11-08 14:24:27,215 INFO o.a.j.t.JMeterThread: Thread finished: users 1-12
+2026-11-08 14:24:27,215 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-5
+2026-11-08 14:24:27,215 INFO o.a.j.t.JMeterThread: Thread finished: users 1-5
+2026-11-08 14:24:27,215 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-13
+2026-11-08 14:24:27,215 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-15
+2026-11-08 14:24:27,215 INFO o.a.j.t.JMeterThread: Thread finished: users 1-15
+2026-11-08 14:24:27,216 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-10
+2026-11-08 14:24:27,216 INFO o.a.j.t.JMeterThread: Thread finished: users 1-10
+2026-11-08 14:24:27,216 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-7
+2026-11-08 14:24:27,216 INFO o.a.j.t.JMeterThread: Thread finished: users 1-7
+2026-11-08 14:24:27,215 INFO o.a.j.t.JMeterThread: Thread finished: users 1-13
+2026-11-08 14:24:27,216 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-18
+2026-11-08 14:24:27,216 INFO o.a.j.t.JMeterThread: Thread finished: users 1-18
+2026-11-08 14:24:27,216 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-14
+2026-11-08 14:24:27,216 INFO o.a.j.t.JMeterThread: Thread finished: users 1-14
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-25
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-9
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-9
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-25
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-28
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-28
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-20
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-20
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-29
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-29
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-17
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-17
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-11
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-8
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-31
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-24
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-32
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-32
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-24
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-16
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-16
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-23
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Thread finished: users 1-23
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-41
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-21
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Thread finished: users 1-41
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Thread finished: users 1-21
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-27
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Thread finished: users 1-27
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-19
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Thread finished: users 1-19
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-31
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-22
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Thread finished: users 1-22
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-36
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Thread finished: users 1-36
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-34
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Thread finished: users 1-34
+2026-11-08 14:24:27,217 INFO o.a.j.t.JMeterThread: Thread finished: users 1-11
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Thread finished: users 1-8
+2026-11-08 14:24:27,218 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-43
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Thread finished: users 1-43
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-39
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Thread finished: users 1-39
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-52
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Thread finished: users 1-52
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-33
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Thread finished: users 1-33
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-37
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Thread finished: users 1-37
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-45
+2026-11-08 14:24:27,219 INFO o.a.j.t.JMeterThread: Thread finished: users 1-45
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-26
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Thread finished: users 1-26
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-54
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Thread finished: users 1-54
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-35
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Thread finished: users 1-35
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-62
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Thread finished: users 1-62
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-63
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-40
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Thread finished: users 1-63
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-61
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-51
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Thread finished: users 1-51
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-30
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Thread finished: users 1-30
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-44
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-44
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-60
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-47
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-60
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-47
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-67
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-67
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-46
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-78
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-38
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-38
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-55
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-55
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-53
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-53
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-70
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-70
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-57
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-57
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-42
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-42
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-56
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-56
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Thread finished: users 1-61
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-77
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-84
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-77
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-84
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-58
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-81
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-81
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-50
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-50
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-91
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-64
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-66
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-49
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-66
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-96
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-92
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-96
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-76
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-48
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-73
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-48
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-65
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-73
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-80
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-68
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-82
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-69
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-68
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-79
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-74
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-79
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-64
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-94
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-94
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-88
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-88
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-89
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Thread finished: users 1-89
+2026-11-08 14:24:27,220 INFO o.a.j.t.JMeterThread: Thread finished: users 1-40
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-110
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-95
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Thread finished: users 1-110
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Thread finished: users 1-95
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-87
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Thread finished: users 1-87
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-72
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-102
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Thread finished: users 1-102
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-93
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-71
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Thread finished: users 1-71
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-99
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Thread finished: users 1-99
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-74
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-69
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-86
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Thread finished: users 1-86
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-85
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-82
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-85
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-108
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-90
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-108
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-90
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-124
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-104
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-104
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-100
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-80
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-100
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-65
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-83
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-83
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-76
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-122
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-122
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-121
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-121
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-97
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-120
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-97
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-120
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-109
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-98
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-109
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-101
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-111
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-113
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-103
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-113
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-92
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-128
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-128
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-123
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-123
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-112
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-112
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-106
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-130
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-49
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-130
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-117
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-117
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-131
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-125
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-133
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-137
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-133
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-116
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-115
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-115
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-119
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-119
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-75
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-75
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-135
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-135
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-91
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-129
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-129
+2026-11-08 14:24:27,222 INFO o.a.j.t.JMeterThread: Thread finished: users 1-58
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-59
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-59
+2026-11-08 14:24:27,221 INFO o.a.j.t.JMeterThread: Thread finished: users 1-46
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-78
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-131
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-116
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-125
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-118
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-118
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Thread finished: users 1-106
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-134
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-134
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-126
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-127
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-126
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-127
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-143
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-143
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-145
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-141
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-141
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-132
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-132
+2026-11-08 14:24:27,225 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-107
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-146
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-136
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-140
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-144
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-142
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-152
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-140
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-139
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-139
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-147
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-147
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-98
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-149
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-149
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Thread finished: users 1-101
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-103
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-151
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-151
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-111
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-114
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-114
+2026-11-08 14:24:27,224 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-105
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-105
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-154
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-124
+2026-11-08 14:24:27,223 INFO o.a.j.t.JMeterThread: Thread finished: users 1-93
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-72
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-154
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-150
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-142
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-150
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-153
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-153
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-156
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-157
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-152
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-166
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-159
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-166
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-157
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-159
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-163
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-165
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-173
+2026-11-08 14:24:27,227 INFO o.a.j.t.JMeterThread: Thread finished: users 1-136
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-167
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-167
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-144
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-146
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-162
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-107
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-162
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-169
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-169
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-168
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-168
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-138
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-170
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-170
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-138
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-158
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-158
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-148
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-145
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-148
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-161
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-171
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-171
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-184
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-184
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-180
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-182
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-180
+2026-11-08 14:24:27,226 INFO o.a.j.t.JMeterThread: Thread finished: users 1-137
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-186
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-186
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-182
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-175
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-175
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-172
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-161
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-172
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-160
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-173
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-160
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-181
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-181
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-176
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-179
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-176
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-179
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-178
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-178
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-165
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-185
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-174
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-189
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-163
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-189
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-190
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-190
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-164
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-164
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-155
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-188
+2026-11-08 14:24:27,228 INFO o.a.j.t.JMeterThread: Thread finished: users 1-156
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-155
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-183
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-183
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-177
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-177
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-174
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-185
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-187
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-187
+2026-11-08 14:24:27,229 INFO o.a.j.t.JMeterThread: Thread finished: users 1-188
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-200
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-194
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-200
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-192
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-199
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-192
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-194
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-199
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-197
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-193
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-198
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-197
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-193
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-195
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-196
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-198
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-195
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-196
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: users 1-191
+2026-11-08 14:24:27,230 INFO o.a.j.t.JMeterThread: Thread finished: users 1-191
+2026-11-08 14:24:27,230 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2026-11-08 14:24:27,232 INFO o.a.j.r.Summariser: summary + 520493 in 00:00:07 = 71970.8/s Avg:     2 Min:     0 Max:    14 Err:     0 (0.00%) Active: 0 Started: 200 Finished: 200
+2026-11-08 14:24:27,232 INFO o.a.j.r.Summariser: summary = 42232482 in 00:10:00 = 70384.4/s Avg:     2 Min:     0 Max:    88 Err:     0 (0.00%)

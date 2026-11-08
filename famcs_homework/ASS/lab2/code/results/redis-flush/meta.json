@@ -1,0 +1,2 @@
+{"scenario": "redis-flush", "threads": 200, "duration": 600, "rampup": 30,
+ "start_ms": 1794132154451, "end_ms": 1794132756537, "event1_ms": "1794132334527", "event2_ms": "1794132514764"}

@@ -1,0 +1,2 @@
+{"scenario": "redis-stop", "threads": 200, "duration": 600, "rampup": 30,
+ "start_ms": 1794131373667, "end_ms": 1794131975710, "event1_ms": "1794131553736", "event2_ms": "1794131733996"}

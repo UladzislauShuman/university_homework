@@ -1,0 +1,42 @@
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 200            # дефолт tomcat, по одному потоку на виртуального пользователя jmeter
+
+spring:
+  application:
+    name: users-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lab2
+    username: lab2
+    password: lab2
+    hikari:
+      maximum-pool-size: 10   # дефолт hikari, оставлен как есть
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 200ms          # сколько ждём ответа redis, потом идём в базу
+      connect-timeout: 200ms
+
+app:
+  cache:
+    enabled: ${CACHE_ENABLED:true}   # false = базовый сценарий без кэша
+    ttl: 30m                         # время жизни ключа
+    ttl-jitter: 0.1                  # +-10% к ttl, чтобы ключи не протухали пачкой
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    distribution:
+      # гистограммы, чтобы в grafana считать p50/p95/p99
+      percentiles-histogram:
+        http.server.requests: true
+        users.db.query: true
+        users.cache.get: true
+    tags:
+      application: users-api

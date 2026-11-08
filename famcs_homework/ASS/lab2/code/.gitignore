@@ -1,0 +1,9 @@
+app/target/
+# сырые результаты jmeter весят гигабайты — в git только сводка и html-отчёты
+results/**/*.jtl
+results/**/app.log
+# дампы памяти jmeter (падал при сборке html-отчёта) — по 5 гб каждый
+*.hprof
+# мусор, который jmeter оставляет в папке запуска
+/jmeter.log
+/temp/
